@@ -246,5 +246,32 @@
             alert(translations[currentLang].alert);
         }
     </script>
-</body>
+</body> <script src="https://sdk.minepi.com/pi-sdk.min.js"></script>
+
+<div style="text-align: center; margin-top: 20px;">
+  <button id="pay-btn" style="padding: 10px 20px; font-size: 16px; background-color: #562a87; color: white; border: none; border-radius: 5px;">
+    تجربة دفع 1 Pi
+  </button>
+</div>
+
+<script>
+  // تفعيل التعامل مع Pi
+  const Pi = window.Pi;
+  document.getElementById('pay-btn').onclick = async () => {
+    try {
+      const payment = await Pi.createPayment({
+        amount: 1, 
+        memo: "Test Payment",
+        metadata: { paymentType: "test" }
+      }, {
+        onReadyForServerApproval: (paymentId) => { alert("جاهز للموافقة: " + paymentId); },
+        onReadyForServerCompletion: (paymentId, txid) => { alert("تمت العملية بنجاح!"); },
+        onCancel: (paymentId) => { alert("تم إلغاء العملية"); },
+        onError: (error, payment) => { alert("حدث خطأ: " + error); }
+      });
+    } catch (err) {
+      alert("خطأ في الاتصال: " + err);
+    }
+  };
+</script> 
       </html>
