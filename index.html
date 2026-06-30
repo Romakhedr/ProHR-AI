@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProHR AI - Global Platform</title>
+    <style>
+        :root {
+            --bg-color: #F4F7FA; /* خلفية هادئة ومريحة للعين */
+            --primary-color: #0052CC; /* الأزرق الملكي المشرق - لون الثقة والذكاء */
+            --accent-color: #36B37E; /* الأخضر الزمردي الحيوي - لون النمو والفرص */
+            --text-color: #172B4D; /* كحلي داكن وناعم للنصوص */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* شريط اختيار اللغات */
+        .lang-bar {
+            background-color: #FFFFFF;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            background: #FFFFFF;
+            border: 1px solid #D2D6DC;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: 0.2s;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            border-color: var(--primary-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0, 82, 204, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #E6FCF5;
+            font-size: 15px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+        }
+
+        /* دعم اتجاهات الحواف حسب اللغة */
+        html[dir="rtl"] .card { border-right: 5px solid var(--accent-color); border-left: none; }
+        html[dir="ltr"] .card { border-left: 5px solid var(--accent-color); border-right: none; }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 19px;
+        }
+
+        .card p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: #4A5568;
+            margin: 10px 0 0;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(54, 179, 126, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #2D996C;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 12px;
+            color: #A0AEC0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط اللغات العالمي -->
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="changeLanguage('ar')">العربية</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('hi')">हिन्दी (Hindi)</button>
+        <button class="lang-btn" onclick="changeLanguage('tl')">Tagalog (Filipino)</button>
+    </div>
+
+    <header>
+        <h1 id="main-title">ProHR AI</h1>
+        <p id="main-subtitle">الجيل القادم من التوظيف اللامركزي والموارد البشرية الذكية</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2 id="card1-title">💼 التوظيف اللامركزي والعقود الذكية</h2>
+            <p id="card1-text">نصمم منصة متطورة لربط الكفاءات بالشركات بشكل مباشر، مع توثيق البيانات والخبرات عبر تقنيات البلوكشين لضمان النزاهة المطلقة والأمان الكامل.</p>
+        </div>
+
+        <div class="card">
+            <h2 id="card2-title">🛡️ نظام التحقق اللامركزي</h2>
+            <p id="card2-text">تم دمج وإعداد ملف التحقق بنجاح لربط وتأمين بيئة العمل والتوظيف الذكي طبقاً لأعلى معايير السلامة الرقمية الحديثة.</p>
+        </div>
+
+        <button class="btn" id="action-btn" onclick="triggerAlert()">ابدأ استكشاف الكفاءات الواعدة</button>
+
+    </div>
+
+    <footer>
+        <span id="footer-text">جميع الحقوق محفوظة © 2026 | منصة ProHR AI</span>
+    </footer>
+
+    <script>
+        // قاموس الترجمات الفورية لجميع الجنسيات
+        const translations = {
+            ar: {
+                dir: "rtl",
+                subtitle: "الجيل القادم من التوظيف اللامركزي والموارد البشرية الذكية",
+                card1Title: "💼 التوظيف اللامركزي والعقود الذكية",
+                card1Text: "نصمم منصة متطورة لربط الكفاءات بالشركات بشكل مباشر، مع توثيق البيانات والخبرات عبر تقنيات البلوكشين لضمان النزاهة المطلقة والأمان الكامل.",
+                card2Title: "🛡️ نظام التحقق اللامركزي",
+                card2Text: "تم دمج وإعداد ملف التحقق بنجاح لربط وتأمين بيئة العمل والتوظيف الذكي طبقاً لأعلى معايير السلامة الرقمية الحديثة.",
+                btn: "ابدأ استكشاف الكفاءات الواعدة",
+                footer: "جميع الحقوق محفوظة © 2026 | منصة ProHR AI",
+                alert: "جاري تهيئة منصة الذكاء الاصطناعي لوظيفتك القادمة..."
+            },
+            en: {
+                dir: "ltr",
+                subtitle: "The Next Generation of Decentralized Recruitment & Smart HR",
+                card1Title: "💼 Decentralized Hiring & Smart Contracts",
+                card1Text: "We build an advanced platform connecting talents with companies directly, verifying records and skills via blockchain to ensure complete integrity and security.",
+                card2Title: "🛡️ Decentralized Verification System",
+                card2Text: "The verification file has been successfully integrated to secure the smart HR environment according to the highest digital safety standards.",
+                btn: "Start Exploring Promising Talents",
+                footer: "All Rights Reserved © 2026 | ProHR AI Platform",
+                alert: "Initializing the AI platform for your next job discovery..."
+            },
+            hi: {
+                dir: "ltr",
+                subtitle: "विकेंद्रीकृत भर्ती और स्मार्ट एचआर की अगली पीढ़ी",
+                card1Title: "💼 विकेंद्रीकृत भर्ती और स्मार्ट कॉन्ट्रैक्ट्स",
+                card1Text: "हम प्रतिभाओं को सीधे कंपनियों से जोड़ने के लिए एक उन्नत मंच का निर्माण करते हैं, जो पूर्ण अखंडता और सुरक्षा सुनिश्चित करने के लिए ब्लॉकचेन के माध्यम से कौशल को सत्यापित करता है।",
+                card2Title: "🛡️ विकेंद्रीकृत सत्यापन प्रणाली",
+                card2Text: "उच्चतम डिजिटल सुरक्षा मानकों के अनुसार स्मार्ट एचआर वातावरण को सुरक्षित करने के लिए सत्यापन फ़ाइल को सफलतापूर्वक एकीकृत किया गया है।",
+                btn: "वादा करने वाली प्रतिभाओं की खोज शुरू करें",
+                footer: "सर्वाधिकार सुरक्षित © 2026 | ProHR AI प्लेटफॉर्म",
+                alert: "आपकी अगली नौकरी की खोज के लिए एआई प्लेटफॉर्म शुरू किया जा रहा है..."
+            },
+            tl: {
+                dir: "ltr",
+                subtitle: "Ang Susunod na Henerasyon ng Desentralisadong Pagrekrut at Smart HR",
+                card1Title: "💼 Desentralisadong Pagkuha at Smart Contracts",
+                card1Text: "Gumagawa kami ng advanced na platform na nagkokonekta sa mga talento at kumpanya nang direkta, pinapatunayan ang mga rekord sa blockchain upang matiyak ang buong katapatan at seguridad.",
+                card2Title: "🛡️ Desentralisadong Sistema ng Beripikasyon",
+                card2Text: "Matagumpay na naisama ang verification file upang ma-secure ang smart HR environment ayon sa pinakamataas na pamantayan ng digital safety.",
+                btn: "Simulan ang Paggalugad sa mga Maipagmamalaking Talento",
+                footer: "Lahat ng Karapatan ay Rezervado © 2026 | ProHR AI Platform",
+                alert: "Inihahanda ang AI platform para sa iyong susunod na paghahanap ng trabaho..."
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const data = translations[lang];
+            
+            // تحديث اتجاه الصفحة والنصوص
+            document.documentElement.lang = lang;
+            document.documentElement.dir = data.dir;
+            
+            document.getElementById('main-subtitle').innerText = data.subtitle;
+            document.getElementById('card1-title').innerText = data.card1Title;
+            document.getElementById('card1-text').innerText = data.card1Text;
+            document.getElementById('card2-title').innerText = data.card2Title;
+            document.getElementById('card2-text').innerText = data.card2Text;
+            document.getElementById('action-btn').innerText = data.btn;
+            document.getElementById('footer-text').innerText = data.footer;
+
+            // تحديث حالة الأزرار النشطة
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function triggerAlert() {
+            alert(translations[currentLang].alert);
+        }
+    </script>
+</body>
+      </html>
