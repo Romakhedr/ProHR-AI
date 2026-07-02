@@ -287,8 +287,8 @@
                 const authResult = await Pi.authenticate(scopes, onIncompletePaymentFound);
                 
                 // 3. كود الدفع (الذي كان لديكِ)
-                Pi.createPayment({
-                    amount: 1,
+                Pi.createPaymen({
+                    amount: 0.1
                     memo: "Test Payment",
                     metadata: { paymentType: "test" }
                 }, {
