@@ -309,15 +309,7 @@
                 alert("خطأ: تأكد من فتح الرابط داخل متصفح Pi المحدث - " + err);
             }
         };
-        onReadyForServerApproval: (paymentId) => { alert("جاهز للموافقة: " + paymentId); },
-        onReadyForServerCompletion: (paymentId, txid) => { alert("تمت العملية بنجاح!"); },
-        onCancel: (paymentId) => { alert("تم إلغاء العملية"); },
-        onError: (error, payment) => { alert("حدث خطأ: " + error); }
-      });
-    } catch (err) {
-      alert("خطأ في الاتصال: " + err);
-    }
-  };
+        
 </script> 
 </body>
       </html>
