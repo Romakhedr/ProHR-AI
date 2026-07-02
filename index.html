@@ -258,6 +258,10 @@
 <script>
   // تفعيل التعامل مع Pi
   const Pi = window.Pi;
+    // تفعيل التعامل مع Pi
+        const Pi = window.Pi;
+        Pi.init({ version: "2.0", sandbox: true }); // <-- 
+        document.getElementById('pay-btn').onclick = async function() {
   document.getElementById('pay-btn').onclick = async () => {
     try {
       const payment = await Pi.createPayment({
