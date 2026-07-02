@@ -268,8 +268,7 @@
             ">
         🟢 تجربة دفع 1 Pi
     </button>
-</div>
-
+</div> 
 <script>
     // 1. تفعيل التعامل مع Pi والتهيئة
         const Pi = window.Pi;
@@ -291,11 +290,11 @@
                     amount: 0.1
                     memo: "Test Payment",
                     metadata: { paymentType: "test" }
-                }, {
+                
                     onReadyForServerApproval: (paymentId) => { 
                         console.log("جاهز للموافقة:", paymentId); 
                     },
-                    onReadyForServerCompletion: (paymentId, txid) => { 
+                    {  onReadyForServerCompletion: (paymentId, txid) => { 
                         console.log("اكتمل الدفع:", txid); 
                     },
                     onCancel: (paymentId) => { 
