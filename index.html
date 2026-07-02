@@ -309,17 +309,6 @@
                 alert("خطأ: تأكد من فتح الرابط داخل متصفح Pi المحدث - " + err);
             }
         };
-    // تفعيل التعامل مع Pi
-        const Pi = window.Pi;
-        Pi.init({ version: "2.0", sandbox: true }); // <-- 
-        document.getElementById('pay-btn').onclick = async function() {
-  document.getElementById('pay-btn').onclick = async () => {
-    try {
-      const payment = await Pi.createPayment({
-        amount: 1, 
-        memo: "Test Payment",
-        metadata: { paymentType: "test" }
-      }, {
         onReadyForServerApproval: (paymentId) => { alert("جاهز للموافقة: " + paymentId); },
         onReadyForServerCompletion: (paymentId, txid) => { alert("تمت العملية بنجاح!"); },
         onCancel: (paymentId) => { alert("تم إلغاء العملية"); },
