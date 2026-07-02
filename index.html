@@ -258,6 +258,44 @@
 <script>
   // تفعيل التعامل مع Pi
   const Pi = window.Pi;
+    // 1. تفعيل التعامل مع Pi والتهيئة
+        const Pi = window.Pi;
+        Pi.init({ version: "2.0", sandbox: true });
+
+        // دالة مساعدة يطلبها نظام Pi للبحث عن مدفوعات سابقة معلقة
+        function onIncompletePaymentFound(payment) {
+            console.log("تم العثور على دفعة غير مكتملة:", payment);
+        }
+
+        document.getElementById('pay-btn').onclick = async function() {
+            try {
+                // 2. خطوة المصادقة (تسجيل الدخول بحساب Pi) - ضرورية جداً قبل الدفع
+                const scopes = ['payments'];
+                const authResult = await Pi.authenticate(scopes, onIncompletePaymentFound);
+                
+                // 3. كود الدفع (الذي كان لديكِ)
+                Pi.createPayment({
+                    amount: 1,
+                    memo: "Test Payment",
+                    metadata: { paymentType: "test" }
+                }, {
+                    onReadyForServerApproval: (paymentId) => { 
+                        console.log("جاهز للموافقة:", paymentId); 
+                    },
+                    onReadyForServerCompletion: (paymentId, txid) => { 
+                        console.log("اكتمل الدفع:", txid); 
+                    },
+                    onCancel: (paymentId) => { 
+                        alert("تم إلغاء عملية الدفع."); 
+                    },
+                    onError: (error, payment) => { 
+                        alert("حدث خطأ في الدفع: " + error.message); 
+                    }
+                });
+            } catch (err) {
+                alert("خطأ: تأكد من فتح الرابط داخل متصفح Pi المحدث - " + err);
+            }
+        };
     // تفعيل التعامل مع Pi
         const Pi = window.Pi;
         Pi.init({ version: "2.0", sandbox: true }); // <-- 
