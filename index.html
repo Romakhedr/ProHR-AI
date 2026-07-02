@@ -246,8 +246,6 @@
         function triggerAlert() {
             alert(translations[currentLang].alert);
         }
-    </script>
-</body> <script src="https://sdk.minepi.com/pi-sdk.min.js"></script>
 
 <div style="text-align: center; margin-top: 20px;">
   <button id="pay-btn" style="padding: 10px 20px; font-size: 16px; background-color: #562a87; color: white; border: none; border-radius: 5px;">
@@ -256,8 +254,6 @@
 </div>
 
 <script>
-  // تفعيل التعامل مع Pi
-  const Pi = window.Pi;
     // 1. تفعيل التعامل مع Pi والتهيئة
         const Pi = window.Pi;
         Pi.init({ version: "2.0", sandbox: true });
