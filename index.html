@@ -295,9 +295,15 @@
                 memo: "Test Payment",
                 metadata: { paymentType: "test" }
             }, {
-                onReadyForServerApproval: (paymentId) => { 
-                    console.log("جاهز للموافقة، معرف الدفعة:", paymentId);
-                },
+                onReadyForServerApproval: async (paymentId) => { 
+    console.log("إرسال طلب الموافقة للخادم:", paymentId);
+    await fetch('/api/approve-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentId: paymentId })
+    });
+},
+   },
                 onReadyForServerCompletion: (paymentId, txid) => { 
                     console.log("اكتمل الدفع، معرف المعاملة:", txid);
                     alert("تم الدفع بنجاح!");
