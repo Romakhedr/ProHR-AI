@@ -1,10 +1,14 @@
 export default async function handler(req, res) {
+  // السماح بطلبات POST فقط
   if (req.method === 'POST') {
-    res.status(200).json({ 
-      status: 'success', 
+    console.log("تم استلام الطلب بنجاح، جاري الموافقة...");
+    
+    // إرسال رد سريع جداً للمتصفح
+    return res.status(200).json({ 
+      status: 'approved', 
       message: 'Payment approved' 
     });
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
   }
+  
+  return res.status(405).json({ message: 'Method not allowed' });
 }
