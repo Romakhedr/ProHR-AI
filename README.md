@@ -27,6 +27,12 @@ Our core mission is to revolutionize payroll systems by utilizing **Smart Contra
 
 ---
 
+## 🌐 Live Demo
+Experience the platform here:
+[https://pro-hr-ai.vercel.app/](https://pro-hr-ai.vercel.app/)
+
+---
+
 ## 🚀 Implementation Roadmap & Roles
 Our development is structured to ensure enterprise-grade security and a flawless user experience:
 
