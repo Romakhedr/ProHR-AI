@@ -304,15 +304,21 @@
     });
 },
    },
-                onReadyForServerCompletion: (paymentId, txid) => { 
-                    console.log("اكتمل الدفع، معرف المعاملة:", txid);
-                    alert("تم الدفع بنجاح!");
-                },
-                onCancel: (paymentId) => { 
-                    alert("تم إلغاء عملية الدفع."); 
-                },
-                onError: (error, payment) => { 
-                    alert("حدث خطأ في الدفع: " + error.message); 
+ onReadyForServerCompletion: async (paymentId, txid) => {
+  console.log("إرسال طلب إكمال الدفع للخادم:", paymentId, txid);
+  await fetch('/api/complete-payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ paymentId: paymentId, txid: txid })
+  });
+  alert("تم الدفع واكتملت العملية بنجاح!");
+},
+onCancel: (paymentId) => {
+  alert("تم إلغاء عملية الدفع.");
+},
+onError: (error, payment) => {
+  alert("حدث خطأ في الدفع: " + (error.message || error));
+}           
                 }
             });
         } catch (err) {
