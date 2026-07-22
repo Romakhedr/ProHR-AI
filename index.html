@@ -289,43 +289,36 @@
             const scopes = ['payments'];
             const authResult = await Pi.authenticate(scopes, onIncompletePaymentFound);
             
-            // 3. كود الدفع الصحيح
             Pi.createPayment({
-                amount: 0.1,
-                memo: "Test Payment",
-                metadata: { paymentType: "test" }
-            }, {
-                onReadyForServerApproval: async (paymentId) => { 
-    console.log("إرسال طلب الموافقة للخادم:", paymentId);
-    await fetch('/api/approve-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paymentId: paymentId })
-    });
-},
-   },
- onReadyForServerCompletion: async (paymentId, txid) => {
-  console.log("إرسال طلب إكمال الدفع للخادم:", paymentId, txid);
-  await fetch('/api/complete-payment', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ paymentId: paymentId, txid: txid })
-  });
-  alert("تم الدفع واكتملت العملية بنجاح!");
-},
-onCancel: (paymentId) => {
-  alert("تم إلغاء عملية الدفع.");
-},
-onError: (error, payment) => {
-  alert("حدث خطأ في الدفع: " + (error.message || error));
-}           
-                }
-            });
-        } catch (err) {
-            console.error(err);
-            alert("خطأ: يرجى التأكد من فتح التطبيق داخل متصفح Pi - " + err.message);
-        }
-    };
+    amount: 0.1,
+    memo: "Test Payment",
+    metadata: { paymentType: "test" }
+}, {
+    onReadyForServerApproval: async (paymentId) => {
+        console.log("إرسال طلب الموافقة للخادم");
+        await fetch('/api/approve-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ paymentId })
+        });
+    },
+    onReadyForServerCompletion: async (paymentId, txid) => {
+        console.log("إرسال طلب إكمال الدفع للخادم");
+        await fetch('/api/complete-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ paymentId, txid })
+        });
+        alert("تم الدفع واكتملت العملية بنجاح!");
+    },
+    onCancel: (paymentId) => {
+        alert("تم إلغاء عملية الدفع.");
+    },
+    onError: (error, payment) => {
+        alert("حدث خطأ في الدفع: " + (error.message || error));
+    }
+});
+         
 </script>
 
 </body>
