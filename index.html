@@ -288,14 +288,13 @@
             // 2. خطوة المصادقة
             const scopes = ['payments'];
             const authResult = await Pi.authenticate(scopes, onIncompletePaymentFound);
-            
-            Pi.createPayment({
+      Pi.createPayment({
     amount: 0.1,
     memo: "Test Payment",
     metadata: { paymentType: "test" }
 }, {
     onReadyForServerApproval: async (paymentId) => {
-        console.log("إرسال طلب الموافقة للخادم");
+        console.log("Approval requested");
         await fetch('/api/approve-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -303,23 +302,27 @@
         });
     },
     onReadyForServerCompletion: async (paymentId, txid) => {
-        console.log("إرسال طلب إكمال الدفع للخادم");
+        console.log("Completion requested");
         await fetch('/api/complete-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ paymentId, txid })
         });
-        alert("تم الدفع واكتملت العملية بنجاح!");
+        alert("Payment Completed Successfully!");
     },
     onCancel: (paymentId) => {
-        alert("تم إلغاء عملية الدفع.");
+        alert("Payment Cancelled");
     },
     onError: (error, payment) => {
-        alert("حدث خطأ في الدفع: " + (error.message || error));
+        alert("Payment Error!");
     }
 });
-         
-</script>
+} catch (err) {
+    console.error(err);
+    alert("Please open inside Pi Browser");
+         }
+       
+          
 
 </body>
       </html>
