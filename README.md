@@ -26,6 +26,7 @@ Our core mission is to revolutionize payroll systems by utilizing **Smart Contra
 - **Quiet Luxury UI/UX:** A distraction-free, professional dashboard designed for modern enterprise management.
 
 ---
+[View Design Profile & Legal Compliance (PDF)](ProHR-AI-Profile-Redesign.pdf)
 
 ## 🌐 Live Demo
 Experience the platform here:
