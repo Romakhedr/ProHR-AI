@@ -321,7 +321,22 @@
     console.error(err);
     alert("Please open inside Pi Browser");
          }
-   </script>
+  </script>
+    <script src="pi-setup.js"></script>
+
+    <!-- كود حماية Supabase هنا -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const _supabase = supabase.createClient("https://fpfnhgduyzlgmliuvmqu.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R1eXpsZ21saXV2bXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NDE4MDIsImV4cCI6MjEwMDExNzgwMn0.AsT8VHn3xMKidY1FDTtPabOzpP-mx4PQpeVRbm-NDw4")
+
+      _supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session) window.location.href = 'login.html'
+      })
+    </script>
+
+  </body>
+</html> 
+    </script>
 <script src="pi-setup.js"></script>             
 </body>
       </html>
