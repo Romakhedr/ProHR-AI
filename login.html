@@ -3,75 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول - ProHR AI</title>
+  <title>ProHR AI - تسجيل الدخول</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Tajawal', sans-serif; }
+  </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
 
-  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-    <h2 id="title" class="text-2xl font-bold text-center mb-6">تسجيل الدخول</h2>
-
-    <form id="authForm" class="space-y-4">
-      <div id="fullNameGroup" class="hidden">
-        <label class="block text-sm font-medium text-gray-700">الاسم الكامل</label>
-        <input type="text" id="fullName" class="mt-1 w-full p-2 border rounded-md">
+  <!-- الكارت الرئيسي -->
+  <div class="bg-white w-full max-w-md rounded-3xl shadow-xl border border-slate-200 overflow-hidden p-6 sm:p-8 transition-all">
+    
+    <!-- الهيدر والشعار -->
+    <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-blue-200">
+          HR
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-slate-800">ProHR AI</h1>
+          <p class="text-xs text-slate-400">منصة الموارد البشرية الذكية</p>
+        </div>
       </div>
+      <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2.5 py-1 rounded-full">v1.0</span>
+    </div>
 
-      <div>
-        <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني</label>
-        <input type="email" id="email" required class="mt-1 w-full p-2 border rounded-md" dir="ltr">
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">كلمة المرور</label>
-        <input type="password" id="password" required class="mt-1 w-full p-2 border rounded-md" dir="ltr">
-      </div>
-
-      <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+    <!-- أزرار التبديل الشبيهة بأسلوب الصورة (تسجيل الدخول / إنشاء حساب) -->
+    <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1.5 rounded-2xl mb-6">
+      <button id="tabLogin" type="button" class="py-2.5 text-sm font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm">
         تسجيل الدخول
       </button>
+      <button id="tabSignUp" type="button" class="py-2.5 text-sm font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800">
+        إنشاء حساب
+      </button>
+    </div>
+
+    <!-- نموذج البيانات -->
+    <form id="authForm" class="space-y-4">
+      
+      <!-- حقل الاسم (يظهر فقط في إنشاء الحساب) -->
+      <div id="fullNameGroup" class="hidden transition-all">
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">الاسم الكامل</label>
+        <div class="relative">
+          <input type="text" id="fullName" placeholder="أدخلي اسمك الكامل" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-2xl p-3.5 pr-10 focus:outline-none focus:border-blue-600 focus:bg-white transition-all">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">👤</span>
+        </div>
+      </div>
+
+      <!-- البريد الإلكتروني -->
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">البريد الإلكتروني</label>
+        <div class="relative">
+          <input type="email" id="email" required placeholder="name@example.com" dir="ltr" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-2xl p-3.5 pr-10 focus:outline-none focus:border-blue-600 focus:bg-white transition-all">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">✉️</span>
+        </div>
+      </div>
+
+      <!-- كلمة المرور -->
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">كلمة المرور</label>
+        <div class="relative">
+          <input type="password" id="password" required placeholder="••••••••" dir="ltr" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-2xl p-3.5 pr-10 focus:outline-none focus:border-blue-600 focus:bg-white transition-all">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">🔒</span>
+        </div>
+      </div>
+
+      <!-- زر الإرسال الرئيسي -->
+      <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-200 transition-all text-sm mt-2">
+        تسجيل الدخول
+      </button>
+
     </form>
 
-    <p id="message" class="mt-4 text-center text-sm text-gray-600"></p>
+    <!-- رسالة النتيجة -->
+    <p id="message" class="mt-4 text-center text-xs font-bold min-h-[20px]"></p>
 
-    <button id="toggleBtn" type="button" class="mt-4 w-full text-center text-sm text-blue-500 hover:underline">
-      ليس لديك حساب؟ أنشئ حساباً جديداً
-    </button>
+    <!-- روابط فرعية أسفل الكارت -->
+    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+      <span>ProHR AI &copy; 2026</span>
+      <a href="#" class="hover:text-blue-600 transition-colors">مركز المساعدة</a>
+    </div>
+
   </div>
 
   <script>
     const SUPABASE_URL = "https://fpfnhgduyzlgmliuvmqu.supabase.co"
-    const SUPABASE_ANON_KEY = 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R1eXpsZ21saXV2bXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NDE4MDIsImV4cCI6MjEwMDExNzgwMn0.AsT8VHn3xMKidY1FDTtPabOzpP-mx4PQpeVRbm-NDw4
-  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    const SUPABASE_ANON_KEY = "ضعي_مفتاح_ANON_KEY_هنا"
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
     let isSignUp = false
-    const form = document.getElementById('authForm')
-    const title = document.getElementById('title')
-    const submitBtn = document.getElementById('submitBtn')
-    const toggleBtn = document.getElementById('toggleBtn')
+    const tabLogin = document.getElementById('tabLogin')
+    const tabSignUp = document.getElementById('tabSignUp')
     const fullNameGroup = document.getElementById('fullNameGroup')
+    const submitBtn = document.getElementById('submitBtn')
+    const form = document.getElementById('authForm')
     const message = document.getElementById('message')
 
-    toggleBtn.addEventListener('click', () => {
-      isSignUp = !isSignUp
-      if (isSignUp) {
-        title.textContent = 'إنشاء حساب جديد'
-        submitBtn.textContent = 'إنشاء حساب'
-        toggleBtn.textContent = 'لديك حساب بالفعل؟ سجل الدخول'
-        fullNameGroup.classList.remove('hidden')
-      } else {
-        title.textContent = 'تسجيل الدخول'
-        submitBtn.textContent = 'تسجيل الدخول'
-        toggleBtn.textContent = 'ليس لديك حساب؟ أنشئ حساباً جديداً'
-        fullNameGroup.classList.add('hidden')
-      }
+    // التبديل إلى "تسجيل الدخول"
+    tabLogin.addEventListener('click', () => {
+      isSignUp = false
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm"
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800"
+      fullNameGroup.classList.add('hidden')
+      submitBtn.textContent = 'تسجيل الدخول'
+      message.textContent = ''
     })
 
+    // التبديل إلى "إنشاء حساب"
+    tabSignUp.addEventListener('click', () => {
+      isSignUp = true
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm"
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800"
+      fullNameGroup.classList.remove('hidden')
+      submitBtn.textContent = 'إنشاء حساب جديد'
+      message.textContent = ''
+    })
+
+    // معالجة النموذج عند الضغط
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
-      message.textContent = ''
+      message.textContent = 'جاري التحقق...'
+      message.className = 'mt-4 text-center text-xs font-bold text-blue-600'
+
       const email = document.getElementById('email').value
       const password = document.getElementById('password').value
       const fullName = document.getElementById('fullName').value
@@ -82,20 +137,27 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R
           password,
           options: { data: { full_name: fullName } }
         })
-        if (error) message.textContent = error.message
-        else {
-  message.textContent = 'تم إنشاء الحساب بنجاح! جاري التوجيه...'
-  setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        if (error) {
+          message.textContent = error.message
+          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
+        } else {
+          message.textContent = 'تم إنشاء الحساب بنجاح! جاري التوجيه...'
+          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
+          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
         }
       } else {
         const { error } = await _supabase.auth.signInWithPassword({ email, password })
-        if (error) message.textContent = error.message
-        else {
-  message.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...'
-  setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        if (error) {
+          message.textContent = error.message
+          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
+        } else {
+          message.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...'
+          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
+          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
         }
       }
-})
+    })
   </script>
+
 </body>
 </html>
