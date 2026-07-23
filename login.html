@@ -83,13 +83,18 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R
           options: { data: { full_name: fullName } }
         })
         if (error) message.textContent = error.message
-        else message.textContent = 'تم إنشاء الحساب بنجاح!'
+        else {
+  message.textContent = 'تم إنشاء الحساب بنجاح! جاري التوجيه...'
+  setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        }
       } else {
         const { error } = await _supabase.auth.signInWithPassword({ email, password })
         if (error) message.textContent = error.message
-        else message.textContent = 'تم تسجيل الدخول بنجاح!'
-      }
-    })
+        else {
+  message.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...'
+  setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        }
+      
   </script>
 </body>
 </html>
