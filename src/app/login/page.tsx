@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '../../lib/supabase'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -23,7 +23,7 @@ export default function LoginPage() {
         },
       })
       if (error) setMessage(error.message)
-      else setMessage('تم إنشاء الحساب بنجاح! تحقق من بريدك الإلكتروني للتأكيد.')
+      else setMessage('تم إنشاء الحساب بنجاح!')
     } else {
       const { error } = await supabase.auth.signInWithPassword({
         email,
