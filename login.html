@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - ProHR AI</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+    <h2 id="title" class="text-2xl font-bold text-center mb-6">تسجيل الدخول</h2>
+
+    <form id="authForm" class="space-y-4">
+      <div id="fullNameGroup" class="hidden">
+        <label class="block text-sm font-medium text-gray-700">الاسم الكامل</label>
+        <input type="text" id="fullName" class="mt-1 w-full p-2 border rounded-md">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني</label>
+        <input type="email" id="email" required class="mt-1 w-full p-2 border rounded-md" dir="ltr">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">كلمة المرور</label>
+        <input type="password" id="password" required class="mt-1 w-full p-2 border rounded-md" dir="ltr">
+      </div>
+
+      <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+        تسجيل الدخول
+      </button>
+    </form>
+
+    <p id="message" class="mt-4 text-center text-sm text-gray-600"></p>
+
+    <button id="toggleBtn" type="button" class="mt-4 w-full text-center text-sm text-blue-500 hover:underline">
+      ليس لديك حساب؟ أنشئ حساباً جديداً
+    </button>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://fpfnhgduyzlgmliuvmqu.supabase.co"
+    const SUPABASE_ANON_KEY = 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R1eXpsZ21saXV2bXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NDE4MDIsImV4cCI6MjEwMDExNzgwMn0.AsT8VHn3xMKidY1FDTtPabOzpP-mx4PQpeVRbm-NDw4
+  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+    let isSignUp = false
+    const form = document.getElementById('authForm')
+    const title = document.getElementById('title')
+    const submitBtn = document.getElementById('submitBtn')
+    const toggleBtn = document.getElementById('toggleBtn')
+    const fullNameGroup = document.getElementById('fullNameGroup')
+    const message = document.getElementById('message')
+
+    toggleBtn.addEventListener('click', () => {
+      isSignUp = !isSignUp
+      if (isSignUp) {
+        title.textContent = 'إنشاء حساب جديد'
+        submitBtn.textContent = 'إنشاء حساب'
+        toggleBtn.textContent = 'لديك حساب بالفعل؟ سجل الدخول'
+        fullNameGroup.classList.remove('hidden')
+      } else {
+        title.textContent = 'تسجيل الدخول'
+        submitBtn.textContent = 'تسجيل الدخول'
+        toggleBtn.textContent = 'ليس لديك حساب؟ أنشئ حساباً جديداً'
+        fullNameGroup.classList.add('hidden')
+      }
+    })
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      message.textContent = ''
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const fullName = document.getElementById('fullName').value
+
+      if (isSignUp) {
+        const { error } = await _supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { full_name: fullName } }
+        })
+        if (error) message.textContent = error.message
+        else message.textContent = 'تم إنشاء الحساب بنجاح!'
+      } else {
+        const { error } = await _supabase.auth.signInWithPassword({ email, password })
+        if (error) message.textContent = error.message
+        else message.textContent = 'تم تسجيل الدخول بنجاح!'
+      }
+    })
+  </script>
+</body>
+</html>
