@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProHR AI - تسجيل الدخول</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0e2a4d;
+      --navy2:#14335c;
+      --blue:#2f6fb0;
+      --blue-light:#5b9bd5;
+      --bg:#eef3f9;
+      --gray:#5a7086;
+    }
+    * { font-family: 'Tajawal', sans-serif; }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at 85% 8%, rgba(47,111,176,0.14) 0, transparent 40%),
+        radial-gradient(circle at 8% 92%, rgba(47,111,176,0.10) 0, transparent 35%),
+        linear-gradient(120deg, transparent 49.4%, rgba(47,111,176,0.07) 49.7%, rgba(47,111,176,0.07) 50%, transparent 50.3%),
+        linear-gradient(60deg, transparent 49.4%, rgba(47,111,176,0.05) 49.7%, rgba(47,111,176,0.05) 50%, transparent 50.3%);
+      background-size: auto, auto, 90px 90px, 130px 130px;
+    }
+    .topbar{
+      position: fixed; top:0; right:0; left:0; height:8px; z-index:50;
+      background: linear-gradient(90deg, var(--navy), var(--blue) 60%, var(--blue-light));
+    }
+    .brand-logo{ width:56px; height:56px; object-fit:contain; filter: drop-shadow(0 4px 8px rgba(14,42,77,0.25)); }
+    .card{
+      background:#fff;
+      border-radius: 28px;
+      box-shadow: 0 12px 40px rgba(14,42,77,0.12), 0 3px 14px rgba(14,42,77,0.06);
+      border: 1px solid rgba(14,42,77,0.06);
+    }
+    .tab-active{
+      background:#fff;
+      color: var(--navy);
+      box-shadow: 0 2px 8px rgba(14,42,77,0.10);
+    }
+    .tab-inactive{
+      color: var(--gray);
+    }
+    .tabs-wrap{ background: var(--bg); }
+    .field-input{
+      background:#f7f9fc;
+      border:1px solid rgba(14,42,77,0.12);
+      color: var(--navy);
+      transition: all .2s;
+    }
+    .field-input:focus{
+      outline:none;
+      border-color: var(--blue);
+      background:#fff;
+      box-shadow: 0 0 0 3px rgba(47,111,176,0.12);
+    }
+    .btn-primary{
+      background: linear-gradient(90deg, var(--navy), var(--blue));
+      box-shadow: 0 8px 20px rgba(14,42,77,0.28);
+      transition: all .2s;
+    }
+    .btn-primary:active{ transform: scale(0.98); }
+    .version-chip{
+      background: rgba(47,111,176,0.10);
+      color: var(--blue);
+    }
+    .brand-title{ color: var(--navy); }
+    .brand-sub{ color: var(--gray); }
+    .footer-text{ color: var(--gray); }
+    .footer-link:hover{ color: var(--blue); }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
 
+  <div class="topbar"></div>
+
+  <!-- الكارت الرئيسي -->
+  <div class="card w-full max-w-md overflow-hidden p-6 sm:p-8 transition-all">
+
+    <!-- الهيدر والشعار -->
+    <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="ProHR AI" class="brand-logo">
+        <div>
+          <h1 class="text-xl font-bold brand-title">ProHR AI</h1>
+          <p class="text-xs brand-sub">منصة الموارد البشرية الذكية</p>
+        </div>
+      </div>
+      <span class="text-xs version-chip font-semibold px-2.5 py-1 rounded-full">v1.0</span>
+    </div>
+
+    <!-- أزرار التبديل -->
+    <div class="grid grid-cols-2 gap-2 tabs-wrap p-1.5 rounded-2xl mb-6">
+      <button id="tabLogin" type="button" class="py-2.5 text-sm font-bold rounded-xl transition-all tab-active">
+        تسجيل الدخول
+      </button>
+      <button id="tabSignUp" type="button" class="py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive">
+        إنشاء حساب
+      </button>
+    </div>
+
+    <!-- نموذج البيانات -->
+    <form id="authForm" class="space-y-4">
+
+      <!-- حقل الاسم (يظهر فقط في إنشاء الحساب) -->
+      <div id="fullNameGroup" class="hidden transition-all">
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">الاسم الكامل</label>
+        <div class="relative">
+          <input type="text" id="fullName" placeholder="أدخلي اسمك الكامل" class="field-input w-full text-sm rounded-2xl p-3.5 pr-10">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">👤</span>
+        </div>
+      </div>
+
+      <!-- البريد الإلكتروني -->
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">البريد الإلكتروني</label>
+        <div class="relative">
+          <input type="email" id="email" required placeholder="name@example.com" dir="ltr" class="field-input w-full text-sm rounded-2xl p-3.5 pr-10">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">✉️</span>
+        </div>
+      </div>
+
+      <!-- كلمة المرور -->
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1.5">كلمة المرور</label>
+        <div class="relative">
+          <input type="password" id="password" required placeholder="••••••••" dir="ltr" class="field-input w-full text-sm rounded-2xl p-3.5 pr-10">
+          <span class="absolute right-3.5 top-3.5 text-slate-400">🔒</span>
+        </div>
+      </div>
+
+      <!-- زر الإرسال الرئيسي -->
+      <button type="submit" id="submitBtn" class="btn-primary w-full text-white font-bold py-3.5 rounded-2xl text-sm mt-2">
+        تسجيل الدخول
+      </button>
+
+    </form>
+
+    <!-- رسالة النتيجة -->
+    <p id="message" class="mt-4 text-center text-xs font-bold min-h-[20px]"></p>
+
+    <!-- روابط فرعية أسفل الكارت -->
+    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs footer-text">
+      <span>ProHR AI &copy; 2026</span>
+      <a href="#" class="footer-link transition-colors">مركز المساعدة</a>
+    </div>
+
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://fpfnhgduyzlgmliuvmqu.supabase.co"
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZm5oZ2R1eXpsZ21saXV2bXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NDE4MDIsImV4cCI6MjEwMDExNzgwMn0.AsT8VHn3xMKidY1FDTtPabOzpP-mx4PQpeVRbm-NDw4"
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    let isSignUp = false
+    const tabLogin = document.getElementById('tabLogin')
+    const tabSignUp = document.getElementById('tabSignUp')
+    const fullNameGroup = document.getElementById('fullNameGroup')
+    const submitBtn = document.getElementById('submitBtn')
+    const form = document.getElementById('authForm')
+    const message = document.getElementById('message')
+
+    // التبديل إلى "تسجيل الدخول"
+    tabLogin.addEventListener('click', () => {
+      isSignUp = false
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active"
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive"
+      fullNameGroup.classList.add('hidden')
+      submitBtn.textContent = 'تسجيل الدخول'
+      message.textContent = ''
+    })
+
+    // التبديل إلى "إنشاء حساب"
+    tabSignUp.addEventListener('click', () => {
+      isSignUp = true
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active"
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive"
+      fullNameGroup.classList.remove('hidden')
+      submitBtn.textContent = 'إنشاء حساب جديد'
+      message.textContent = ''
+    })
+
+    // معالجة النموذج عند الضغط
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      message.textContent = 'جاري التحقق...'
+      message.className = 'mt-4 text-center text-xs font-bold text-blue-600'
+
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const fullName = document.getElementById('fullName').value
+
+      if (isSignUp) {
+        const { error } = await _supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { full_name: fullName } }
+        })
+        if (error) {
+          message.textContent = error.message
+          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
+        } else {
+          message.textContent = 'تم إنشاء الحساب بنجاح! جاري التوجيه...'
+          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
+          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        }
+      } else {
+        const { error } = await _supabase.auth.signInWithPassword({ email, password })
+        if (error) {
+          message.textContent = error.message
+          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
+        } else {
+          message.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...'
+          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
+          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>
