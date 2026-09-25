@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin:0; padding:0; }
+html,body { direction: ltr; }
+body {
+  font-family: 'Arial','DejaVu Sans',sans-serif;
+  color: #16324f;
+  background:#ffffff;
+}
+:root{
+  --navy:#0e2a4d;
+  --navy2:#14335c;
+  --blue:#2f6fb0;
+  --blue-light:#5b9bd5;
+  --bg:#eef3f9;
+  --gold:#f0a93a;
+  --gray:#5a7086;
+}
+.page {
+  width:210mm;
+  height:297mm;
+  position:relative;
+  overflow:hidden;
+  page-break-after: always;
+  background: var(--bg);
+}
+.page:last-child{ page-break-after: auto; }
+
+.bg-deco{
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(circle at 85% 8%, rgba(47,111,176,0.10) 0, transparent 40%),
+    radial-gradient(circle at 8% 92%, rgba(47,111,176,0.08) 0, transparent 35%);
+  z-index:0;
+}
+.bg-lines{
+  position:absolute; inset:0; opacity:0.5; z-index:0;
+  background-image:
+    linear-gradient(120deg, transparent 49.4%, rgba(47,111,176,0.08) 49.7%, rgba(47,111,176,0.08) 50%, transparent 50.3%),
+    linear-gradient(60deg, transparent 49.4%, rgba(47,111,176,0.06) 49.7%, rgba(47,111,176,0.06) 50%, transparent 50.3%);
+  background-size: 90px 90px, 130px 130px;
+}
+
+.topbar{
+  position:relative; z-index:2;
+  height:10mm; width:100%;
+  background: linear-gradient(90deg, var(--navy), var(--blue) 60%, var(--blue-light));
+}
+.footer{
+  position:absolute; bottom:0; right:0; left:0; z-index:2;
+  background: var(--navy);
+  color:#c9d8e8;
+  padding:6mm 14mm;
+  font-size:8.5px;
+  line-height:1.7;
+  text-align:center;
+}
+.footer b{ color:#ffffff; }
+
+.content{
+  position:relative; z-index:2;
+  padding:14mm 16mm;
+}
+
+.page-title{
+  font-size:22px; font-weight:700; color:var(--navy);
+  margin-bottom:2mm;
+}
+.page-kicker{
+  display:inline-block;
+  font-size:10.5px; font-weight:700; color:var(--blue);
+  background:rgba(47,111,176,0.10);
+  padding:2mm 5mm; border-radius:20px;
+  margin-bottom:4mm;
+}
+.rule{
+  width:16mm; height:1.2mm; background:linear-gradient(90deg,var(--navy),var(--blue-light));
+  border-radius:2px; margin:3mm 0 6mm;
+}
+
+.cover{ display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; }
+.cover .logo{ width:52mm; height:52mm; object-fit:contain; margin-bottom:6mm; filter: drop-shadow(0 6px 10px rgba(14,42,77,0.25)); }
+.cover h1{ font-size:38px; color:var(--navy); font-weight:800; letter-spacing:0.5px; }
+.cover .sub{ font-size:15px; color:var(--blue); font-weight:700; margin-top:3mm; }
+.cover .desc{ font-size:12px; color:var(--gray); margin-top:6mm; max-width:130mm; line-height:1.9; }
+.cover .badge{ margin-top:10mm; display:flex; gap:3mm; }
+.flagchip{
+  background:#fff; border:1px solid rgba(14,42,77,0.12); border-radius:20px;
+  padding:2mm 4mm; font-size:11px; color:var(--navy); font-weight:600;
+  box-shadow:0 2px 6px rgba(14,42,77,0.06);
+}
+.cover .year{ position:absolute; bottom:20mm; font-size:10px; color:var(--gray); letter-spacing:2px; }
+
+.card{
+  background:#fff; border-radius:5mm;
+  box-shadow: 0 3px 14px rgba(14,42,77,0.08);
+  border:1px solid rgba(14,42,77,0.05);
+}
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.feature{
+  padding:6mm; display:flex; flex-direction:column; gap:2mm;
+}
+.feature .ic{
+  width:11mm; height:11mm; border-radius:3mm;
+  background:linear-gradient(135deg,var(--navy),var(--blue-light));
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; color:#fff; margin-bottom:2mm;
+}
+.feature h3{ font-size:13.5px; color:var(--navy); font-weight:700; }
+.feature ul{ list-style:none; padding:0; margin-top:1mm; }
+.feature li{ font-size:10.5px; color:var(--gray); margin:1mm 0; padding-left:4mm; position:relative; }
+.feature li::before{ content:'•'; color:var(--blue); position:absolute; left:0; font-weight:900; }
+
+.about-text{ font-size:11.5px; color:#33506e; line-height:1.95; margin-bottom:7mm; }
+.about-text b{ color:var(--navy); }
+
+.step{
+  display:flex; gap:5mm; align-items:flex-start;
+  background:#fff; border-radius:5mm; padding:6mm; margin-bottom:5mm;
+  box-shadow:0 3px 14px rgba(14,42,77,0.07); border:1px solid rgba(14,42,77,0.05);
+}
+.step .num{
+  min-width:11mm; height:11mm; border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff; font-weight:800; font-size:13px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.step .stxt h3{ font-size:13.5px; color:var(--navy); margin-bottom:1.5mm; font-weight:700; }
+.step .stxt p{ font-size:10.5px; color:var(--gray); line-height:1.8; }
+.chatbubble{
+  margin-top:3mm; background:var(--bg); border-radius:3mm; padding:3mm 4mm;
+  font-size:10px; color:#33506e; border-left:3px solid var(--blue-light);
+}
+
+.stats-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:4mm; }
+.stat-card{
+  background:#fff; border-radius:4mm; padding:5mm; text-align:center;
+  box-shadow:0 3px 12px rgba(14,42,77,0.07); border:1px solid rgba(14,42,77,0.05);
+}
+.stat-card .val{ font-size:22px; font-weight:800; color:var(--navy); }
+.stat-card .lbl{ font-size:10px; color:var(--gray); margin-top:1.5mm; font-weight:600; }
+.stat-card .bar{ height:2mm; background:#e6edf5; border-radius:2mm; margin-top:3mm; overflow:hidden; }
+.stat-card .bar > div{ height:100%; background:linear-gradient(90deg,var(--navy),var(--blue-light)); }
+
+.story{
+  display:flex; align-items:center; gap:4mm;
+  background:#fff; border-radius:4mm; padding:5mm 6mm; margin-bottom:4mm;
+  box-shadow:0 3px 12px rgba(14,42,77,0.06); border:1px solid rgba(14,42,77,0.05);
+}
+.story .av{
+  width:11mm; height:11mm; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue-light),var(--navy));
+  display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:800;
+}
+.story .info{ flex:1; }
+.story .info h4{ font-size:12.5px; color:var(--navy); font-weight:700; }
+.story .info span{ font-size:10px; color:var(--gray); }
+.verified{
+  font-size:9px; color:#1a8a53; background:#e6f6ee; padding:1.5mm 3mm; border-radius:20px; font-weight:700;
+  white-space:nowrap;
+}
+
+.lang-row{ display:flex; gap:3mm; justify-content:center; margin-top:5mm; }
+.lang-row .flagchip{ font-size:13px; }
+
+.closing{ display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; }
+.closing .logo{ width:34mm; margin-bottom:6mm; }
+.closing h2{ font-size:24px; color:var(--navy); font-weight:800; margin-bottom:3mm; }
+.closing p{ font-size:11.5px; color:var(--gray); max-width:120mm; line-height:2; margin-bottom:8mm; }
+.cta{
+  background:linear-gradient(90deg,var(--navy),var(--blue));
+  color:#fff; font-size:12px; font-weight:700; padding:4mm 10mm; border-radius:30px;
+  box-shadow:0 6px 16px rgba(14,42,77,0.25);
+}
+.contact-list{ margin-top:10mm; display:flex; flex-direction:column; gap:3mm; }
+.contact-list div{ font-size:11px; color:var(--navy); font-weight:600; }
+
+.pagenum{
+  position:absolute; bottom:6mm; right:16mm; z-index:3; font-size:9px; color:var(--gray);
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="cover">
+    <img class="logo" src="logo.png"/>
+    <h1>ProHR AI</h1>
+    <div class="sub">Company & Platform Profile</div>
+    <div class="desc">
+      The next generation of decentralized recruitment and smart HR —
+      an advanced platform connecting talent with companies directly, verifying records and skills
+      via blockchain for complete integrity and security.
+    </div>
+    <div class="badge">
+      <div class="flagchip">🇦🇪 AR</div>
+      <div class="flagchip">🇬🇧 EN</div>
+      <div class="flagchip">🇮🇳 HI</div>
+      <div class="flagchip">🇵🇭 PH</div>
+    </div>
+  </div>
+  <div class="cover year">PROHR AI PLATFORM &nbsp;•&nbsp; 2026</div>
+  <div class="footer">All Rights Reserved © 2026 ProHR AI Platform</div>
+</div>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="content">
+    <div class="page-kicker">Overview</div>
+    <div class="page-title">About Us — ProHR AI</div>
+    <div class="rule"></div>
+    <div class="about-text">
+      <b>ProHR AI</b> is an independent smart-recruitment and HR platform built on a decentralized
+      verification system that connects job seekers with companies directly, verifying records and
+      skills through blockchain technology. The platform combines the power of AI with the highest
+      digital-safety standards to deliver a seamless, trustworthy hiring experience for small and
+      medium-sized businesses as well as candidates.
+    </div>
+    <div class="grid2">
+      <div class="card feature">
+        <div class="ic">☁️</div>
+        <h3>AWS-Powered Backend</h3>
+        <ul>
+          <li>Serverless architecture</li>
+          <li>S3 resume storage</li>
+          <li>DynamoDB database</li>
+        </ul>
+      </div>
+      <div class="card feature">
+        <div class="ic">🅿️</div>
+        <h3>Pi Network Integration</h3>
+        <ul>
+          <li>Pi Wallet authentication</li>
+          <li>Smart-contract payroll</li>
+        </ul>
+      </div>
+      <div class="card feature">
+        <div class="ic">🔍</div>
+        <h3>AI Resume Screening</h3>
+        <ul>
+          <li>Smart candidate matching</li>
+          <li>Skills analysis</li>
+        </ul>
+      </div>
+      <div class="card feature">
+        <div class="ic">✨</div>
+        <h3>Quiet Luxury UI / UX</h3>
+        <ul>
+          <li>Premium dashboard</li>
+          <li>Intuitive HR admin tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pagenum">02</div>
+  <div class="footer">ProHR AI is an independent ecosystem app built on the Pi Network platform — All Rights Reserved © 2026</div>
+</div>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="content">
+    <div class="page-kicker">User Journey</div>
+    <div class="page-title">From Discovery to Launch</div>
+    <div class="rule"></div>
+
+    <div class="step">
+      <div class="num">1</div>
+      <div class="stxt">
+        <h3>Discover ProHR AI</h3>
+        <p>The next generation of decentralized recruitment and smart HR — an advanced platform
+        connecting talent with companies directly, verifying records and skills via blockchain for
+        complete integrity and security.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <div class="stxt">
+        <h3>Get Started with the AI Assistant</h3>
+        <p>ProHR AI Assistant: your AI assistant for HR & PRO documents — streamlining paperwork and
+        employee requests for small businesses.</p>
+        <div class="chatbubble">
+          Hello! I'm your AI assistant for HR and PRO document services. I can help you draft
+          employment letters, manage company policies, and handle corporate paperwork easily.
+          How can I assist you today?
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div class="stxt">
+        <h3>Get Verified — Trust & Security</h3>
+        <p>Every profile, document and contract is protected end-to-end. A decentralized verification
+        system is securely integrated to protect the smart HR environment, following the highest
+        digital-safety standards.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pagenum">03</div>
+  <div class="footer">Payments are processed securely via the Pi SDK in accordance with Pi Developer guidelines — All Rights Reserved © 2026</div>
+</div>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="content">
+    <div class="page-kicker">Dashboard</div>
+    <div class="page-title">Track Your Progress</div>
+    <div class="rule"></div>
+    <div class="about-text">A real-time snapshot of your hiring pipeline, with precise performance indicators to guide your decisions.</div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="val">85%</div>
+        <div class="lbl">Approved Candidates</div>
+        <div class="bar"><div style="width:85%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="val">85%</div>
+        <div class="lbl">Trust & Verification Rate</div>
+        <div class="bar"><div style="width:85%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="val">50%</div>
+        <div class="lbl">Hiring Growth Rate</div>
+        <div class="bar"><div style="width:50%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="val">342</div>
+        <div class="lbl">Completion Rate</div>
+        <div class="bar"><div style="width:78%"></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:6mm; padding:6mm; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <h3 style="color:var(--navy); font-size:13.5px; margin-bottom:1.5mm;">Average User Rating</h3>
+        <span style="font-size:10.5px; color:var(--gray);">Overall platform experience rating from companies and candidates</span>
+      </div>
+      <div style="font-size:20px; font-weight:800; color:var(--gold);">4.8 / 5 ⭐</div>
+    </div>
+  </div>
+  <div class="pagenum">04</div>
+  <div class="footer">ProHR AI is an independent ecosystem app built on the Pi Network platform — All Rights Reserved © 2026</div>
+</div>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="content">
+    <div class="page-kicker">Success Stories</div>
+    <div class="page-title">Career Placements Through ProHR AI</div>
+    <div class="rule"></div>
+
+    <div class="story">
+      <div class="av">SD</div>
+      <div class="info">
+        <h4>Senior Developer — Placement</h4>
+        <span>Nexora Technologies — September 2023</span>
+      </div>
+      <div class="verified">✔ Verified</div>
+    </div>
+
+    <div class="story">
+      <div class="av">PM</div>
+      <div class="info">
+        <h4>Product Manager — Placement</h4>
+        <span>Allas Commerce Group — October 05, 2023</span>
+      </div>
+      <div class="verified">✔ Verified</div>
+    </div>
+
+    <div class="story">
+      <div class="av">HR</div>
+      <div class="info">
+        <h4>HR Coordinator — Placement</h4>
+        <span>Meridian Systems — October 23, 2023</span>
+      </div>
+      <div class="verified">✔ Verified</div>
+    </div>
+
+    <div class="about-text" style="margin-top:6mm;">
+      The platform is available in multiple languages to serve a diverse, global user base:
+    </div>
+    <div class="lang-row">
+      <div class="flagchip">🇦🇪 AR</div>
+      <div class="flagchip">🇬🇧 EN</div>
+      <div class="flagchip">🇮🇳 HI</div>
+      <div class="flagchip">🇵🇭 PH</div>
+    </div>
+  </div>
+  <div class="pagenum">05</div>
+  <div class="footer">Placement metrics and company names are for demonstration purposes within the Pi Developer sandbox — © 2026</div>
+</div>
+
+<div class="page">
+  <div class="bg-deco"></div><div class="bg-lines"></div>
+  <div class="topbar"></div>
+  <div class="closing">
+    <img class="logo" style="width:34mm;height:34mm;" src="logo.png"/>
+    <h2>Start Your Journey with ProHR AI</h2>
+    <p>
+      Join the smart, decentralized recruitment ecosystem, where companies meet promising talent
+      in a trusted, secure, and fast-growing environment.
+    </p>
+    <div class="cta">Start Exploring Promising Talents →</div>
+    <div class="contact-list">
+      <div>🌐 www.prohr-ai.app</div>
+      <div>✉️ support@prohr-ai.app</div>
+      <div>🅿️ Built on the Pi Network platform</div>
+    </div>
+  </div>
+  <div class="pagenum">06</div>
+  <div class="footer">ProHR AI is an independent ecosystem app built on the Pi Network platform — All Rights Reserved © 2026</div>
+</div>
+
+</body>
+</html>
