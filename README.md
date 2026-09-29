@@ -10,7 +10,7 @@
 </div>
 
 ---
-# 🤖 ProHR AI | The Future of Smart HR Management & Web3 Payroll
+# 🤖 ProHR AI | Smart HR Management (Experimental Demo)
 
 > **Build with discipline, hire with precision.** ProHR AI is a premium, decentralized Human Resources management platform built for the modern workforce. It seamlessly integrates traditional HR functionalities with the security, AI automation, and transparency of Web3 and Cloud technology.
 
