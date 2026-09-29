@@ -1,7 +1,6 @@
 <div align="center">
   <img src="https://via.placeholder.com/100x100.png?text=ProHR+AI" alt="logo.png" width="100" height="100" />
   
-()
   [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black.svg?logo=vercel)](https://pro-hr-ai.vercel.app/)
   [![Network](https://img.shields.io/badge/Network-Pi%20Network-purple.svg)]()
   [![Smart Contract](https://img.shields.io/badge/Smart%20Contract-Solidity-blue.svg)]()
