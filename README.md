@@ -6,7 +6,7 @@
   [![Smart Contract](https://img.shields.io/badge/Smart%20Contract-Solidity-blue.svg)]()
 </div>
 <div align="center">
-  <i>Developed and conceptualized as a premier Web3 Experimental enterprise solution.</i><br>
+  <i>An experimental Web3 HR management demo built on the Pi Testnet.</i><br>
 </div>
 
 ---
