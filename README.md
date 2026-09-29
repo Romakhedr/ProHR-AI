@@ -6,7 +6,7 @@
   [![Smart Contract](https://img.shields.io/badge/Smart%20Contract-Solidity-blue.svg)]()
 </div>
 <div align="center">
-  <i>Developed and conceptualized as a premier Web3 enterprise solution.</i><br>
+  <i>Developed and conceptualized as a premier Web3 Experimental enterprise solution.</i><br>
 </div>
 
 ---
