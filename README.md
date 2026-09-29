@@ -64,6 +64,9 @@ To ensure high availability, security, and scalability for our AI-driven feature
 
 ---
 
+
 ## 📄 License & Copyright
-Licensed under UNLICENSED / Open source enterprise solution.  
-© 2026 ProHR AI. All Rights Reserved.
+
+Licensed under the [MIT License](LICENSE).
+
+© 2026 Reham Khedr.
