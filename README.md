@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://via.placeholder.com/100x100.png?text=ProHR+AI" alt="ProHR AI Logo" width="100" height="100" />
+  <img src="https://via.placeholder.com/100x100.png?text=ProHR+AI" alt="ProHR AI Logo.png" width="100" height="100" />
   
   [![License: UNLICENSED](https://img.shields.io/badge/License-UNLICENSED-red.svg)](https://opensource.org/licenses/UNLICENSED)
   [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black.svg?logo=vercel)](https://pro-hr-ai.vercel.app/)
