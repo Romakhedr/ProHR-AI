@@ -211,10 +211,11 @@ body {
     <img class="logo" src="logo.png"/>
     <h1>ProHR AI</h1>
     <div class="sub">Company & Platform Profile</div>
+    <div class="flagchip" style="margin-top:4mm; background:rgba(240,169,58,0.12); color:#b5790a; border-color:rgba(240,169,58,0.3);">⚠️ Experimental Demo — Pi Testnet</div>
     <div class="desc">
       The next generation of decentralized recruitment and smart HR —
-      an advanced platform connecting talent with companies directly, verifying records and skills
-      via blockchain for complete integrity and security.
+      a platform designed to connect talent with companies directly, with identity
+      verification built around Pi Network authentication and AI-assisted screening.
     </div>
     <div class="badge">
       <div class="flagchip">🇦🇪 AR</div>
@@ -235,46 +236,55 @@ body {
     <div class="page-title">About Us — ProHR AI</div>
     <div class="rule"></div>
     <div class="about-text">
-      <b>ProHR AI</b> is an independent smart-recruitment and HR platform built on a decentralized
-      verification system that connects job seekers with companies directly, verifying records and
-      skills through blockchain technology. The platform combines the power of AI with the highest
-      digital-safety standards to deliver a seamless, trustworthy hiring experience for small and
-      medium-sized businesses as well as candidates.
+      <b>ProHR AI</b> is an experimental smart-recruitment and HR platform that connects job seekers
+      with companies directly, with identity handled through Supabase Auth and Pi Network sign-in.
+      The platform combines an AI assistant with a clean, modern dashboard to explore what a
+      trustworthy, Pi-native hiring experience could look like for small and medium-sized businesses.
     </div>
+    <div class="page-kicker" style="background:rgba(26,138,83,0.10); color:#1a8a53;">Live in this demo</div>
     <div class="grid2">
       <div class="card feature">
-        <div class="ic">☁️</div>
-        <h3>AWS-Powered Backend</h3>
+        <div class="ic">🔐</div>
+        <h3>Authentication</h3>
         <ul>
-          <li>Serverless architecture</li>
-          <li>S3 resume storage</li>
-          <li>DynamoDB database</li>
+          <li>Email/password via Supabase Auth</li>
+          <li>Pi Sign-In (Pi SDK, Testnet)</li>
         </ul>
       </div>
       <div class="card feature">
-        <div class="ic">🅿️</div>
-        <h3>Pi Network Integration</h3>
+        <div class="ic">📊</div>
+        <h3>HR Dashboard</h3>
         <ul>
-          <li>Pi Wallet authentication</li>
-          <li>Smart-contract payroll</li>
+          <li>Protected route, session-based</li>
+          <li>Sample hiring-pipeline stats</li>
         </ul>
       </div>
       <div class="card feature">
-        <div class="ic">🔍</div>
-        <h3>AI Resume Screening</h3>
+        <div class="ic">🤵</div>
+        <h3>AI HR Assistant</h3>
         <ul>
-          <li>Smart candidate matching</li>
-          <li>Skills analysis</li>
+          <li>Claude-powered chat backend</li>
+          <li>Drafts HR documents & policies</li>
         </ul>
       </div>
       <div class="card feature">
         <div class="ic">✨</div>
         <h3>Quiet Luxury UI / UX</h3>
         <ul>
-          <li>Premium dashboard</li>
-          <li>Intuitive HR admin tools</li>
+          <li>Shared design system across pages</li>
+          <li>Built with Next.js + Tailwind CSS</li>
         </ul>
       </div>
+    </div>
+
+    <div class="page-kicker" style="margin-top:6mm; background:rgba(47,111,176,0.10); color:var(--blue);">Planned — not yet built</div>
+    <div class="card" style="padding:5mm 6mm;">
+      <ul style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:2mm;">
+        <li class="about-text" style="margin:0; font-size:10.5px;">⏳ Smart-contract payroll (Solidity)</li>
+        <li class="about-text" style="margin:0; font-size:10.5px;">⏳ AWS Lambda resume processing</li>
+        <li class="about-text" style="margin:0; font-size:10.5px;">⏳ S3 resume storage</li>
+        <li class="about-text" style="margin:0; font-size:10.5px;">⏳ DynamoDB candidate database</li>
+      </ul>
     </div>
   </div>
   <div class="pagenum">02</div>
@@ -293,9 +303,9 @@ body {
       <div class="num">1</div>
       <div class="stxt">
         <h3>Discover ProHR AI</h3>
-        <p>The next generation of decentralized recruitment and smart HR — an advanced platform
-        connecting talent with companies directly, verifying records and skills via blockchain for
-        complete integrity and security.</p>
+        <p>The next generation of decentralized recruitment and smart HR — a platform designed to
+        connect talent with companies directly, with identity verified through Pi Network sign-in
+        and Supabase authentication.</p>
       </div>
     </div>
 
@@ -317,9 +327,8 @@ body {
       <div class="num">3</div>
       <div class="stxt">
         <h3>Get Verified — Trust & Security</h3>
-        <p>Every profile, document and contract is protected end-to-end. A decentralized verification
-        system is securely integrated to protect the smart HR environment, following the highest
-        digital-safety standards.</p>
+        <p>Every profile is protected by secure authentication (Supabase Auth, with Pi Sign-In for
+        Pi Network users). Deeper on-chain verification is on the roadmap as the platform matures.</p>
       </div>
     </div>
   </div>
@@ -334,7 +343,8 @@ body {
     <div class="page-kicker">Dashboard</div>
     <div class="page-title">Track Your Progress</div>
     <div class="rule"></div>
-    <div class="about-text">A real-time snapshot of your hiring pipeline, with precise performance indicators to guide your decisions.</div>
+    <div class="about-text">A snapshot of your hiring pipeline, with performance indicators to guide your decisions.</div>
+    <div class="page-kicker" style="background:rgba(240,169,58,0.12); color:#b5790a;">📌 Sample data — not yet connected to a live database</div>
 
     <div class="stats-grid">
       <div class="stat-card">
@@ -436,6 +446,7 @@ body {
       <div>✉️ support@prohr-ai.app</div>
       <div>🅿️ Built on the Pi Network platform</div>
     </div>
+    <div style="margin-top:8mm; font-size:13px; font-weight:800; color:var(--navy);">Built by Reham Hamdy Elsayed Khedr.</div>
   </div>
   <div class="pagenum">06</div>
   <div class="footer">ProHR AI is an independent ecosystem app built on the Pi Network platform — All Rights Reserved © 2026</div>
