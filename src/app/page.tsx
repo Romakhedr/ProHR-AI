@@ -64,7 +64,7 @@ export default function Home() {
         </div>
 
         {/* Form-like Quick Action Section matching the aesthetic */}
-        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-8">
+        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-4">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
             <span className="h-px bg-slate-300 flex-1"></span>
             Quick Access Portal
@@ -98,13 +98,17 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-          <span>ProHR AI &copy; 2026. All rights reserved.</span>
-          <a href="#" className="transition-colors hover:text-[#2f6fb0] font-medium">Support Center</a>
-        </div>
+        {/* Updated Professional Footer */}
+        <footer className="w-full text-center py-5 mt-6 border-t border-slate-100 text-slate-500 text-xs">
+          <p className="mb-1">
+            ProHR AI © 2026. All rights reserved. • <span className="hover:text-slate-800 cursor-pointer">Support Center</span>
+          </p>
+          <p className="text-slate-700 font-medium tracking-wide">
+            Engineered by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+          </p>
+        </footer>
 
       </div>
     </main>
   );
-}        
+}
