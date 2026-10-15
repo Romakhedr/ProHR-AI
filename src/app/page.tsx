@@ -1,102 +1,112 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F5F6F8] text-[#16263D] font-sans selection:bg-[#0F6B5C] selection:text-white">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-5 bg-white border-b border-[#DCE2EA] sticky top-0 z-50 shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0F6B5C] to-[#0B1F3A] relative flex items-center justify-center">
-            <div className="absolute inset-2 border border-[#E4C98A] rounded-md" />
-          </div>
-          <span className="font-extrabold text-xl text-[#0B1F3A] tracking-tight">ProHR AI</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#5B6B7F]">
-          <a href="#features" className="hover:text-[#0B1F3A] transition-colors">المميزات</a>
-          <a href="#about" className="hover:text-[#0B1F3A] transition-colors">عن المنصة</a>
-          <a href="#stats" className="hover:text-[#0B1F3A] transition-colors">الإحصائيات</a>
-        </nav>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/login"
-            className="px-5 py-2.5 rounded-lg border border-[#DCE2EA] text-[#0B1F3A] font-semibold text-sm hover:border-[#0B1F3A] transition-all"
-          >
-            تسجيل الدخول
-          </Link>
-          <Link
-            href="/dashboard"
-            className="px-5 py-2.5 rounded-lg bg-[#0B1F3A] text-white font-semibold text-sm hover:bg-[#16263D] shadow-md hover:shadow-lg transition-all"
-          >
-            لوحة التحكم
-          </Link>
-        </div>
-      </header>
+    <main 
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundColor: '#eef3f9',
+        backgroundImage: `
+          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.14) 0, transparent 40%),
+          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.10) 0, transparent 35%),
+          linear-gradient(120deg, transparent 49.4%, rgba(47,111,176,0.07) 49.7%, rgba(47,111,176,0.07) 50%, transparent 50.3%),
+          linear-gradient(60deg, transparent 49.4%, rgba(47,111,176,0.05) 49.7%, rgba(47,111,176,0.05) 50%, transparent 50.3%)
+        `,
+        backgroundSize: 'auto, auto, 90px 90px, 130px 130px',
+        fontFamily: "'Tajawal', sans-serif"
+      }}
+    >
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 px-6 lg:px-12 bg-gradient-to-b from-[#F5F6F8] via-white to-[#F5F6F8] text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E7F1EE] border border-[#CFE4DD] text-[#0B5347] text-xs font-mono mb-8 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#0F6B5C] animate-pulse" />
-            الجيل القادم من التوظيف اللامركزي والموارد البشرية الذكية
+      {/* الشريط العلوي الملون (Topbar) مطابق لصفحة Login */}
+      <div 
+        className="fixed top-0 right-0 left-0 h-2 z-50"
+        style={{ background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0 60%, #5b9bd5)' }}
+      />
+
+      {/* الكارت الرئيسي (Card) بنفس التنسيق والظلال تماماً */}
+      <div 
+        className="w-full max-w-xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10"
+        style={{
+          borderRadius: '28px',
+          boxShadow: '0 12px 40px rgba(14,42,77,0.12), 0 3px 14px rgba(14,42,77,0.06)',
+          border: '1px solid rgba(14,42,77,0.06)'
+        }}
+      >
+
+        {/* الهيدر والشعار (Header) */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <div 
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md"
+              style={{ background: 'linear-gradient(135deg, #0e2a4d, #2f6fb0)' }}
+            >
+              P
+            </div>
+            <div>
+              <h1 className="text-xl font-bold" style={{ color: '#0e2a4d' }}>ProHR AI</h1>
+              <p className="text-xs" style={{ color: '#5a7086' }}>منصة الموارد البشرية والتوظيف الذكي</p>
+            </div>
           </div>
+          <span 
+            className="text-xs font-semibold px-3 py-1 rounded-full"
+            style={{ backgroundColor: 'rgba(47,111,176,0.10)', color: '#2f6fb0' }}
+          >
+            v1.0
+          </span>
+        </div>
+
+        {/* المحتوى الرئيسي للترحيب */}
+        <div className="text-center py-4">
+          <span 
+            className="inline-block text-xs font-bold px-3.5 py-1.5 rounded-full mb-4"
+            style={{ backgroundColor: 'rgba(47,111,176,0.10)', color: '#2f6fb0' }}
+          >
+            ✨ النظام المتكامل للتوظيف اللامركزي
+          </span>
           
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1F3A] leading-tight mb-6">
-            منصة التوظيف اللامركزي والموارد البشرية المدعومة بالذكاء الاصطناعي
-          </h1>
+          <h2 className="text-2xl sm:text-3xl font-extrabold mb-3" style={{ color: '#0e2a4d' }}>
+            مرحباً بك في مستقبل الموارد البشرية
+          </h2>
           
-          <p className="text-lg sm:text-xl text-[#5B6B7F] max-w-2xl mx-auto mb-10 leading-relaxed">
-            ربط المواهب بالشركات مباشرة، والتحقق من السجلات والمهارات عبر تقنية البلوكشين لضمان الموثوقية والأمان الكامل.
+          <p className="text-sm sm:text-base max-w-md mx-auto mb-8 leading-relaxed" style={{ color: '#5a7086' }}>
+            منصة ذكية لإدارة شؤون الموظفين، فحص السير الذاتية بالذكاء الاصطناعي، وتوثيق العمليات بأعلى معايير الموثوقية.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/screen"
-              className="px-8 py-4 rounded-xl bg-[#0B1F3A] text-white font-bold text-base hover:bg-[#16263D] shadow-xl hover:-translate-y-0.5 transition-all"
-            >
-              استكشف المواهب الواعدة ←
-            </Link>
+          {/* أزرار التوجيه (Buttons مطابقة لتصميم login) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/login"
-              className="px-8 py-4 rounded-xl border border-[#DCE2EA] bg-white text-[#0B1F3A] font-bold text-base hover:border-[#0B1F3A] transition-all"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl text-white font-bold text-sm text-center shadow-lg transition-all"
+              style={{
+                background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0)',
+                boxShadow: '0 8px 20px rgba(14,42,77,0.28)'
+              }}
             >
-              تسجيل حساب جديد
+              تسجيل الدخول / إنشاء حساب
+            </Link>
+
+            <Link
+              href="/dashboard"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl font-bold text-sm text-center transition-all"
+              style={{
+                backgroundColor: '#f7f9fc',
+                border: '1px solid rgba(14,42,77,0.12)',
+                color: '#0e2a4d'
+              }}
+            >
+              استعراض لوحة التحكم
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-[#0B1F3A] mb-4">مميزات المنصة</h2>
-          <p className="text-[#5B6B7F] max-w-xl mx-auto">كل ما تحتاجه للوصول إلى أصحاب العمل المناسبين بأعلى معايير الأمان الرقمي.</p>
+        {/* تذييل الكارت (Footer) */}
+        <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs" style={{ color: '#5a7086' }}>
+          <span>ProHR AI &copy; 2026</span>
+          <a href="#" className="transition-colors hover:text-[#2f6fb0]">مركز المساعدة</a>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-8 rounded-2xl bg-white border border-[#DCE2EA] shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#E7F1EE] text-[#0F6B5C] flex items-center justify-center font-bold text-xl mb-6">🔒</div>
-            <h3 className="text-xl font-bold text-[#0B1F3A] mb-3">التوظيف اللامركزي والعقود الذكية</h3>
-            <p className="text-[#5B6B7F] text-sm leading-relaxed">منصة متقدمة تربط المواهب بالشركات مباشرة مع التحقق من السجلات عبر البلوكشين.</p>
-          </div>
+      </div>
 
-          <div className="p-8 rounded-2xl bg-white border border-[#DCE2EA] shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#E7F1EE] text-[#0F6B5C] flex items-center justify-center font-bold text-xl mb-6">🤖</div>
-            <h3 className="text-xl font-bold text-[#0B1F3A] mb-3">فحص السير الذاتية بالذكاء الاصطناعي</h3>
-            <p className="text-[#5B6B7F] text-sm leading-relaxed">مواءمة ذكية للمرشحين وتحليل المهارات وأدوات إدارة موارد بشرية متطورة.</p>
-          </div>
-
-          <div className="p-8 rounded-2xl bg-white border border-[#DCE2EA] shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#E7F1EE] text-[#0F6B5C] flex items-center justify-center font-bold text-xl mb-6">✨</div>
-            <h3 className="text-xl font-bold text-[#0B1F3A] mb-3">تكامل شبكة باي (Pi Network)</h3>
-            <p className="text-[#5B6B7F] text-sm leading-relaxed">مدفوعات آمنة وسلسة عبر محفظة Pi ودعم كامل للمعاملات الرقمية.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-6 bg-white border-t border-[#DCE2EA] text-center text-sm text-[#5B6B7F]">
-        <p>جميع الحقوق محفوظة © 2026 منصة ProHR AI</p>
-      </footer>
-    </div>
+    </main>
   );
 }
