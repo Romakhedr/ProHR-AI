@@ -3,38 +3,32 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main 
-      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden"
       style={{
-        backgroundColor: '#eef3f9',
+        backgroundColor: '#0b223f',
         backgroundImage: `
-          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.14) 0, transparent 40%),
-          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.10) 0, transparent 35%),
-          linear-gradient(120deg, transparent 49.4%, rgba(47,111,176,0.07) 49.7%, rgba(47,111,176,0.07) 50%, transparent 50.3%),
-          linear-gradient(60deg, transparent 49.4%, rgba(47,111,176,0.05) 49.7%, rgba(47,111,176,0.05) 50%, transparent 50.3%)
+          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.2) 0, transparent 40%),
+          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.15) 0, transparent 35%)
         `,
-        backgroundSize: 'auto, auto, 90px 90px, 130px 130px',
-        fontFamily: "'Tajawal', sans-serif"
+        fontFamily: "'Inter', 'Tajawal', sans-serif"
       }}
     >
-
-      {/* الشريط العلوي الملون (Topbar) مطابق لصفحة Login */}
+      {/* Top Bar Accent */}
       <div 
         className="fixed top-0 right-0 left-0 h-2 z-50"
-        style={{ background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0 60%, #5b9bd5)' }}
+        style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0 60%, #5b9bd5)' }}
       />
 
-      {/* الكارت الرئيسي (Card) بنفس التنسيق والظلال تماماً */}
+      {/* Main Container Card */}
       <div 
-        className="w-full max-w-xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10"
+        className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10 shadow-2xl"
         style={{
-          borderRadius: '28px',
-          boxShadow: '0 12px 40px rgba(14,42,77,0.12), 0 3px 14px rgba(14,42,77,0.06)',
-          border: '1px solid rgba(14,42,77,0.06)'
+          borderRadius: '24px',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
-
-        {/* الهيدر والشعار (Header) */}
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+        {/* Header & Logo */}
+        <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div 
               className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md"
@@ -43,70 +37,74 @@ export default function Home() {
               P
             </div>
             <div>
-              <h1 className="text-xl font-bold" style={{ color: '#0e2a4d' }}>ProHR AI</h1>
-              <p className="text-xs" style={{ color: '#5a7086' }}>منصة الموارد البشرية والتوظيف الذكي</p>
+              <h1 className="text-xl font-bold text-[#0e2a4d]">ProHR AI</h1>
+              <p className="text-xs text-slate-500">Decentralized HR & AI Recruitment Platform</p>
             </div>
           </div>
           <span 
-            className="text-xs font-semibold px-3 py-1 rounded-full"
-            style={{ backgroundColor: 'rgba(47,111,176,0.10)', color: '#2f6fb0' }}
+            className="text-xs font-semibold px-3.5 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100"
           >
-            v1.0
+            v1.0 Portal
           </span>
         </div>
 
-        {/* المحتوى الرئيسي للترحيب */}
-        <div className="text-center py-4">
-          <span 
-            className="inline-block text-xs font-bold px-3.5 py-1.5 rounded-full mb-4"
-            style={{ backgroundColor: 'rgba(47,111,176,0.10)', color: '#2f6fb0' }}
-          >
-            ✨ النظام المتكامل للتوظيف اللامركزي
+        {/* Hero / Intro Section */}
+        <div className="text-center py-2 mb-8">
+          <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-[#2f6fb0] tracking-wide uppercase">
+            🚀 Next-Gen Career & Talent Hub
           </span>
           
-          <h2 className="text-2xl sm:text-3xl font-extrabold mb-3" style={{ color: '#0e2a4d' }}>
-            مرحباً بك في مستقبل الموارد البشرية
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0e2a4d] mb-3">
+            Streamline Your Hiring & HR Operations
           </h2>
           
-          <p className="text-sm sm:text-base max-w-md mx-auto mb-8 leading-relaxed" style={{ color: '#5a7086' }}>
-            منصة ذكية لإدارة شؤون الموظفين، فحص السير الذاتية بالذكاء الاصطناعي، وتوثيق العمليات بأعلى معايير الموثوقية.
+          <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
+            Experience AI-powered resume screening, blockchain-backed credentials, and seamless candidate onboarding in one unified dashboard.
           </p>
+        </div>
 
-          {/* أزرار التوجيه (Buttons مطابقة لتصميم login) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        {/* Form-like Quick Action Section matching the aesthetic */}
+        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-8">
+          <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span className="h-px bg-slate-300 flex-1"></span>
+            Quick Access Portal
+            <span className="h-px bg-slate-300 flex-1"></span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Link
               href="/login"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl text-white font-bold text-sm text-center shadow-lg transition-all"
-              style={{
-                background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0)',
-                boxShadow: '0 8px 20px rgba(14,42,77,0.28)'
-              }}
+              className="w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 hover:opacity-95"
+              style={{ background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0)' }}
             >
-              تسجيل الدخول / إنشاء حساب
+              🔐 Sign In / Register
             </Link>
 
             <Link
               href="/dashboard"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl font-bold text-sm text-center transition-all"
-              style={{
-                backgroundColor: '#f7f9fc',
-                border: '1px solid rgba(14,42,77,0.12)',
-                color: '#0e2a4d'
-              }}
+              className="w-full py-3.5 px-5 rounded-xl font-bold text-sm text-center transition-all flex items-center justify-center gap-2 bg-white text-[#0e2a4d] border border-slate-300 hover:bg-slate-100 shadow-sm"
             >
-              استعراض لوحة التحكم
+              📊 HR Dashboard
+            </Link>
+          </div>
+
+          <div className="pt-2">
+            <Link
+              href="/screen"
+              className="w-full py-3 px-4 rounded-xl font-semibold text-xs text-center transition-all flex items-center justify-center gap-2 text-[#2f6fb0] bg-blue-50/80 hover:bg-blue-100/80 border border-blue-100"
+            >
+              ✨ AI Resume Screening & Task Router →
             </Link>
           </div>
         </div>
 
-        {/* تذييل الكارت (Footer) */}
-        <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs" style={{ color: '#5a7086' }}>
-          <span>ProHR AI &copy; 2026</span>
-          <a href="#" className="transition-colors hover:text-[#2f6fb0]">مركز المساعدة</a>
+        {/* Footer */}
+        <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+          <span>ProHR AI &copy; 2026. All rights reserved.</span>
+          <a href="#" className="transition-colors hover:text-[#2f6fb0] font-medium">Support Center</a>
         </div>
 
       </div>
-
     </main>
   );
-}
+}        
