@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -31,10 +32,17 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md"
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md overflow-hidden p-1 bg-white"
               style={{ background: 'linear-gradient(135deg, #0e2a4d, #2f6fb0)' }}
             >
-              P
+              <Image 
+                src="/logo-1.png" 
+                alt="ProHR AI Logo" 
+                width={40} 
+                height={40} 
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold text-[#0e2a4d]">ProHR AI</h1>
@@ -98,7 +106,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Updated Professional Footer */}
+        {/* Professional Footer */}
         <footer className="w-full text-center py-5 mt-6 border-t border-slate-100 text-slate-500 text-xs">
           <p className="mb-1">
             ProHR AI © 2026. All rights reserved. • <span className="hover:text-slate-800 cursor-pointer">Support Center</span>
