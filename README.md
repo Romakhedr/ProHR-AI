@@ -1,8 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 ProHR AI – Decentralized HR & AI Recruitment Platform
 
-## Getting Started
+<div align="center">
+  <img src="public/logo-1.png" alt="ProHR AI Logo" width="120" height="120" style="border-radius: 20px;" />
+  <p><strong>Next-Gen Career & Talent Hub powered by Artificial Intelligence & Blockchain</strong></p>
+</div>
 
-First, run the development server:
+---
+
+## 🌟 Overview
+**ProHR AI** is a state-of-the-art, decentralized human resources and AI-driven recruitment platform. It streamlines hiring operations, automates candidate resume screening, and bridges talent acquisition with secure credential management.
+
+---
+
+## ✨ Key Features
+- **🤖 AI Resume Screening:** Automated analysis and intelligent routing of candidate CVs.
+- **🔗 Blockchain Integration:** Secure, verifiable candidate credentials and decentralized records.
+- **⚡ Automated Onboarding:** Seamless registration workflow backed by real-time automated welcome notifications (Supabase & Gmail API integration).
+- **📊 Unified HR Dashboard:** Comprehensive control panel for tracking applicants, status management, and operations.
+
+---
+
+## 🛠️ Tech Stack
+- **Framework:** Next.js (React)
+- **Styling:** Tailwind CSS
+- **Database & Backend:** Supabase (Webhooks & Realtime triggers)
+- **Automation:** Make.com (Supabase to Gmail integration)
+
+---
+
+## 🚀 Getting Started
+
+To run the development server locally:
 
 ```bash
 npm run dev
@@ -12,25 +40,14 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+🔗 [ pro-hr-ai.vercel.app ]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📄 License
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is open-source and available under the MIT license.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+💼 Project Ownership & Engineering
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Reham Hamdy Elsayed Khedr 
