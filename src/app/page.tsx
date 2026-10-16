@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -89,7 +90,7 @@ export default function Home() {
               Upload CV* (PDF / DOCX)
             </label>
             
-            {/* حقل الإدخال المخفي لفتح استعراض الملفات */}
+            {/* حقل الإدخال المخفي */}
             <input 
               type="file" 
               id="cvFile" 
@@ -105,7 +106,10 @@ export default function Home() {
 
             {/* الصندوق التفاعلي القابل للضغط */}
             <div 
-              onClick={() => document.getElementById('cvFile')?.click()}
+              onClick={() => {
+                const fileInput = document.getElementById('cvFile') as HTMLInputElement;
+                if (fileInput) fileInput.click();
+              }}
               className="border-2 border-dashed border-slate-300 hover:border-[#2f6fb0] transition-all rounded-2xl p-5 text-center cursor-pointer bg-white/80 hover:bg-blue-50/30 flex flex-col items-center justify-center gap-2 shadow-2xs"
             >
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2f6fb0] flex items-center justify-center text-lg shadow-sm">
