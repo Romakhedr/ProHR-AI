@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function ScreenPage() {
+  const [selectedFileName, setSelectedFileName] = useState("");
+
   return (
     <main 
       className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden"
@@ -19,12 +25,21 @@ export default function ScreenPage() {
       {/* Main Container Card */}
       <div className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 bg-white relative z-10 shadow-2xl rounded-3xl border border-white/10 my-8">
         
-        {/* Header */}
+        {/* Header with Professional Logo */}
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md"
-                 style={{ background: 'linear-gradient(135deg, #0e2a4d, #2f6fb0)' }}>
-              ✨
+            <div 
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md overflow-hidden p-1 bg-white"
+              style={{ background: 'linear-gradient(135deg, #0e2a4d, #2f6fb0)' }}
+            >
+              <Image 
+                src="/logo-1.png" 
+                alt="ProHR AI Logo" 
+                width={40} 
+                height={40} 
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold text-[#0e2a4d]">AI Resume Screening</h1>
@@ -37,7 +52,7 @@ export default function ScreenPage() {
         </div>
 
         {/* Application Form */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           
           {/* Availability Question */}
           <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80">
@@ -118,21 +133,48 @@ export default function ScreenPage() {
               <input 
                 type="tel" 
                 required 
-                placeholder="+971 50 123 4567" 
+                placeholder="+971" 
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
                 dir="ltr" 
               />
             </div>
           </div>
 
-          {/* Upload CV Box */}
+          {/* Upload CV Box (Interactive & Fixed) */}
           <div>
             <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Upload CV* (PDF / DOCX)</label>
-            <div className="border-2 border-dashed border-[#2f6fb0]/40 rounded-2xl p-6 text-center bg-blue-50/30 hover:bg-blue-50/70 hover:border-[#2f6fb0] transition-all cursor-pointer group">
+            
+            {/* Hidden File Input */}
+            <input 
+              type="file" 
+              id="cvFile" 
+              accept=".pdf,.docx,.doc" 
+              className="hidden" 
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setSelectedFileName(file.name);
+                }
+              }}
+            />
+
+            {/* Clickable Interactive Upload Box */}
+            <div 
+              onClick={() => {
+                const fileInput = document.getElementById('cvFile') as HTMLInputElement;
+                if (fileInput) fileInput.click();
+              }}
+              className="border-2 border-dashed border-[#2f6fb0]/40 rounded-2xl p-6 text-center bg-blue-50/30 hover:bg-blue-50/70 hover:border-[#2f6fb0] transition-all cursor-pointer group"
+            >
               <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📄</span>
               <span className="text-xs font-semibold text-[#0e2a4d]">
-                Drop your file here or <span className="text-[#2f6fb0] font-bold underline">browse to upload</span>
+                {selectedFileName ? (
+                  <span className="text-[#2f6fb0] font-bold">Selected: {selectedFileName}</span>
+                ) : (
+                  <>Drop your file here or <span className="text-[#2f6fb0] font-bold underline">browse to upload</span></>
+                )}
               </span>
+              <p className="text-[10px] text-slate-400 mt-1">Supports PDF, DOCX up to 10MB</p>
             </div>
           </div>
 
@@ -154,6 +196,13 @@ export default function ScreenPage() {
           </button>
 
         </form>
+
+        {/* Footer / Attribution */}
+        <footer className="w-full text-center pt-6 mt-6 border-t border-slate-100 text-slate-500 text-xs">
+          <p className="text-slate-700 font-medium tracking-wide">
+            Engineered by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+          </p>
+        </footer>
 
       </div>
     </main>
