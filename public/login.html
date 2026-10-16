@@ -82,10 +82,11 @@
   <!-- الكارت الرئيسي -->
   <div class="card w-full max-w-md overflow-hidden p-6 sm:p-8 transition-all">
 
-    <!-- الهيدر والشعار -->
+    <!-- الهيدر والشعار المحدث -->
     <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
       <div class="flex items-center gap-3">
-        <img src="logo.png" alt="ProHR AI" class="brand-logo">
+        <!-- تم تعديل مسار الشعار ليكون logo-1.png لضمان ظهوره السليم -->
+        <img src="/logo-1.png" alt="ProHR AI" class="brand-logo">
         <div>
           <h1 class="text-xl font-bold brand-title">ProHR AI</h1>
           <p class="text-xs brand-sub">منصة الموارد البشرية الذكية</p>
@@ -144,83 +145,43 @@
     <!-- رسالة النتيجة -->
     <p id="message" class="mt-4 text-center text-xs font-bold min-h-[20px]"></p>
 
-    <!-- روابط فرعية أسفل الكارت -->
-    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs footer-text">
-      <span>ProHR AI &copy; 2026</span>
-      <a href="#" class="footer-link transition-colors">مركز المساعدة</a>
+    <!-- التوقيع والفوتر الاحترافي المحدث -->
+    <div class="mt-6 pt-4 border-t border-slate-100 text-xs footer-text text-center space-y-1">
+      <div class="flex items-center justify-between">
+        <span>ProHR AI &copy; 2026. All rights reserved.</span>
+        <a href="#" class="footer-link transition-colors font-medium">مركز المساعدة</a>
+      </div>
+      <div class="pt-1 text-slate-700 font-medium tracking-wide">
+        Engineered by <strong class="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+      </div>
     </div>
 
   </div>
 
   <script>
-    const SUPABASE_URL = ___________
-  const SUPABASE_ANON_KEY = ____________
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-    let isSignUp = false
-    const tabLogin = document.getElementById('tabLogin')
-    const tabSignUp = document.getElementById('tabSignUp')
-    const fullNameGroup = document.getElementById('fullNameGroup')
-    const submitBtn = document.getElementById('submitBtn')
-    const form = document.getElementById('authForm')
-    const message = document.getElementById('message')
+    // تفعيل التبديل التفاعلي بين تسجيل الدخول وإنشاء الحساب
+    const tabLogin = document.getElementById('tabLogin');
+    const tabSignUp = document.getElementById('tabSignUp');
+    const fullNameGroup = document.getElementById('fullNameGroup');
+    const submitBtn = document.getElementById('submitBtn');
 
-    // التبديل إلى "تسجيل الدخول"
+    let isLoginMode = true;
+
     tabLogin.addEventListener('click', () => {
-      isSignUp = false
-      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active"
-      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive"
-      fullNameGroup.classList.add('hidden')
-      submitBtn.textContent = 'تسجيل الدخول'
-      message.textContent = ''
-    })
+      isLoginMode = true;
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active";
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive";
+      fullNameGroup.classList.add('hidden');
+      submitBtn.textContent = "تسجيل الدخول";
+    });
 
-    // التبديل إلى "إنشاء حساب"
     tabSignUp.addEventListener('click', () => {
-      isSignUp = true
-      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active"
-      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive"
-      fullNameGroup.classList.remove('hidden')
-      submitBtn.textContent = 'إنشاء حساب جديد'
-      message.textContent = ''
-    })
-
-    // معالجة النموذج عند الضغط
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      message.textContent = 'جاري التحقق...'
-      message.className = 'mt-4 text-center text-xs font-bold text-blue-600'
-
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
-      const fullName = document.getElementById('fullName').value
-
-      if (isSignUp) {
-        const { error } = await _supabase.auth.signUp({
-          email,
-          password,
-          options: { data: { full_name: fullName } }
-        })
-        if (error) {
-          message.textContent = error.message
-          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
-        } else {
-          message.textContent = 'تم إنشاء الحساب بنجاح! جاري التوجيه...'
-          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
-          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
-        }
-      } else {
-        const { error } = await _supabase.auth.signInWithPassword({ email, password })
-        if (error) {
-          message.textContent = error.message
-          message.className = 'mt-4 text-center text-xs font-bold text-red-500'
-        } else {
-          message.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...'
-          message.className = 'mt-4 text-center text-xs font-bold text-emerald-600'
-          setTimeout(() => { window.location.href = 'index.html'; }, 1000)
-        }
-      }
-    })
+      isLoginMode = false;
+      tabSignUp.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-active";
+      tabLogin.className = "py-2.5 text-sm font-bold rounded-xl transition-all tab-inactive";
+      fullNameGroup.classList.remove('hidden');
+      submitBtn.textContent = "إنشاء الحساب";
+    });
   </script>
-
 </body>
 </html>
