@@ -1,7 +1,11 @@
+"import client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedFileName, setSelectedFileName] = useState("");
+
   return (
     <main 
       className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden"
@@ -57,7 +61,7 @@ export default function Home() {
         </div>
 
         {/* Hero / Intro Section */}
-        <div className="text-center py-2 mb-8">
+        <div className="text-center py-2 mb-6">
           <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-[#2f6fb0] tracking-wide uppercase">
             🚀 Next-Gen Career & Talent Hub
           </span>
@@ -71,14 +75,56 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Form-like Quick Action Section matching the aesthetic */}
-        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-4">
+        {/* Interactive Application / CV Upload Section */}
+        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-6">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
             <span className="h-px bg-slate-300 flex-1"></span>
-            Quick Access Portal
+            Candidate Quick Screening
             <span className="h-px bg-slate-300 flex-1"></span>
           </div>
 
+          {/* Upload CV Component */}
+          <div className="space-y-2">
+            <label className="block text-xs font-bold text-slate-700">
+              Upload CV* (PDF / DOCX)
+            </label>
+            
+            {/* حقل الإدخال المخفي لفتح استعراض الملفات */}
+            <input 
+              type="file" 
+              id="cvFile" 
+              accept=".pdf,.docx,.doc" 
+              className="hidden" 
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setSelectedFileName(file.name);
+                }
+              }}
+            />
+
+            {/* الصندوق التفاعلي القابل للضغط */}
+            <div 
+              onClick={() => document.getElementById('cvFile')?.click()}
+              className="border-2 border-dashed border-slate-300 hover:border-[#2f6fb0] transition-all rounded-2xl p-5 text-center cursor-pointer bg-white/80 hover:bg-blue-50/30 flex flex-col items-center justify-center gap-2 shadow-2xs"
+            >
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2f6fb0] flex items-center justify-center text-lg shadow-sm">
+                📄
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 font-medium">
+                {selectedFileName ? (
+                  <span className="text-[#2f6fb0] font-bold">Selected: {selectedFileName}</span>
+                ) : (
+                  <>Drop your file here or <span className="text-[#2f6fb0] underline font-bold">browse to upload</span></>
+                )}
+              </p>
+              <p className="text-[10px] text-slate-400">Supports PDF, DOCX up to 10MB</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Action Section */}
+        <div className="space-y-3 mb-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Link
               href="/login"
@@ -96,7 +142,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="pt-2">
+          <div className="pt-1">
             <Link
               href="/screen"
               className="w-full py-3 px-4 rounded-xl font-semibold text-xs text-center transition-all flex items-center justify-center gap-2 text-[#2f6fb0] bg-blue-50/80 hover:bg-blue-100/80 border border-blue-100"
