@@ -200,7 +200,7 @@ export default function ScreenPage() {
         {/* Footer / Attribution */}
         <footer className="w-full text-center pt-6 mt-6 border-t border-slate-100 text-slate-500 text-xs">
           <p className="text-slate-700 font-medium tracking-wide">
-            Engineered by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+            developed by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
           </p>
         </footer>
 
