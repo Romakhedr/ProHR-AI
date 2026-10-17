@@ -162,7 +162,8 @@ export default function Home() {
             ProHR AI © 2026. All rights reserved. • <span className="hover:text-slate-800 cursor-pointer">Support Center</span>
           </p>
           <p className="text-slate-700 font-medium tracking-wide">
-            Engineered by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+            En
+            developed by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
           </p>
         </footer>
 
