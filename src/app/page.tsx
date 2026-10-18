@@ -26,6 +26,7 @@ export default function Home() {
       />
 
       {/* Main Container Card */}
+      <LanguageSelector />
       <div 
         className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10 shadow-2xl"
         style={{
