@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-// قاموس الترجمات لجميع اللغات الـ 8
 const translations: Record<string, {
   dir: "rtl" | "ltr";
   subtitleHeader: string;
@@ -104,7 +103,6 @@ const translations: Record<string, {
     dir: "ltr",
     subtitleHeader: "Decentralized HR at AI Recruitment Platform",
     badge: "🚀 SUSUNOD NA Henerasyon ng CAREER AT TALENT HUB",
-    title: "Pabilisin ang Inyong Pagkuha at Operasyon ng HR",
     heroTitle: "Pabilisin ang Inyong Pagkuha at Operasyon ng HR",
     heroDesc: "Maranasan ang AI-powered resume screening, blockchain credentials, at seamless onboarding sa isang dashboard.",
     screeningHeader: "MABILIS NA PAGSUSURI NG KANDIDATO",
@@ -255,6 +253,7 @@ export default function Home() {
             {/* Language Selector Dropdown */}
             <div className="relative">
               <button
+                type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-full text-xs font-semibold text-slate-700 transition-all shadow-sm"
               >
@@ -268,6 +267,7 @@ export default function Home() {
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
+                      type="button"
                       onClick={() => handleLanguageChange(lang.code)}
                       className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-blue-50 transition-colors ${
                         currentLang === lang.code ? 'font-bold text-[#2f6fb0] bg-blue-50/50' : 'text-slate-700'
