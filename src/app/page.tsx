@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-
+import LanguageSelector from "./LanguageSelector";
 export default function Home() {
   const [selectedFileName, setSelectedFileName] = useState("");
 
