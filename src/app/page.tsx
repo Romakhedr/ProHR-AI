@@ -26,7 +26,6 @@ export default function Home() {
       />
 
       {/* Main Container Card */}
-      <LanguageSelector />
       <div 
         className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10 shadow-2xl"
         style={{
@@ -35,6 +34,7 @@ export default function Home() {
         }}
       >
         {/* Header & Logo */}
+       <LanguageSelector />
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div 
