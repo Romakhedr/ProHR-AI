@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import LanguageSelector from "./LanguageSelector";
+
 export default function Home() {
   const [selectedFileName, setSelectedFileName] = useState("");
 
@@ -33,8 +34,7 @@ export default function Home() {
           border: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
-        {/* Header & Logo */}
-       <LanguageSelector />
+        {/* Header & Logo with Professional Language Selector placement */}
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div 
@@ -55,11 +55,16 @@ export default function Home() {
               <p className="text-xs text-slate-500">Decentralized HR & AI Recruitment Platform</p>
             </div>
           </div>
-          <span 
-            className="text-xs font-semibold px-3.5 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100"
-          >
-            v1.0 Portal
-          </span>
+          
+          {/* زر اللغات الاحترافي بجانب بوابة الإصدار */}
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <span 
+              className="text-xs font-semibold px-3.5 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100"
+            >
+              v1.0 Portal
+            </span>
+          </div>
         </div>
 
         {/* Hero / Intro Section */}
