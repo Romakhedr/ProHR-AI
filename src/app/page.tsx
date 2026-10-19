@@ -206,12 +206,12 @@ export default function Home() {
   return (
     <main 
       dir={t.dir}
-      className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden transition-all duration-300"
+      className="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-hidden transition-all duration-300"
       style={{
         backgroundColor: '#0b223f',
         backgroundImage: `
-          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.2) 0, transparent 40%),
-          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.15) 0, transparent 35%)
+          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.25) 0, transparent 40%),
+          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.2) 0, transparent 35%)
         `,
         fontFamily: "'Inter', 'Tajawal', sans-serif"
       }}
@@ -222,32 +222,32 @@ export default function Home() {
         style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0 60%, #5b9bd5)' }}
       />
 
-      {/* Main Container Card */}
+      {/* Main Container Card (الخلفية الكحلية الموحدة للمنصة بالكامل لدمج بصرى فائق) */}
       <div 
-        className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 transition-all bg-white relative z-10 shadow-2xl"
+        className="w-full max-w-2xl overflow-hidden p-5 sm:p-8 transition-all relative z-10 shadow-2xl text-white"
         style={{
-          borderRadius: '24px',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
+          backgroundColor: '#0b223f',
+          backgroundImage: 'linear-gradient(135deg, #0b223f 0%, #0e2a4d 50%, #14335c 100%)',
+          borderRadius: '28px',
+          border: '1px solid rgba(255, 255, 255, 0.12)'
         }}
       >
         {/* Header & Logo with Dynamic Language Dropdown */}
-        <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100 gap-2">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10 gap-2">
           <div className="flex items-center gap-3">
-            <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md overflow-hidden p-1.5 bg-white shrink-0 border border-slate-100"
-            >
+            <div className="w-11 h-11 rounded-2xl flex items-center justify-center bg-white/10 backdrop-blur-md shadow-inner overflow-hidden p-1.5 shrink-0 border border-white/20">
               <Image 
                 src="/logo-1.png" 
                 alt="ProHR AI Logo" 
-                width={40} 
-                height={40} 
+                width={36} 
+                height={36} 
                 className="w-full h-full object-contain"
                 priority
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-[#0e2a4d]">ProHR AI</h1>
-              <p className="text-xs text-slate-500">{t.subtitleHeader}</p>
+              <h1 className="text-lg font-bold text-white tracking-wide">ProHR AI</h1>
+              <p className="text-[11px] text-blue-200/80">{t.subtitleHeader}</p>
             </div>
           </div>
           
@@ -257,22 +257,22 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-full text-xs font-semibold text-slate-700 transition-all shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs font-semibold text-white transition-all shadow-sm backdrop-blur-sm"
               >
                 <span>{languagesList.find(l => l.code === currentLang)?.flag}</span>
                 <span>{languagesList.find(l => l.code === currentLang)?.name}</span>
-                <span className="text-[10px]">▼</span>
+                <span className="text-[10px] opacity-80">▼</span>
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full mt-2 right-0 w-36 bg-white border border-slate-200 rounded-xl shadow-xl py-1 z-50 max-h-56 overflow-y-auto">
+                <div className="absolute top-full mt-2 right-0 w-36 bg-[#0e2a4d] border border-blue-400/30 rounded-xl shadow-2xl py-1 z-50 max-h-56 overflow-y-auto">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
                       type="button"
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-blue-50 transition-colors ${
-                        currentLang === lang.code ? 'font-bold text-[#2f6fb0] bg-blue-50/50' : 'text-slate-700'
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-white/10 transition-colors ${
+                        currentLang === lang.code ? 'font-bold text-amber-300 bg-white/5' : 'text-slate-200'
                       }`}
                     >
                       <span>{lang.flag}</span>
@@ -283,31 +283,31 @@ export default function Home() {
               )}
             </div>
 
-            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100 hidden sm:inline-block">
+            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 hidden sm:inline-block">
               v1.0 Portal
             </span>
           </div>
         </div>
 
-        {/* Promo Feature Card - كارت متناسق و مندمج بصرياً */}
+        {/* Promo Feature Card - داخل الكارت الموحد بتناسق تام */}
         <div 
           dir="ltr"
-          className="relative overflow-hidden rounded-3xl p-6 sm:p-8 mb-8 text-white shadow-xl border border-blue-400/20 text-left"
+          className="relative overflow-hidden rounded-2xl p-5 sm:p-7 mb-6 text-white shadow-lg border border-blue-400/20 text-left"
           style={{
-            backgroundColor: '#0e2a4d',
-            backgroundImage: 'linear-gradient(135deg, #0b223f 0%, #0e2a4d 50%, #173d6a 100%)'
+            backgroundColor: 'rgba(14, 42, 77, 0.6)',
+            backgroundImage: 'linear-gradient(135deg, rgba(14, 42, 77, 0.8) 0%, rgba(23, 61, 106, 0.7) 100%)'
           }}
         >
           {/* الشريط العلوي المضيء */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold mb-3 shadow-sm">
             <span>⚡ AI-Powered</span>
             <span className="text-amber-400">•</span>
             <span>Pi Network Native</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
             {/* العناوين والشارات */}
-            <div className="md:col-span-8 space-y-3">
+            <div className="md:col-span-8 space-y-2.5">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
                 Hiring, <span className="text-[#5b9bd5] underline decoration-blue-400/40">Reinvented</span><br />
                 for the UAE 🇦🇪
@@ -319,62 +319,62 @@ export default function Home() {
 
               {/* الشارات */}
               <div className="flex flex-wrap gap-2 pt-1">
-                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
+                <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-[11px] font-medium text-slate-200">
                   🤖 AI Agents
                 </span>
-                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
+                <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-[11px] font-medium text-slate-200">
                   🔐 Pi Sign-In
                 </span>
-                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
+                <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-[11px] font-medium text-slate-200">
                   🇦🇪 UAE-Ready
                 </span>
               </div>
             </div>
 
-            {/* الشعار النظيف (بدون نص مكرر) والرابط */}
+            {/* الشعار النظيف (بدون تكرار نص) */}
             <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-3 md:pt-0 border-t md:border-t-0 md:border-l border-white/10">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-2 bg-[#0b223f]/90 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-2 bg-[#0b223f] backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl">
                 <Image 
                   src="/logo-1.png" 
                   alt="ProHR AI Logo" 
-                  width={80} 
-                  height={80} 
+                  width={70} 
+                  height={70} 
                   className="w-full h-full object-contain drop-shadow"
                   priority
                 />
               </div>
 
-              <h3 className="text-base font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
-              <p className="text-[11px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
+              <h3 className="text-sm font-bold text-white mt-2 tracking-wide">ProHR AI</h3>
+              <p className="text-[10px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
             </div>
           </div>
         </div>
 
         {/* Hero / Intro Section */}
         <div className="text-center py-1 mb-6">
-          <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-[#2f6fb0] tracking-wide">
+          <span className="inline-block text-xs font-bold px-3.5 py-1 rounded-full mb-2.5 bg-blue-500/20 text-blue-200 border border-blue-400/30 tracking-wide">
             {t.badge}
           </span>
           
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0e2a4d] mb-3">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
             {t.heroTitle}
           </h2>
           
-          <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
             {t.heroDesc}
           </p>
         </div>
 
         {/* Interactive Application / CV Upload Section */}
-        <div className="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-200/80 mb-6">
-          <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-            <span className="h-px bg-slate-300 flex-1"></span>
+        <div className="space-y-3 bg-white/5 p-4 sm:p-5 rounded-2xl border border-white/10 mb-6 backdrop-blur-sm">
+          <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span className="h-px bg-white/20 flex-1"></span>
             {t.screeningHeader}
-            <span className="h-px bg-slate-300 flex-1"></span>
+            <span className="h-px bg-white/20 flex-1"></span>
           </div>
 
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-700">
+            <label className="block text-xs font-bold text-slate-200">
               {t.uploadLabel}
             </label>
             
@@ -396,16 +396,16 @@ export default function Home() {
                 const fileInput = document.getElementById('cvFile') as HTMLInputElement;
                 if (fileInput) fileInput.click();
               }}
-              className="border-2 border-dashed border-slate-300 hover:border-[#2f6fb0] transition-all rounded-2xl p-5 text-center cursor-pointer bg-white hover:bg-blue-50/20 flex flex-col items-center justify-center gap-2 shadow-2xs"
+              className="border-2 border-dashed border-white/20 hover:border-blue-400 transition-all rounded-xl p-4 text-center cursor-pointer bg-white/5 hover:bg-white/10 flex flex-col items-center justify-center gap-1.5"
             >
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2f6fb0] flex items-center justify-center text-lg shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center text-base shadow-sm border border-blue-400/30">
                 📄
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 font-medium">
+              <p className="text-xs text-slate-200 font-medium">
                 {selectedFileName ? (
-                  <span className="text-[#2f6fb0] font-bold">{t.selectedText} {selectedFileName}</span>
+                  <span className="text-blue-300 font-bold">{t.selectedText} {selectedFileName}</span>
                 ) : (
-                  <>{t.dropText} <span className="text-[#2f6fb0] underline font-bold">{t.browseText}</span></>
+                  <>{t.dropText} <span className="text-blue-400 underline font-bold">{t.browseText}</span></>
                 )}
               </p>
               <p className="text-[10px] text-slate-400">{t.supportText}</p>
@@ -414,28 +414,28 @@ export default function Home() {
         </div>
 
         {/* Quick Action Section */}
-        <div className="space-y-3 mb-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="space-y-2.5 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <Link
               href="/login"
-              className="w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 hover:opacity-95"
-              style={{ background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0)' }}
+              className="w-full py-3 px-4 rounded-xl text-white font-bold text-xs sm:text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 hover:opacity-95"
+              style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0)' }}
             >
               {t.signInBtn}
             </Link>
 
             <Link
               href="/dashboard"
-              className="w-full py-3.5 px-5 rounded-xl font-bold text-sm text-center transition-all flex items-center justify-center gap-2 bg-white text-[#0e2a4d] border border-slate-300 hover:bg-slate-100 shadow-sm"
+              className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-center transition-all flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 hover:bg-white/20 shadow-sm"
             >
               {t.dashboardBtn}
             </Link>
           </div>
 
-          <div className="pt-1">
+          <div className="pt-0.5">
             <Link
               href="/screen"
-              className="w-full py-3 px-4 rounded-xl font-semibold text-xs text-center transition-all flex items-center justify-center gap-2 text-[#2f6fb0] bg-blue-50/80 hover:bg-blue-100/80 border border-blue-100"
+              className="w-full py-2.5 px-4 rounded-xl font-semibold text-xs text-center transition-all flex items-center justify-center gap-2 text-blue-200 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-400/20"
             >
               {t.aiScreeningBtn}
             </Link>
@@ -443,13 +443,14 @@ export default function Home() {
         </div>
 
         {/* Professional Footer */}
-        <footer className="w-full text-center py-5 mt-6 border-t border-slate-100 text-slate-500 text-xs">
+        <footer className="w-full text-center py-4 mt-5 border-t border-white/10 text-slate-400 text-[11px]">
           <p className="mb-1">
-            {t.footerRights} • <span className="hover:text-slate-800 cursor-pointer">{t.supportCenter}</span>
+            {t.footerRights} • <span className="hover:text-white cursor-pointer">{t.supportCenter}</span>
           </p>
-          <p className="text-slate-700 font-medium tracking-wide">
-            {t.developedBy} <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
-          </p>
+          <div className="text-slate-300 font-medium tracking-wide flex items-center justify-center gap-1 flex-wrap">
+            <span>{t.developedBy}</span>
+            <span dir="ltr" className="font-semibold text-white">Reham Hamdy Elsayed Khedr</span>
+          </div>
         </footer>
 
       </div>
