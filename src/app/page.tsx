@@ -197,6 +197,9 @@ export default function Home() {
 
   const handleLanguageChange = (langCode: string) => {
     setCurrentLang(langCode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("preferred_lang", langCode);
+    }
     setIsLangOpen(false);
   };
 
@@ -284,76 +287,72 @@ export default function Home() {
             <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100 hidden sm:inline-block">
               v1.0 Portal
             </span>
+          </div>
         </div>
+
+        {/* Promo Feature Card - كارت التعريف الترويجي المحسن والواضح */}
+        <div 
+          dir="ltr"
+          className="relative overflow-hidden rounded-3xl p-6 sm:p-8 mb-8 text-white shadow-2xl border border-blue-500/30 text-left"
+          style={{
+            backgroundColor: '#0d2847',
+            backgroundImage: 'linear-gradient(135deg, #091c33 0%, #0d2847 50%, #173d6a 100%)'
+          }}
+        >
+          {/* الشريط العلوي المضيء */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold mb-5 shadow-sm">
+            <span>⚡ AI-Powered</span>
+            <span className="text-amber-400">•</span>
+            <span>Pi Network Native</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            {/* الجانب الأيسر - العناوين والشارات */}
+            <div className="md:col-span-8 space-y-4">
+              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                Hiring, <span className="text-blue-400 underline decoration-blue-400/50">Reinvented</span><br />
+                for the UAE 🇦🇪
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-lg font-medium">
+                Decentralized smart HR — AI resume screening, real agent reasoning, and Pi-native identity. Try it free.
+              </p>
+
+              {/* الشارات التفاعلية */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+                  🤖 AI Agents
+                </span>
+                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+                  🔐 Pi Sign-In
+                </span>
+                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+                  🇦🇪 UAE-Ready
+                </span>
+              </div>
+            </div>
+
+            {/* الجانب الأيمن - الشعار المضيء والرابط */}
+            <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/15">
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-blue-400/40 to-transparent flex items-center justify-center shadow-inner">
+                <div className="w-full h-full rounded-full bg-[#0b223f] p-3 flex items-center justify-center border border-white/30 shadow-2xl">
+                  <Image 
+                    src="/logo-1.png" 
+                    alt="ProHR AI Logo" 
+                    width={90} 
+                    height={90} 
+                    className="w-full h-full object-contain drop-shadow-md"
+                    priority
+                  />
+                </div>
+              </div>
+
+              <h3 className="text-lg font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
+              <p className="text-[11px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
+            </div>
+          </div>
         </div>
-{/* Promo Feature Card - كارت ترويجي داكن وواضح */}
-<div 
-  dir="ltr"
-  className="relative overflow-hidden rounded-3xl p-6 sm:p-8 mb-8 text-white shadow-2xl border border-blue-500/30 text-left bg-[#0d2847]"
-  style={{
-    backgroundColor: '#0d2847',
-    backgroundImage: 'linear-gradient(135deg, #091c33 0%, #0d2847 50%, #173d6a 100%)'
-  }}
->
-  {/* الشريط العلوي المضيء */}
-  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold mb-5 shadow-sm">
-    <span>⚡ AI-Powered</span>
-    <span className="text-amber-400">•</span>
-    <span>Pi Network Native</span>
-  </div>
 
-  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-    {/* الجانب الأيسر - العناوين والشارات */}
-    <div className="md:col-span-8 space-y-4">
-      <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-        Hiring, <span className="text-blue-400 underline decoration-blue-400/50">Reinvented</span><br />
-        for the UAE 🇦🇪
-      </h2>
-
-      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-lg font-medium">
-        Decentralized smart HR — AI resume screening, real agent reasoning, and Pi-native identity. Try it free.
-      </p>
-
-      {/* الشارات التفاعلية */}
-      <div className="flex flex-wrap gap-2 pt-2">
-        <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
-          🤖 AI Agents
-        </span>
-        <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
-          🔐 Pi Sign-In
-        </span>
-        <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
-          🇦🇪 UAE-Ready
-        </span>
-      </div>
-    </div>
-
-    {/* الجانب الأيمن - الشعار المضيء والرابط */}
-    <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/15">
-      <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-blue-400/40 to-transparent flex items-center justify-center shadow-inner">
-        <div className="w-full h-full rounded-full bg-[#0b223f] p-3 flex items-center justify-center border border-white/30 shadow-2xl">
-          <Image 
-            src="/logo-1.png" 
-            alt="ProHR AI Logo" 
-            width={90} 
-            height={90} 
-            className="w-full h-full object-contain drop-shadow-md"
-            priority
-          />
-        </div>
-      </div>
-
-      <h3 className="text-lg font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
-      <p className="text-[11px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
-    </div>
-  </div>
-</div>
-
-      <h3 className="text-lg font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
-      <p className="text-[11px] text-blue-200 font-mono">pro-hr-ai.vercel.app</p>
-    </div>
-  </div>
-</div>
         {/* Hero / Intro Section */}
         <div className="text-center py-2 mb-6">
           <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-[#2f6fb0] tracking-wide">
