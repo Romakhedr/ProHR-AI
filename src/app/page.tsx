@@ -60,132 +60,12 @@ const translations: Record<string, {
     footerRights: "ProHR AI © 2026. All rights reserved.",
     supportCenter: "Support Center",
     developedBy: "developed by"
-  },
-  zh: {
-    dir: "ltr",
-    subtitleHeader: "去中心化人力资源与 AI 招聘平台",
-    badge: "🚀 下一代职业与人才中心",
-    heroTitle: "简化您的招聘与人力资源运营",
-    heroDesc: "在统一的仪表板中体验 AI 简历筛选、区块链认证凭证和无缝候选人入职。",
-    screeningHeader: "候选人快速筛选",
-    uploadLabel: "上传简历* (PDF / DOCX)",
-    dropText: "拖放文件到此处或",
-    browseText: "浏览上传",
-    supportText: "支持高达 10MB 的 PDF, DOCX",
-    selectedText: "已选择:",
-    signInBtn: "🔐 登录 / 注册",
-    dashboardBtn: "📊 人力资源仪表板",
-    aiScreeningBtn: "✨ AI 简历筛选与任务路由 →",
-    footerRights: "ProHR AI © 2026. 保留所有权利。",
-    supportCenter: "支持中心",
-    developedBy: "开发者"
-  },
-  hi: {
-    dir: "ltr",
-    subtitleHeader: "विकेंद्रीकृत एचआर और एआई भर्ती मंच",
-    badge: "🚀 अगली पीढ़ी का करियर और टैलेंट हब",
-    heroTitle: "अपनी भर्ती और एचआर संचालन को सुव्यवस्थित करें",
-    heroDesc: "एक एकीकृत डैशबोर्ड में एआई-संचालित रेज़्यूमे स्क्रीन, ब्लॉकचेन-समर्थित क्रेडेंशियल और निर्बाध ऑनबोर्डिंग का अनुभव करें।",
-    screeningHeader: "उम्मीदवार त्वरित जांच",
-    uploadLabel: "सीवी अपलोड करें* (PDF / DOCX)",
-    dropText: "अपनी फ़ाइल यहाँ छोड़ें या",
-    browseText: "अपलोड करने के लिए ब्राउज़ करें",
-    supportText: "10MB तक PDF, DOCX का समर्थन करता है",
-    selectedText: "चयनित:",
-    signInBtn: "🔐 साइन इन करें / पंजीकरण करें",
-    dashboardBtn: "📊 एचआर डैशबोर्ड",
-    aiScreeningBtn: "✨ एआई रेज़्यूमे स्क्रिनिंग और टास्क राउटर →",
-    footerRights: "ProHR AI © 2026. सभी अधिकार सुरक्षित।",
-    supportCenter: "सहायता केंद्र",
-    developedBy: "द्वारा विकसित"
-  },
-  tl: {
-    dir: "ltr",
-    subtitleHeader: "Decentralized HR at AI Recruitment Platform",
-    badge: "🚀 SUSUNOD NA Henerasyon ng CAREER AT TALENT HUB",
-    heroTitle: "Pabilisin ang Inyong Pagkuha at Operasyon ng HR",
-    heroDesc: "Maranasan ang AI-powered resume screening, blockchain credentials, at seamless onboarding sa isang dashboard.",
-    screeningHeader: "MABILIS NA PAGSUSURI NG KANDIDATO",
-    uploadLabel: "Mag-upload ng CV* (PDF / DOCX)",
-    dropText: "I-drop ang iyong file dito o",
-    browseText: "mag-browse para mag-upload",
-    supportText: "Sumusuporta sa PDF, DOCX hanggang 10MB",
-    selectedText: "Naipasa:",
-    signInBtn: "🔐 Mag-sign In / Magrehistro",
-    dashboardBtn: "📊 HR Dashboard",
-    aiScreeningBtn: "✨ AI Resume Screening at Task Router →",
-    footerRights: "ProHR AI © 2026. Lahat ng karapatan ay nakalaan.",
-    supportCenter: "Sentro ng Tulong",
-    developedBy: "binuo ni"
-  },
-  tr: {
-    dir: "ltr",
-    subtitleHeader: "Merkeziyetsiz İK ve Yapay Zeka İşe Alım Platformu",
-    badge: "🚀 YENİ NESİL KARİYER VE YETENEK MERKEZİ",
-    heroTitle: "İşe Alım ve İK Operasyonlarınızı Kolaylaştırın",
-    heroDesc: "Yapay zeka destekli özgeçmiş taraması, blok zinciri doğrulamalı belgeler ve tek bir panelde sorunsuz işe alım deneyimi yaşayın.",
-    screeningHeader: "ADAY HIZLI TARAMA",
-    uploadLabel: "CV Yükle* (PDF / DOCX)",
-    dropText: "Dosyanızı buraya bırakın veya",
-    browseText: "yüklemek için göz atın",
-    supportText: "10MB'a kadar PDF, DOCX destekler",
-    selectedText: "Seçilen:",
-    signInBtn: "🔐 Giriş Yap / Kaydol",
-    dashboardBtn: "📊 İK Paneli",
-    aiScreeningBtn: "✨ Yapay Zeka CV Taraması ve Görev Yönlendirici →",
-    footerRights: "ProHR AI © 2026. Tüm hakları saklıdır.",
-    supportCenter: "Destek Merkezi",
-    developedBy: "geliştiren"
-  },
-  ne: {
-    dir: "ltr",
-    subtitleHeader: "विकेंद्रीकृत HR र AI भर्ना प्लेटफर्म",
-    badge: "🚀 नयाँ पुस्ताको करियर र प्रतिभा हब",
-    heroTitle: "तपाईंको भर्ना र HR सञ्चालनहरू सरल बनाउनुहोस्",
-    heroDesc: "एकै ड्यासबोर्डमा AI-संचालित बायोडाटा स्क्रिनिङ, ब्लकचेन-समर्थित प्रमाणपत्रहरू र सहज अनबोर्डिङको अनुभव लिनुहोस्।",
-    screeningHeader: "उम्मेदवार द्रुत स्क्रिनिङ",
-    uploadLabel: "CV अपलोड गर्नुहोस्* (PDF / DOCX)",
-    dropText: "तपाईंको फाइल यहाँ छोड्नुहोस् वा",
-    browseText: "अपलोड गर्न ब्राउज गर्नुहोस्",
-    supportText: "10MB सम्म PDF, DOCX समर्थन गर्दछ",
-    selectedText: "चयन गरिएको:",
-    signInBtn: "🔐 साइन इन गर्नुहोस् / दर्ता गर्नुहोस्",
-    dashboardBtn: "📊 HR ड्यासबोर्ड",
-    aiScreeningBtn: "✨ AI बायोडाटा स्क्रिनिङ र कार्य राउटर →",
-    footerRights: "ProHR AI © 2026. सबै अधिकार सुरक्षित।",
-    supportCenter: "सहायता केन्द्र",
-    developedBy: "द्वारा विकसित"
-  },
-  ur: {
-    dir: "rtl",
-    subtitleHeader: "غیر مرکزی ایچ آر اور اے آئی بھرتی کا پلیٹ فارم",
-    badge: "🚀 اگلی نسل کا کیریئر اور ٹیلنٹ ہب",
-    heroTitle: "اپنے بھرتی اور ایچ آر کے امور کو آسان بنائیں",
-    heroDesc: "ایک ہی ڈیش بورڈ میں AI سے چلنے والی سی وی کی جانچ، بلاک چین کی تصدیق اور ہموار آن بورڈنگ کا تجربہ کریں۔",
-    screeningHeader: "امیدوار کی تیز رفتار جانچ",
-    uploadLabel: "سی وی اپ لوڈ کریں* (PDF / DOCX)",
-    dropText: "اپنی فائل یہاں چھوڑیں یا",
-    browseText: "اپ لوڈ کرنے کے لیے براؤز کریں",
-    supportText: "10MB تک PDF، DOCX کو سپورٹ کرتا ہے",
-    selectedText: "منتخب کردہ:",
-    signInBtn: "🔐 سائن ان کریں / رجسٹریشن کریں",
-    dashboardBtn: "📊 ایچ آر ڈیش بورڈ",
-    aiScreeningBtn: "✨ اے آئی سی وی اسکریننگ اور ٹاسک راؤٹر ←",
-    footerRights: "ProHR AI © 2026. جملہ حقوق محفوظ ہیں۔",
-    supportCenter: "سپورٹ سینٹر",
-    developedBy: "تیار کردہ"
   }
 };
 
 const languagesList = [
   { code: 'ar', name: 'العربية', flag: '🇦🇪' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
-  { code: 'tl', name: 'Filipino', flag: '🇵🇭' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-  { code: 'ne', name: 'नेपाली', flag: '🇳🇵' },
-  { code: 'ur', name: 'اردو', flag: '🇵🇰' },
 ];
 
 export default function Home() {
@@ -234,8 +114,7 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100 gap-2">
           <div className="flex items-center gap-3">
             <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md overflow-hidden p-1 bg-white shrink-0"
-              style={{ background: 'linear-gradient(135deg, #0e2a4d, #2f6fb0)' }}
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-md overflow-hidden p-1.5 bg-white shrink-0 border border-slate-100"
             >
               <Image 
                 src="/logo-1.png" 
@@ -266,7 +145,7 @@ export default function Home() {
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full mt-2 right-0 w-36 bg-white border border-slate-200 rounded-xl shadow-xl py-1 z-50 max-h-56 overflow-y-auto">
+                <div className="absolute top-full mt-2 right-0 w-32 bg-white border border-slate-200 rounded-xl shadow-xl py-1 z-50">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
@@ -290,71 +169,69 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Promo Feature Card - كارت التعريف الترويجي المحسن والواضح */}
+        {/* Promo Feature Card - كارت متناسق و مندمج بصرياً */}
         <div 
           dir="ltr"
-          className="relative overflow-hidden rounded-3xl p-6 sm:p-8 mb-8 text-white shadow-2xl border border-blue-500/30 text-left"
+          className="relative overflow-hidden rounded-3xl p-6 sm:p-8 mb-8 text-white shadow-xl border border-blue-400/20 text-left"
           style={{
-            backgroundColor: '#0d2847',
-            backgroundImage: 'linear-gradient(135deg, #091c33 0%, #0d2847 50%, #173d6a 100%)'
+            backgroundColor: '#0e2a4d',
+            backgroundImage: 'linear-gradient(135deg, #0b223f 0%, #0e2a4d 50%, #173d6a 100%)'
           }}
         >
           {/* الشريط العلوي المضيء */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold mb-5 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold mb-4 shadow-sm">
             <span>⚡ AI-Powered</span>
             <span className="text-amber-400">•</span>
             <span>Pi Network Native</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            {/* الجانب الأيسر - العناوين والشارات */}
-            <div className="md:col-span-8 space-y-4">
-              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                Hiring, <span className="text-blue-400 underline decoration-blue-400/50">Reinvented</span><br />
+            {/* العناوين والشارات */}
+            <div className="md:col-span-8 space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+                Hiring, <span className="text-[#5b9bd5] underline decoration-blue-400/40">Reinvented</span><br />
                 for the UAE 🇦🇪
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-lg font-medium">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                 Decentralized smart HR — AI resume screening, real agent reasoning, and Pi-native identity. Try it free.
               </p>
 
-              {/* الشارات التفاعلية */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+              {/* الشارات */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
                   🤖 AI Agents
                 </span>
-                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
                   🔐 Pi Sign-In
                 </span>
-                <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-sm">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/15 text-xs font-medium text-slate-200">
                   🇦🇪 UAE-Ready
                 </span>
               </div>
             </div>
 
-            {/* الجانب الأيمن - الشعار المضيء والرابط */}
-            <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/15">
-              <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-blue-400/40 to-transparent flex items-center justify-center shadow-inner">
-                <div className="w-full h-full rounded-full bg-[#0b223f] p-3 flex items-center justify-center border border-white/30 shadow-2xl">
-                  <Image 
-                    src="/logo-1.png" 
-                    alt="ProHR AI Logo" 
-                    width={90} 
-                    height={90} 
-                    className="w-full h-full object-contain drop-shadow-md"
-                    priority
-                  />
-                </div>
+            {/* الشعار النظيف (بدون نص مكرر) والرابط */}
+            <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-3 md:pt-0 border-t md:border-t-0 md:border-l border-white/10">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-2 bg-[#0b223f]/90 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg">
+                <Image 
+                  src="/logo-1.png" 
+                  alt="ProHR AI Logo" 
+                  width={80} 
+                  height={80} 
+                  className="w-full h-full object-contain drop-shadow"
+                  priority
+                />
               </div>
 
-              <h3 className="text-lg font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
+              <h3 className="text-base font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
               <p className="text-[11px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
             </div>
           </div>
         </div>
 
         {/* Hero / Intro Section */}
-        <div className="text-center py-2 mb-6">
+        <div className="text-center py-1 mb-6">
           <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-[#2f6fb0] tracking-wide">
             {t.badge}
           </span>
@@ -376,7 +253,6 @@ export default function Home() {
             <span className="h-px bg-slate-300 flex-1"></span>
           </div>
 
-          {/* Upload CV Component */}
           <div className="space-y-2">
             <label className="block text-xs font-bold text-slate-700">
               {t.uploadLabel}
@@ -400,7 +276,7 @@ export default function Home() {
                 const fileInput = document.getElementById('cvFile') as HTMLInputElement;
                 if (fileInput) fileInput.click();
               }}
-              className="border-2 border-dashed border-slate-300 hover:border-[#2f6fb0] transition-all rounded-2xl p-5 text-center cursor-pointer bg-white/80 hover:bg-blue-50/30 flex flex-col items-center justify-center gap-2 shadow-2xs"
+              className="border-2 border-dashed border-slate-300 hover:border-[#2f6fb0] transition-all rounded-2xl p-5 text-center cursor-pointer bg-white hover:bg-blue-50/20 flex flex-col items-center justify-center gap-2 shadow-2xs"
             >
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2f6fb0] flex items-center justify-center text-lg shadow-sm">
                 📄
