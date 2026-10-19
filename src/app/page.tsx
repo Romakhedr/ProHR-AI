@@ -60,12 +60,132 @@ const translations: Record<string, {
     footerRights: "ProHR AI © 2026. All rights reserved.",
     supportCenter: "Support Center",
     developedBy: "developed by"
+  },
+  zh: {
+    dir: "ltr",
+    subtitleHeader: "去中心化人力资源与 AI 招聘平台",
+    badge: "🚀 下一代职业与人才中心",
+    heroTitle: "简化您的招聘与人力资源运营",
+    heroDesc: "在统一的仪表板中体验 AI 简历筛选、区块链认证凭证和无缝候选人入职。",
+    screeningHeader: "候选人快速筛选",
+    uploadLabel: "上传简历* (PDF / DOCX)",
+    dropText: "拖放文件到此处或",
+    browseText: "浏览上传",
+    supportText: "支持高达 10MB 的 PDF, DOCX",
+    selectedText: "已选择:",
+    signInBtn: "🔐 登录 / 注册",
+    dashboardBtn: "📊 人力资源仪表板",
+    aiScreeningBtn: "✨ AI 简历筛选与任务路由 →",
+    footerRights: "ProHR AI © 2026. 保留所有权利。",
+    supportCenter: "支持中心",
+    developedBy: "开发者"
+  },
+  hi: {
+    dir: "ltr",
+    subtitleHeader: "विकेंद्रीकृत एचआर और एआई भर्ती मंच",
+    badge: "🚀 अगली पीढ़ी का करियर और टैलेंट हब",
+    heroTitle: "अपनी भर्ती और एचआर संचालन को सुव्यवस्थित करें",
+    heroDesc: "एक एकीकृत डैशबोर्ड में एआई-संचालित रेज़्यूमे स्क्रीन, ब्लॉकचेन-समर्थित क्रेडेंशियल और निर्बाध ऑनबोर्डिंग का अनुभव करें।",
+    screeningHeader: "उम्मीदवार त्वरित जांच",
+    uploadLabel: "सीवी अपलोड करें* (PDF / DOCX)",
+    dropText: "अपनी फ़ाइल यहाँ छोड़ें या",
+    browseText: "अपलोड करने के लिए ब्राउज़ करें",
+    supportText: "10MB तक PDF, DOCX का समर्थन करता है",
+    selectedText: "चयनित:",
+    signInBtn: "🔐 साइन इन करें / पंजीकरण करें",
+    dashboardBtn: "📊 एचआर डैशबोर्ड",
+    aiScreeningBtn: "✨ एआई रेज़्यूमे स्क्रिनिंग और टास्क राउटर →",
+    footerRights: "ProHR AI © 2026. सभी अधिकार सुरक्षित।",
+    supportCenter: "सहायता केंद्र",
+    developedBy: "द्वारा विकसित"
+  },
+  tl: {
+    dir: "ltr",
+    subtitleHeader: "Decentralized HR at AI Recruitment Platform",
+    badge: "🚀 SUSUNOD NA Henerasyon ng CAREER AT TALENT HUB",
+    heroTitle: "Pabilisin ang Inyong Pagkuha at Operasyon ng HR",
+    heroDesc: "Maranasan ang AI-powered resume screening, blockchain credentials, at seamless onboarding sa isang dashboard.",
+    screeningHeader: "MABILIS NA PAGSUSURI NG KANDIDATO",
+    uploadLabel: "Mag-upload ng CV* (PDF / DOCX)",
+    dropText: "I-drop ang iyong file dito o",
+    browseText: "mag-browse para mag-upload",
+    supportText: "Sumusuporta sa PDF, DOCX hanggang 10MB",
+    selectedText: "Naipasa:",
+    signInBtn: "🔐 Mag-sign In / Magrehistro",
+    dashboardBtn: "📊 HR Dashboard",
+    aiScreeningBtn: "✨ AI Resume Screening at Task Router →",
+    footerRights: "ProHR AI © 2026. Lahat ng karapatan ay nakalaan.",
+    supportCenter: "Sentro ng Tulong",
+    developedBy: "binuo ni"
+  },
+  tr: {
+    dir: "ltr",
+    subtitleHeader: "Merkeziyetsiz İK ve Yapay Zeka İşe Alım Platformu",
+    badge: "🚀 YENİ NESİL KARİYER VE YETENEK MERKEZİ",
+    heroTitle: "İşe Alım ve İK Operasyonlarınızı Kolaylaştırın",
+    heroDesc: "Yapay zeka destekli özgeçmiş taraması, blok zinciri doğrulamalı belgeler ve tek bir panelde sorunsuz işe alım deneyimi yaşayın.",
+    screeningHeader: "ADAY HIZLI TARAMA",
+    uploadLabel: "CV Yükle* (PDF / DOCX)",
+    dropText: "Dosyanızı buraya bırakın veya",
+    browseText: "yüklemek için göz atın",
+    supportText: "10MB'a kadar PDF, DOCX destekler",
+    selectedText: "Seçilen:",
+    signInBtn: "🔐 Giriş Yap / Kaydol",
+    dashboardBtn: "📊 İK Paneli",
+    aiScreeningBtn: "✨ Yapay Zeka CV Taraması ve Görev Yönlendirici →",
+    footerRights: "ProHR AI © 2026. Tüm hakları saklıdır.",
+    supportCenter: "Destek Merkezi",
+    developedBy: "geliştiren"
+  },
+  ne: {
+    dir: "ltr",
+    subtitleHeader: "विकेंद्रीकृत HR र AI भर्ना प्लेटफर्म",
+    badge: "🚀 नयाँ पुस्ताको करियर र प्रतिभा हब",
+    heroTitle: "तपाईंको भर्ना र HR सञ्चालनहरू सरल बनाउनुहोस्",
+    heroDesc: "एकै ड्यासबोर्डमा AI-संचालित बायोडाटा स्क्रिनिङ, ब्लकचेन-समर्थित प्रमाणपत्रहरू र सहज अनबोर्डिङको अनुभव लिनुहोस्।",
+    screeningHeader: "उम्मेदवार द्रुत स्क्रिनिङ",
+    uploadLabel: "CV अपलोड गर्नुहोस्* (PDF / DOCX)",
+    dropText: "तपाईंको फाइल यहाँ छोड्नुहोस् वा",
+    browseText: "अपलोड गर्न ब्राउज गर्नुहोस्",
+    supportText: "10MB सम्म PDF, DOCX समर्थन गर्दछ",
+    selectedText: "चयन गरिएको:",
+    signInBtn: "🔐 साइन इन गर्नुहोस् / दर्ता गर्नुहोस्",
+    dashboardBtn: "📊 HR ड्यासबोर्ड",
+    aiScreeningBtn: "✨ AI बायोडाटा स्क्रिनिङ र कार्य राउटर →",
+    footerRights: "ProHR AI © 2026. सबै अधिकार सुरक्षित।",
+    supportCenter: "सहायता केन्द्र",
+    developedBy: "द्वारा विकसित"
+  },
+  ur: {
+    dir: "rtl",
+    subtitleHeader: "غیر مرکزی ایچ آر اور اے آئی بھرتی کا پلیٹ فارم",
+    badge: "🚀 اگلی نسل کا کیریئر اور ٹیلنٹ ہب",
+    heroTitle: "اپنے بھرتی اور ایچ آر کے امور کو آسان بنائیں",
+    heroDesc: "ایک ہی ڈیش بورڈ میں AI سے چلنے والی سی وی کی جانچ، بلاک چین کی تصدیق اور ہموار آن بورڈنگ کا تجربہ کریں۔",
+    screeningHeader: "امیدوار کی تیز رفتار جانچ",
+    uploadLabel: "سی وی اپ لوڈ کریں* (PDF / DOCX)",
+    dropText: "اپنی فائل یہاں چھوڑیں یا",
+    browseText: "اپ لوڈ کرنے کے لیے براؤز کریں",
+    supportText: "10MB تک PDF، DOCX کو سپورٹ کرتا ہے",
+    selectedText: "منتخب کردہ:",
+    signInBtn: "🔐 سائن ان کریں / رجسٹریشن کریں",
+    dashboardBtn: "📊 ایچ آر ڈیش بورڈ",
+    aiScreeningBtn: "✨ اے آئی سی وی اسکریننگ اور ٹاسک راؤٹر ←",
+    footerRights: "ProHR AI © 2026. جملہ حقوق محفوظ ہیں۔",
+    supportCenter: "سپورٹ سینٹر",
+    developedBy: "تیار کردہ"
   }
 };
 
 const languagesList = [
   { code: 'ar', name: 'العربية', flag: '🇦🇪' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
+  { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'tl', name: 'Filipino', flag: '🇵🇭' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+  { code: 'ne', name: 'नेपाली', flag: '🇳🇵' },
+  { code: 'ur', name: 'اردو', flag: '🇵🇰' },
 ];
 
 export default function Home() {
@@ -132,7 +252,7 @@ export default function Home() {
           </div>
           
           <div className="flex items-center gap-2 relative">
-            {/* Language Selector Dropdown */}
+            {/* Language Selector Dropdown (8 Languages) */}
             <div className="relative">
               <button
                 type="button"
@@ -145,7 +265,7 @@ export default function Home() {
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full mt-2 right-0 w-32 bg-white border border-slate-200 rounded-xl shadow-xl py-1 z-50">
+                <div className="absolute top-full mt-2 right-0 w-36 bg-white border border-slate-200 rounded-xl shadow-xl py-1 z-50 max-h-56 overflow-y-auto">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
