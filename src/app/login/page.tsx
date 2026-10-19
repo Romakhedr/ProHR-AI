@@ -98,8 +98,7 @@ export default function LoginPage() {
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 gap-2">
           <div className="flex items-center gap-2.5">
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-md overflow-hidden p-1 bg-white shrink-0"
-              style={{ background: "linear-gradient(135deg, #0e2a4d, #2f6fb0)" }}
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-md overflow-hidden p-1 bg-white shrink-0 border border-slate-100"
             >
               <Image
                 src="/logo-1.png"
@@ -111,7 +110,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-[#0e2a4d]">ProHR AI</h1>
+              <h1 className="text-base font-bold text-[#0e2a4d]">ProHR AI</h1>
               <p className="text-[11px] text-slate-500">{t.subtitleHeader}</p>
             </div>
           </div>
@@ -121,7 +120,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}
-              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-full text-[11px] font-bold text-slate-700 transition-all"
+              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-full text-[11px] font-bold text-slate-700 transition-all shrink-0"
             >
               {currentLang === "ar" ? "🇺🇸 EN" : "🇦🇪 AR"}
             </button>
@@ -129,7 +128,7 @@ export default function LoginPage() {
             {/* Back to Home Button */}
             <Link
               href="/"
-              className="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100 hover:bg-blue-100 transition-all whitespace-nowrap"
+              className="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-50 text-[#2f6fb0] border border-blue-100 hover:bg-blue-100 transition-all shrink-0 whitespace-nowrap"
             >
               {t.backHome}
             </Link>
@@ -143,7 +142,7 @@ export default function LoginPage() {
             onClick={() => setActiveTab("signin")}
             className={`py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === "signin"
-                ? "bg-white text-[#0e2a4d] shadow-xs"
+                ? "bg-white text-[#0e2a4d] shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -154,7 +153,7 @@ export default function LoginPage() {
             onClick={() => setActiveTab("signup")}
             className={`py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === "signup"
-                ? "bg-white text-[#0e2a4d] shadow-xs"
+                ? "bg-white text-[#0e2a4d] shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -164,7 +163,7 @@ export default function LoginPage() {
 
         {/* Form Fields */}
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <div className="space-y-1">
+          <div className="space-y-1 text-start">
             <label className="block text-xs font-bold text-slate-700">{t.emailLabel}</label>
             <input
               type="email"
@@ -173,7 +172,7 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="space-y-1">
+          <div className="space-y-1 text-start">
             <label className="block text-xs font-bold text-slate-700">{t.passwordLabel}</label>
             <input
               type="password"
@@ -192,7 +191,7 @@ export default function LoginPage() {
         </form>
 
         {/* Footer */}
-        <footer className="w-full text-center py-4 mt-6 border-t border-slate-100 text-slate-500 text-[11px]">
+        <footer className="w-full text-center py-4 mt-6 border-t border-slate-100 text-slate-600 text-[11px]">
           <p className="mb-1">
             {t.footerRights} • <span className="hover:text-slate-800 cursor-pointer">{t.supportCenter}</span>
           </p>
