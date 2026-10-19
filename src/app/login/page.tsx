@@ -20,7 +20,7 @@ const translations: Record<string, {
   ar: {
     dir: "rtl",
     subtitleHeader: "منصة الموارد البشرية الذكية",
-    backHome: "← العودة للرئيسية",
+    backHome: "العودة للرئيسية ←",
     signInTab: "تسجيل الدخول",
     signUpTab: "إنشاء حساب",
     emailLabel: "البريد الإلكتروني",
@@ -196,7 +196,10 @@ export default function LoginPage() {
             {t.footerRights} • <span className="hover:text-slate-800 cursor-pointer">{t.supportCenter}</span>
           </p>
           <p className="text-slate-700 font-medium tracking-wide">
-            {t.developedBy} <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
+            {t.developedBy}{" "}
+            <span dir="ltr" className="inline-block font-semibold text-slate-900">
+              Reham Hamdy Elsayed Khedr
+            </span>
           </p>
         </footer>
       </div>
