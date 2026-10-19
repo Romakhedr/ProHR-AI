@@ -159,7 +159,7 @@ const translations: Record<string, {
   ur: {
     dir: "rtl",
     subtitleHeader: "غیر مرکزی ایچ آر اور اے آئی بھرتی کا پلیٹ فارم",
-    badge: "🚀 اگلی نسل کا کیریئر اور ٹیلنٹ ہب",
+    badge: "🚀 اگلی نسل کا کیریئر اور ٹیلنٹ هب",
     heroTitle: "اپنے بھرتی اور ایچ آر کے امور کو آسان بنائیں",
     heroDesc: "ایک ہی ڈیش بورڈ میں AI سے چلنے والی سی وی کی جانچ، بلاک چین کی تصدیق اور ہموار آن بورڈنگ کا تجربہ کریں۔",
     screeningHeader: "امیدوار کی تیز رفتار جانچ",
@@ -208,10 +208,10 @@ export default function Home() {
       dir={t.dir}
       className="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-hidden transition-all duration-300"
       style={{
-        backgroundColor: '#0b223f',
+        backgroundColor: '#071628',
         backgroundImage: `
-          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.25) 0, transparent 40%),
-          radial-gradient(circle at 8% 92%, rgba(47,111,176,0.2) 0, transparent 35%)
+          radial-gradient(circle at 85% 8%, rgba(47,111,176,0.3) 0, transparent 45%),
+          radial-gradient(circle at 8% 92%, rgba(20,51,92,0.4) 0, transparent 40%)
         `,
         fontFamily: "'Inter', 'Tajawal', sans-serif"
       }}
@@ -222,42 +222,42 @@ export default function Home() {
         style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0 60%, #5b9bd5)' }}
       />
 
-      {/* Main Container Card (الخلفية الكحلية الموحدة للمنصة بالكامل لدمج بصرى فائق) */}
+      {/* Main Container Card - Unified Dark Glassmorphic Design */}
       <div 
         className="w-full max-w-2xl overflow-hidden p-5 sm:p-8 transition-all relative z-10 shadow-2xl text-white"
         style={{
           backgroundColor: '#0b223f',
-          backgroundImage: 'linear-gradient(135deg, #0b223f 0%, #0e2a4d 50%, #14335c 100%)',
+          backgroundImage: 'linear-gradient(135deg, #0b223f 0%, #0e2a4d 50%, #173d6a 100%)',
           borderRadius: '28px',
-          border: '1px solid rgba(255, 255, 255, 0.12)'
+          border: '1px solid rgba(255, 255, 255, 0.15)'
         }}
       >
         {/* Header & Logo with Dynamic Language Dropdown */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+        <div className="flex items-center justify-between mb-6 pb-5 border-b border-white/10 gap-2">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl flex items-center justify-center bg-white/10 backdrop-blur-md shadow-inner overflow-hidden p-1.5 shrink-0 border border-white/20">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/10 backdrop-blur-md shadow-inner overflow-hidden p-2 shrink-0 border border-white/25">
               <Image 
                 src="/logo-1.png" 
                 alt="ProHR AI Logo" 
-                width={36} 
-                height={36} 
+                width={40} 
+                height={40} 
                 className="w-full h-full object-contain"
                 priority
               />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white tracking-wide">ProHR AI</h1>
-              <p className="text-[11px] text-blue-200/80">{t.subtitleHeader}</p>
+              <h1 className="text-lg sm:text-xl font-bold text-white tracking-wide">ProHR AI</h1>
+              <p className="text-[11px] sm:text-xs text-blue-200/80">{t.subtitleHeader}</p>
             </div>
           </div>
           
           <div className="flex items-center gap-2 relative">
-            {/* Language Selector Dropdown (8 Languages) */}
+            {/* Language Selector Dropdown */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs font-semibold text-white transition-all shadow-sm backdrop-blur-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs font-semibold text-white transition-all shadow-sm backdrop-blur-md"
               >
                 <span>{languagesList.find(l => l.code === currentLang)?.flag}</span>
                 <span>{languagesList.find(l => l.code === currentLang)?.name}</span>
@@ -283,22 +283,22 @@ export default function Home() {
               )}
             </div>
 
-            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 hidden sm:inline-block">
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 hidden sm:inline-block">
               v1.0 Portal
             </span>
           </div>
         </div>
 
-        {/* Promo Feature Card - داخل الكارت الموحد بتناسق تام */}
+        {/* Promo Feature Card - Harmonized Dark Glass Design */}
         <div 
           dir="ltr"
           className="relative overflow-hidden rounded-2xl p-5 sm:p-7 mb-6 text-white shadow-lg border border-blue-400/20 text-left"
           style={{
-            backgroundColor: 'rgba(14, 42, 77, 0.6)',
-            backgroundImage: 'linear-gradient(135deg, rgba(14, 42, 77, 0.8) 0%, rgba(23, 61, 106, 0.7) 100%)'
+            backgroundColor: 'rgba(14, 42, 77, 0.65)',
+            backgroundImage: 'linear-gradient(135deg, rgba(14, 42, 77, 0.85) 0%, rgba(23, 61, 106, 0.75) 100%)'
           }}
         >
-          {/* الشريط العلوي المضيء */}
+          {/* Top glowing pill */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold mb-3 shadow-sm">
             <span>⚡ AI-Powered</span>
             <span className="text-amber-400">•</span>
@@ -306,7 +306,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-            {/* العناوين والشارات */}
             <div className="md:col-span-8 space-y-2.5">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
                 Hiring, <span className="text-[#5b9bd5] underline decoration-blue-400/40">Reinvented</span><br />
@@ -317,7 +316,6 @@ export default function Home() {
                 Decentralized smart HR — AI resume screening, real agent reasoning, and Pi-native identity. Try it free.
               </p>
 
-              {/* الشارات */}
               <div className="flex flex-wrap gap-2 pt-1">
                 <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-[11px] font-medium text-slate-200">
                   🤖 AI Agents
@@ -331,20 +329,20 @@ export default function Home() {
               </div>
             </div>
 
-            {/* الشعار النظيف (بدون تكرار نص) */}
+            {/* Clean Logo Display (Icon Only without duplicate text) */}
             <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-3 md:pt-0 border-t md:border-t-0 md:border-l border-white/10">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-2 bg-[#0b223f] backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-2.5 bg-[#0b223f] backdrop-blur-md flex items-center justify-center border border-white/25 shadow-xl">
                 <Image 
                   src="/logo-1.png" 
                   alt="ProHR AI Logo" 
-                  width={70} 
-                  height={70} 
-                  className="w-full h-full object-contain drop-shadow"
+                  width={75} 
+                  height={75} 
+                  className="w-full h-full object-contain drop-shadow-md"
                   priority
                 />
               </div>
 
-              <h3 className="text-sm font-bold text-white mt-2 tracking-wide">ProHR AI</h3>
+              <h3 className="text-sm font-bold text-white mt-2.5 tracking-wide">ProHR AI</h3>
               <p className="text-[10px] text-blue-300 font-mono">pro-hr-ai.vercel.app</p>
             </div>
           </div>
