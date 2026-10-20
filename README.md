@@ -54,9 +54,9 @@ pnpm dev
 bun dev
 🔗 [ pro-hr-ai.vercel.app ]
 
-📄 License
+## 📄 License
 
-This project is open-source and available under the MIT license.
+This project is open-source and available under the **MIT License**.
 
 
 
