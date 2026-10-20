@@ -27,7 +27,19 @@
 - **Automation:** Make.com (Supabase to Gmail integration)
 
 ---
+---
 
+## 🔗 Official Links & Pi Brainstorm Ecosystem
+
+| Resource | Direct Link |
+| :--- | :--- |
+| 🌐 **Live Web Application** | [pro-hr-ai.vercel.app](https://pro-hr-ai.vercel.app) |
+| 💡 **Vote & Support on Pi Brainstorm** | [Vote ProHR AI on Pi Network](https://brainstorm.pinet.com/project/6ad79e8af65caa899c4e4bcc) |
+
+> 🌟 **Support ProHR AI on Pi Network!**  
+> If you are a Pi Pioneer, please click the Brainstorm link above to test our dApp and give us a **Thumbs Up (👍)** to support decentralized Web3 HR tools globally!
+
+---
 ## 🚀 Getting Started
 
 To run the development server locally:
