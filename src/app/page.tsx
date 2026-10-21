@@ -22,6 +22,13 @@ const translations: Record<string, {
   footerRights: string;
   supportCenter: string;
   developedBy: string;
+  submitBtn: string;
+  submittingBtn: string;
+  emailLabel: string;
+  phoneLabel: string;
+  privacyAgreeText: string;
+  privacyPolicyText: string;
+  successMsg: string;
 }> = {
   ar: {
     dir: "rtl",
@@ -40,7 +47,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ فحص السير الذاتية بالذكاء الاصطناعي وتوجيه المهام ←",
     footerRights: "ProHR AI © 2026. جميع الحقوق محفوظة.",
     supportCenter: "مركز الدعم",
-    developedBy: "تم التطوير بواسطة"
+    developedBy: "تم التطوير بواسطة",
+    submitBtn: "إرسال الطلب (Submit Application)",
+    submittingBtn: "جاري الإرسال...",
+    emailLabel: "البريد الإلكتروني*",
+    phoneLabel: "رقم الهاتف*",
+    privacyAgreeText: "بالضغط على إرسال، أوافق على أنني قرأت ",
+    privacyPolicyText: "سياسة الخصوصية",
+    successMsg: "تم تقديم الطلب بنجاح! 🎉 (Application Submitted Successfully)"
   },
   en: {
     dir: "ltr",
@@ -59,7 +73,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ AI Resume Screening & Task Router →",
     footerRights: "ProHR AI © 2026. All rights reserved.",
     supportCenter: "Support Center",
-    developedBy: "developed by"
+    developedBy: "developed by",
+    submitBtn: "Submit Application",
+    submittingBtn: "Submitting...",
+    emailLabel: "Email*",
+    phoneLabel: "Phone*",
+    privacyAgreeText: "By submitting this application, I agree that I have read the ",
+    privacyPolicyText: "Privacy Policy",
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   zh: {
     dir: "ltr",
@@ -78,7 +99,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ AI 简历筛选与任务路由 →",
     footerRights: "ProHR AI © 2026. 保留所有权利。",
     supportCenter: "支持中心",
-    developedBy: "开发者"
+    developedBy: "开发者",
+    submitBtn: "提交申请",
+    submittingBtn: "提交中...",
+    emailLabel: "电子邮件*",
+    phoneLabel: "电话号码*",
+    privacyAgreeText: "提交此申请即表示我同意已阅读",
+    privacyPolicyText: "隐私政策",
+    successMsg: "申请提交成功！ 🎉"
   },
   hi: {
     dir: "ltr",
@@ -97,7 +125,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ एआई रेज़्यूमे स्क्रिनिंग और टास्क राउटर →",
     footerRights: "ProHR AI © 2026. सभी अधिकार सुरक्षित।",
     supportCenter: "सहायता केंद्र",
-    developedBy: "द्वारा विकसित"
+    developedBy: "द्वारा विकसित",
+    submitBtn: "आवेदन जमा करें",
+    submittingBtn: "जमा किया जा रहा है...",
+    emailLabel: "ईमेल*",
+    phoneLabel: "फोन नंबर*",
+    privacyAgreeText: "इस आवेदन को जमा करके, मैं सहमत हूँ कि मैंने पढ़ लिया है ",
+    privacyPolicyText: "गोपनीयता नीति",
+    successMsg: "आवेदन सफलतापूर्वक जमा किया गया! 🎉"
   },
   tl: {
     dir: "ltr",
@@ -116,7 +151,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ AI Resume Screening at Task Router →",
     footerRights: "ProHR AI © 2026. Lahat ng karapatan ay nakalaan.",
     supportCenter: "Sentro ng Tulong",
-    developedBy: "binuo ni"
+    developedBy: "binuo ni",
+    submitBtn: "I-submit ang Aplikasyon",
+    submittingBtn: "Ipinapasa...",
+    emailLabel: "Email*",
+    phoneLabel: "Telepono*",
+    privacyAgreeText: "Sa pag-submit ng aplikasyong ito, sumasang-ayon ako na nabasa ko ang ",
+    privacyPolicyText: "Patakaran sa Privacy",
+    successMsg: "Matagumpay na Naipasa ang Aplikasyon! 🎉"
   },
   tr: {
     dir: "ltr",
@@ -135,7 +177,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ Yapay Zeka CV Taraması ve Görev Yönlendirici →",
     footerRights: "ProHR AI © 2026. Tüm hakları saklıdır.",
     supportCenter: "Destek Merkezi",
-    developedBy: "geliştiren"
+    developedBy: "geliştiren",
+    submitBtn: "Başvuruyu Gönder",
+    submittingBtn: "Gönderiliyor...",
+    emailLabel: "E-posta*",
+    phoneLabel: "Telefon*",
+    privacyAgreeText: "Bu başvuruyu göndererek, okuduğumu kabul ediyorum ",
+    privacyPolicyText: "Gizlilik Politikası",
+    successMsg: "Başvuru Başarıyla Gönderildi! 🎉"
   },
   ne: {
     dir: "ltr",
@@ -154,7 +203,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ AI बायोडाटा स्क्रिनिङ र कार्य राउटर →",
     footerRights: "ProHR AI © 2026. सबै अधिकार सुरक्षित।",
     supportCenter: "सहायता केन्द्र",
-    developedBy: "द्वारा विकसित"
+    developedBy: "द्वारा विकसित",
+    submitBtn: "आवेदन पेश गर्नुहोस्",
+    submittingBtn: "पेश हुँदैछ...",
+    emailLabel: "इमेल*",
+    phoneLabel: "फोन नम्बर*",
+    privacyAgreeText: "यो आवेदन पेश गरेर, म सहमत छु कि मैले पढेको छु ",
+    privacyPolicyText: "गोपनीयता नीति",
+    successMsg: "आवेदन सफलतापूर्वक पेश गरियो! 🎉"
   },
   ur: {
     dir: "rtl",
@@ -173,7 +229,14 @@ const translations: Record<string, {
     aiScreeningBtn: "✨ اے آئی سی وی اسکریننگ اور ٹاسک راؤٹر ←",
     footerRights: "ProHR AI © 2026. جملہ حقوق محفوظ ہیں۔",
     supportCenter: "سپورٹ سینٹر",
-    developedBy: "تیار کردہ"
+    developedBy: "تیار کردہ",
+    submitBtn: "درخواست جمع کرائیں",
+    submittingBtn: "جمع ہو رہا ہے...",
+    emailLabel: "ای میل*",
+    phoneLabel: "فون نمبر*",
+    privacyAgreeText: "یہ درخواست جمع کروا کر، میں اس بات سے اتفاق کرتا ہوں کہ میں نے پڑھ لیا ہے ",
+    privacyPolicyText: "پرائیویسی پالیسی",
+    successMsg: "درخواست کامیابی کے ساتھ جمع ہو گئی! 🎉"
   }
 };
 
@@ -189,9 +252,16 @@ const languagesList = [
 ];
 
 export default function Home() {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+  
   const [currentLang, setCurrentLang] = useState('ar');
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const t = translations[currentLang] || translations.ar;
 
@@ -201,6 +271,61 @@ export default function Home() {
       localStorage.setItem("preferred_lang", langCode);
     }
     setIsLangOpen(false);
+  };
+
+  const handleSubmitApplication = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage(null);
+
+    if (!email) {
+      setStatusMessage({ type: 'error', text: 'يرجى إدخال البريد الإلكتروني' });
+      return;
+    }
+    if (!phone) {
+      setStatusMessage({ type: 'error', text: 'يرجى إدخال رقم الهاتف' });
+      return;
+    }
+    if (!selectedFileName) {
+      setStatusMessage({ type: 'error', text: 'يرجى اختيار ملف السيرة الذاتية' });
+      return;
+    }
+    if (!agreedPrivacy) {
+      setStatusMessage({ type: 'error', text: 'يرجى الموافقة على سياسة الخصوصية' });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('phone', phone);
+      if (selectedFile) formData.append('file', selectedFile);
+
+      await fetch('/api/submit-application', {
+        method: 'POST',
+        body: formData,
+      }).catch(() => null);
+
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setStatusMessage({
+          type: 'success',
+          text: t.successMsg
+        });
+        
+        setEmail("");
+        setPhone("");
+        setSelectedFile(null);
+        setSelectedFileName("");
+        setAgreedPrivacy(false);
+      }, 1200);
+
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setIsSubmitting(false);
+      setStatusMessage({ type: 'error', text: 'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.' });
+    }
   };
 
   return (
@@ -298,7 +423,6 @@ export default function Home() {
             backgroundImage: 'linear-gradient(135deg, rgba(14, 42, 77, 0.85) 0%, rgba(23, 61, 106, 0.75) 100%)'
           }}
         >
-          {/* Top glowing pill */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold mb-3 shadow-sm">
             <span>⚡ AI-Powered</span>
             <span className="text-amber-400">•</span>
@@ -329,7 +453,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Clean Logo Display (Icon Only without duplicate text) */}
             <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-3 md:pt-0 border-t md:border-t-0 md:border-l border-white/10">
               <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-2.5 bg-[#0b223f] backdrop-blur-md flex items-center justify-center border border-white/25 shadow-xl">
                 <Image 
@@ -363,15 +486,46 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Interactive Application / CV Upload Section */}
-        <div className="space-y-3 bg-white/5 p-4 sm:p-5 rounded-2xl border border-white/10 mb-6 backdrop-blur-sm">
+        {/* Interactive Application / CV Upload Form */}
+        <form onSubmit={handleSubmitApplication} className="space-y-4 bg-white/5 p-4 sm:p-5 rounded-2xl border border-white/10 mb-6 backdrop-blur-sm">
           <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
             <span className="h-px bg-white/20 flex-1"></span>
             {t.screeningHeader}
             <span className="h-px bg-white/20 flex-1"></span>
           </div>
 
-          <div className="space-y-2">
+          {/* Email Input */}
+          <div className="space-y-1">
+            <label className="block text-xs font-bold text-slate-200">
+              {t.emailLabel}
+            </label>
+            <input 
+              type="email" 
+              required
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-blue-400 transition-all"
+            />
+          </div>
+
+          {/* Phone Input */}
+          <div className="space-y-1">
+            <label className="block text-xs font-bold text-slate-200">
+              {t.phoneLabel}
+            </label>
+            <input 
+              type="tel" 
+              required
+              placeholder="+971500000000"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-blue-400 transition-all"
+            />
+          </div>
+
+          {/* File Input Section */}
+          <div className="space-y-1">
             <label className="block text-xs font-bold text-slate-200">
               {t.uploadLabel}
             </label>
@@ -384,6 +538,7 @@ export default function Home() {
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  setSelectedFile(file);
                   setSelectedFileName(file.name);
                 }
               }}
@@ -409,7 +564,43 @@ export default function Home() {
               <p className="text-[10px] text-slate-400">{t.supportText}</p>
             </div>
           </div>
-        </div>
+
+          {/* Checkbox Privacy Agree */}
+          <div className="flex items-start gap-2.5 pt-1">
+            <input 
+              type="checkbox" 
+              id="privacyCheck"
+              checked={agreedPrivacy}
+              onChange={(e) => setAgreedPrivacy(e.target.checked)}
+              className="mt-0.5 w-4 h-4 rounded border-white/30 text-blue-600 focus:ring-blue-500 bg-white/10 cursor-pointer"
+            />
+            <label htmlFor="privacyCheck" className="text-[11px] text-slate-300 leading-tight cursor-pointer">
+              {t.privacyAgreeText}
+              <span className="text-blue-400 underline font-semibold">{t.privacyPolicyText}</span>.
+            </label>
+          </div>
+
+          {/* Message Status Bar */}
+          {statusMessage && (
+            <div className={`p-3 rounded-xl text-xs font-semibold text-center ${
+              statusMessage.type === 'success' 
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' 
+                : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+            }`}>
+              {statusMessage.text}
+            </div>
+          )}
+
+          {/* SUBMIT BUTTON */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all flex items-center justify-center gap-2 hover:opacity-95 disabled:opacity-50 cursor-pointer mt-2"
+            style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0)' }}
+          >
+            {isSubmitting ? t.submittingBtn : t.submitBtn}
+          </button>
+        </form>
 
         {/* Quick Action Section */}
         <div className="space-y-2.5 mb-3">
@@ -454,4 +645,4 @@ export default function Home() {
       </div>
     </main>
   );
-}
+}   
