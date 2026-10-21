@@ -313,7 +313,7 @@ export default function Home() {
           type: 'success',
           text: t.successMsg
         });
-        
+        alert("Application Submitted Successfully! 🎉");
         setEmail("");
         setPhone("");
         setSelectedFile(null);
