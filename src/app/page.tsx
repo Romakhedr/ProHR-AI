@@ -208,7 +208,7 @@ const translations: Record<string, {
     submittingBtn: "पेश हुँदैछ...",
     emailLabel: "इमेल*",
     phoneLabel: "फोन नम्बर*",
-    privacyAgreeText: "यो आवेदन पेश गरेर, म सहमत छु कि मैले पढेको छु ",
+    privacyAgreeText: "यो आवेदन पेश गरेर, म सहमत हूँ कि मैले पढेको छु ",
     privacyPolicyText: "गोपनीयता नीति",
     successMsg: "आवेदन सफलतापूर्वक पेश गरियो! 🎉"
   },
@@ -302,24 +302,29 @@ export default function Home() {
       formData.append('phone', phone);
       if (selectedFile) formData.append('file', selectedFile);
 
-      await fetch('/api/submit-application', {
+      // ربط الطلب بـ Make Webhook الأساسي الخاص بك
+      const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
+
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         body: formData,
-      }).catch(() => null);
+      });
 
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setStatusMessage({
-          type: 'success',
-          text: t.successMsg
-        });
-        alert("Application Submitted Successfully! 🎉");
-        setEmail("");
-        setPhone("");
-        setSelectedFile(null);
-        setSelectedFileName("");
-        setAgreedPrivacy(false);
-      }, 1200);
+      if (!response.ok) {
+        throw new Error("فشل إرسال الطلب إلى الخادم");
+      }
+
+      setIsSubmitting(false);
+      setStatusMessage({
+        type: 'success',
+        text: t.successMsg
+      });
+
+      setEmail("");
+      setPhone("");
+      setSelectedFile(null);
+      setSelectedFileName("");
+      setAgreedPrivacy(false);
 
     } catch (error) {
       console.error("Submission Error:", error);
@@ -476,7 +481,6 @@ export default function Home() {
           <span className="inline-block text-xs font-bold px-3.5 py-1 rounded-full mb-2.5 bg-blue-500/20 text-blue-200 border border-blue-400/30 tracking-wide">
             {t.badge}
           </span>
-          
           <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
             {t.heroTitle}
           </h2>
@@ -645,4 +649,4 @@ export default function Home() {
       </div>
     </main>
   );
-}   
+}
