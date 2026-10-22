@@ -8,7 +8,6 @@ export default function ScreenPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileName, setSelectedFileName] = useState("");
   
-  // State for Form Fields
   const [immediateJoining, setImmediateJoining] = useState("yes");
   const [currentSalary, setCurrentSalary] = useState("");
   const [expectedSalary, setExpectedSalary] = useState("");
@@ -18,7 +17,6 @@ export default function ScreenPage() {
   const [phone, setPhone] = useState("");
   const [agreedTerms, setAgreedTerms] = useState(false);
 
-  // State for Submission Status
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
@@ -44,15 +42,15 @@ export default function ScreenPage() {
       formData.append('phone', phone);
       formData.append('file', selectedFile);
 
-      // رابط الـ Webhook الخاص بك في Make
-      const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
-
-      const response = await fetch(webhookUrl, {
+      // الإرسال إلى الـ API المحلي في مشروعك
+      const response = await fetch('/api/submit', {
         method: 'POST',
         body: formData,
       });
 
-      if (!response.ok) {
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
         throw new Error("Failed to submit request.");
       }
 
@@ -90,13 +88,10 @@ export default function ScreenPage() {
         fontFamily: "'Inter', sans-serif"
       }}
     >
-      {/* Top Bar Accent */}
       <div className="fixed top-0 right-0 left-0 h-2 z-50" style={{ background: 'linear-gradient(90deg, #14335c, #2f6fb0 60%, #5b9bd5)' }} />
 
-      {/* Main Container Card */}
       <div className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 bg-white relative z-10 shadow-2xl rounded-3xl border border-white/10 my-8">
         
-        {/* Header with Professional Logo */}
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div 
@@ -122,10 +117,8 @@ export default function ScreenPage() {
           </Link>
         </div>
 
-        {/* Application Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           
-          {/* Availability Question */}
           <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80">
             <label className="block text-xs font-bold text-[#0e2a4d] mb-3">Are you available for immediate joining?*</label>
             <div className="flex gap-8">
@@ -152,7 +145,6 @@ export default function ScreenPage() {
             </div>
           </div>
 
-          {/* Salary fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Current Salary Package (Fixed + Benefits):</label>
@@ -176,14 +168,12 @@ export default function ScreenPage() {
             </div>
           </div>
 
-          {/* Personal Information Divider */}
           <div className="relative flex py-3 items-center">
             <div className="flex-grow border-t border-slate-200"></div>
             <span className="flex-shrink mx-4 text-xs font-bold text-[#2f6fb0] uppercase tracking-wider bg-blue-50/80 px-3 py-1 rounded-full border border-blue-100">Personal Information</span>
             <div className="flex-grow border-t border-slate-200"></div>
           </div>
 
-          {/* Name fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">First name*</label>
@@ -209,7 +199,6 @@ export default function ScreenPage() {
             </div>
           </div>
 
-          {/* Contact fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Email*</label>
@@ -237,11 +226,8 @@ export default function ScreenPage() {
             </div>
           </div>
 
-          {/* Upload CV Box (Interactive & Fixed) */}
           <div>
             <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Upload CV* (PDF / DOCX)</label>
-            
-            {/* Hidden File Input */}
             <input 
               type="file" 
               id="cvFile" 
@@ -256,7 +242,6 @@ export default function ScreenPage() {
               }}
             />
 
-            {/* Clickable Interactive Upload Box */}
             <div 
               onClick={() => {
                 const fileInput = document.getElementById('cvFile') as HTMLInputElement;
@@ -276,7 +261,6 @@ export default function ScreenPage() {
             </div>
           </div>
 
-          {/* Terms checkbox */}
           <div className="flex items-start gap-3 bg-slate-50/50 p-3.5 rounded-2xl border border-slate-200/60">
             <input 
               type="checkbox" 
@@ -290,7 +274,6 @@ export default function ScreenPage() {
             </p>
           </div>
 
-          {/* Status Message */}
           {statusMessage && (
             <div className={`p-3 rounded-2xl text-xs font-semibold text-center ${
               statusMessage.type === 'success' 
@@ -301,7 +284,6 @@ export default function ScreenPage() {
             </div>
           )}
 
-          {/* Submit Button */}
           <button 
             type="submit" 
             disabled={isSubmitting}
@@ -313,7 +295,6 @@ export default function ScreenPage() {
 
         </form>
 
-        {/* Footer / Attribution */}
         <footer className="w-full text-center pt-6 mt-6 border-t border-slate-100 text-slate-500 text-xs">
           <p className="text-slate-700 font-medium tracking-wide">
             developed by <strong className="text-slate-900 font-semibold">Reham Hamdy Elsayed Khedr</strong>
