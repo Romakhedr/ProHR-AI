@@ -5,7 +5,78 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function ScreenPage() {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileName, setSelectedFileName] = useState("");
+  
+  // State for Form Fields
+  const [immediateJoining, setImmediateJoining] = useState("yes");
+  const [currentSalary, setCurrentSalary] = useState("");
+  const [expectedSalary, setExpectedSalary] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [agreedTerms, setAgreedTerms] = useState(false);
+
+  // State for Submission Status
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage(null);
+
+    if (!email || !phone || !firstName || !lastName || !selectedFile || !agreedTerms) {
+      setStatusMessage({ type: 'error', text: 'Please complete all required fields and accept the privacy policy.' });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('immediateJoining', immediateJoining);
+      formData.append('currentSalary', currentSalary);
+      formData.append('expectedSalary', expectedSalary);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('email', email);
+      formData.append('phone', phone);
+      formData.append('file', selectedFile);
+
+      // رابط الـ Webhook الخاص بك في Make
+      const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit request.");
+      }
+
+      setIsSubmitting(false);
+      setStatusMessage({ type: 'success', text: 'Application Submitted Successfully! 🎉' });
+      alert("Application Submitted Successfully! 🎉");
+
+      // تفريغ الحقول بعد النجاح
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setCurrentSalary("");
+      setExpectedSalary("");
+      setSelectedFile(null);
+      setSelectedFileName("");
+      setAgreedTerms(false);
+
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setIsSubmitting(false);
+      setStatusMessage({ type: 'error', text: 'Something went wrong. Please try submitting again.' });
+    }
+  };
 
   return (
     <main 
@@ -52,17 +123,31 @@ export default function ScreenPage() {
         </div>
 
         {/* Application Form */}
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           
           {/* Availability Question */}
           <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80">
             <label className="block text-xs font-bold text-[#0e2a4d] mb-3">Are you available for immediate joining?*</label>
             <div className="flex gap-8">
               <label className="flex items-center gap-2.5 text-sm font-semibold text-[#0e2a4d] cursor-pointer">
-                <input type="radio" name="joining" value="yes" defaultChecked className="w-4 h-4 accent-[#2f6fb0]" /> Yes
+                <input 
+                  type="radio" 
+                  name="joining" 
+                  value="yes" 
+                  checked={immediateJoining === "yes"} 
+                  onChange={(e) => setImmediateJoining(e.target.value)}
+                  className="w-4 h-4 accent-[#2f6fb0]" 
+                /> Yes
               </label>
               <label className="flex items-center gap-2.5 text-sm font-semibold text-[#0e2a4d] cursor-pointer">
-                <input type="radio" name="joining" value="no" className="w-4 h-4 accent-[#2f6fb0]" /> No
+                <input 
+                  type="radio" 
+                  name="joining" 
+                  value="no" 
+                  checked={immediateJoining === "no"} 
+                  onChange={(e) => setImmediateJoining(e.target.value)}
+                  className="w-4 h-4 accent-[#2f6fb0]" 
+                /> No
               </label>
             </div>
           </div>
@@ -74,6 +159,8 @@ export default function ScreenPage() {
               <input 
                 type="text" 
                 placeholder="e.g. 10,000 AED" 
+                value={currentSalary}
+                onChange={(e) => setCurrentSalary(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
               />
             </div>
@@ -82,6 +169,8 @@ export default function ScreenPage() {
               <input 
                 type="text" 
                 placeholder="e.g. 15,000 AED" 
+                value={expectedSalary}
+                onChange={(e) => setExpectedSalary(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
               />
             </div>
@@ -102,6 +191,8 @@ export default function ScreenPage() {
                 type="text" 
                 required 
                 placeholder="Enter first name" 
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
               />
             </div>
@@ -111,6 +202,8 @@ export default function ScreenPage() {
                 type="text" 
                 required 
                 placeholder="Enter last name" 
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
               />
             </div>
@@ -124,6 +217,8 @@ export default function ScreenPage() {
                 type="email" 
                 required 
                 placeholder="name@example.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
                 dir="ltr" 
               />
@@ -134,6 +229,8 @@ export default function ScreenPage() {
                 type="tel" 
                 required 
                 placeholder="+971" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold text-[#0e2a4d] placeholder:text-slate-400 focus:outline-none focus:border-[#2f6fb0] focus:ring-2 focus:ring-[#2f6fb0]/20 focus:bg-white transition-all shadow-sm" 
                 dir="ltr" 
               />
@@ -153,6 +250,7 @@ export default function ScreenPage() {
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  setSelectedFile(file);
                   setSelectedFileName(file.name);
                 }
               }}
@@ -180,19 +278,37 @@ export default function ScreenPage() {
 
           {/* Terms checkbox */}
           <div className="flex items-start gap-3 bg-slate-50/50 p-3.5 rounded-2xl border border-slate-200/60">
-            <input type="checkbox" required className="mt-1 w-4 h-4 accent-[#2f6fb0] rounded cursor-pointer" />
+            <input 
+              type="checkbox" 
+              required 
+              checked={agreedTerms}
+              onChange={(e) => setAgreedTerms(e.target.checked)}
+              className="mt-1 w-4 h-4 accent-[#2f6fb0] rounded cursor-pointer" 
+            />
             <p className="text-xs text-slate-600 leading-relaxed">
               By submitting this application, I agree that I have read the <a href="#" className="text-[#2f6fb0] font-bold underline">Privacy Policy</a> and confirm that ProHR AI stores my personal details to process my job application.*
             </p>
           </div>
 
+          {/* Status Message */}
+          {statusMessage && (
+            <div className={`p-3 rounded-2xl text-xs font-semibold text-center ${
+              statusMessage.type === 'success' 
+                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
+                : 'bg-rose-50 text-rose-700 border border-rose-200'
+            }`}>
+              {statusMessage.text}
+            </div>
+          )}
+
           {/* Submit Button */}
           <button 
             type="submit" 
-            className="w-full py-4 rounded-2xl text-white font-bold text-sm shadow-xl transition-all hover:opacity-95 active:scale-[0.99]"
+            disabled={isSubmitting}
+            className="w-full py-4 rounded-2xl text-white font-bold text-sm shadow-xl transition-all hover:opacity-95 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
             style={{ background: 'linear-gradient(90deg, #0e2a4d, #2f6fb0)' }}
           >
-            Submit Application
+            {isSubmitting ? "Submitting..." : "Submit Application"}
           </button>
 
         </form>
