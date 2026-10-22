@@ -285,7 +285,7 @@ export default function Home() {
       setStatusMessage({ type: 'error', text: 'يرجى إدخال رقم الهاتف' });
       return;
     }
-    if (!selectedFileName) {
+    if (!selectedFile) {
       setStatusMessage({ type: 'error', text: 'يرجى اختيار ملف السيرة الذاتية' });
       return;
     }
@@ -300,7 +300,7 @@ export default function Home() {
       const formData = new FormData();
       formData.append('email', email);
       formData.append('phone', phone);
-      if (selectedFile) formData.append('file', selectedFile);
+      formData.append('file', selectedFile);
 
       // ربط الطلب بـ Make Webhook الأساسي الخاص بك
       const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
@@ -387,7 +387,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs font-semibold text-white transition-all shadow-sm backdrop-blur-md"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs font-semibold text-white transition-all shadow-sm backdrop-blur-md cursor-pointer"
               >
                 <span>{languagesList.find(l => l.code === currentLang)?.flag}</span>
                 <span>{languagesList.find(l => l.code === currentLang)?.name}</span>
@@ -401,7 +401,7 @@ export default function Home() {
                       key={lang.code}
                       type="button"
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-white/10 transition-colors ${
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-white/10 transition-colors cursor-pointer ${
                         currentLang === lang.code ? 'font-bold text-amber-300 bg-white/5' : 'text-slate-200'
                       }`}
                     >
