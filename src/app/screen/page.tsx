@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function ScreenPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -20,12 +20,25 @@ export default function ScreenPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatusMessage(null);
 
-    if (!email || !phone || !firstName || !lastName || !selectedFile || !agreedTerms) {
-      setStatusMessage({ type: 'error', text: 'Please complete all required fields and accept the privacy policy.' });
+    // التحقق من الحقول المطلوبة
+    if (!firstName.trim() || !lastName.trim() || !email.trim() || !phone.trim()) {
+      setStatusMessage({ type: 'error', text: 'يرجى ملء كافة البيانات الشخصية المطلوبة.' });
+      return;
+    }
+
+    if (!selectedFile) {
+      setStatusMessage({ type: 'error', text: 'يرجى رفع السيرة الذاتية أولاً.' });
+      return;
+    }
+
+    if (!agreedTerms) {
+      setStatusMessage({ type: 'error', text: 'يجب الموافقة على سياسة الخصوصية للمتابعة.' });
       return;
     }
 
@@ -42,7 +55,6 @@ export default function ScreenPage() {
       formData.append('phone', phone);
       formData.append('file', selectedFile);
 
-      // الإرسال إلى الـ API المحلي في مشروعك
       const response = await fetch('/api/submit', {
         method: 'POST',
         body: formData,
@@ -51,14 +63,17 @@ export default function ScreenPage() {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error("Failed to submit request.");
+        throw new Error(result.message || "Failed to submit request.");
       }
 
       setIsSubmitting(false);
-      setStatusMessage({ type: 'success', text: 'Application Submitted Successfully! 🎉' });
-      alert("Application Submitted Successfully! 🎉");
+      // إظهار نص النجاح
+      setStatusMessage({ 
+        type: 'success', 
+        text: 'تم تقديم الطلب بنجاح! 🎉 (Submitted Successfully)' 
+      });
 
-      // تفريغ الحقول بعد النجاح
+      // تفريغ المدخلات بعد النجاح
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -68,11 +83,15 @@ export default function ScreenPage() {
       setSelectedFile(null);
       setSelectedFileName("");
       setAgreedTerms(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
 
-    } catch (error) {
+    } catch (error: any) {
       console.error("Submission Error:", error);
       setIsSubmitting(false);
-      setStatusMessage({ type: 'error', text: 'Something went wrong. Please try submitting again.' });
+      setStatusMessage({ 
+        type: 'error', 
+        text: error.message || 'حدث خطأ ما، يرجى المحاولة مرة أخرى.' 
+      });
     }
   };
 
@@ -117,7 +136,7 @@ export default function ScreenPage() {
           </Link>
         </div>
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit} noValidate>
           
           <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80">
             <label className="block text-xs font-bold text-[#0e2a4d] mb-3">Are you available for immediate joining?*</label>
@@ -179,7 +198,6 @@ export default function ScreenPage() {
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">First name*</label>
               <input 
                 type="text" 
-                required 
                 placeholder="Enter first name" 
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -190,7 +208,6 @@ export default function ScreenPage() {
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Last name*</label>
               <input 
                 type="text" 
-                required 
                 placeholder="Enter last name" 
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -204,7 +221,6 @@ export default function ScreenPage() {
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Email*</label>
               <input 
                 type="email" 
-                required 
                 placeholder="name@example.com" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -216,7 +232,6 @@ export default function ScreenPage() {
               <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Phone*</label>
               <input 
                 type="tel" 
-                required 
                 placeholder="+971" 
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -230,6 +245,7 @@ export default function ScreenPage() {
             <label className="block text-xs font-bold text-[#0e2a4d] mb-1.5">Upload CV* (PDF / DOCX)</label>
             <input 
               type="file" 
+              ref={fileInputRef}
               id="cvFile" 
               accept=".pdf,.docx,.doc" 
               className="hidden" 
@@ -243,10 +259,7 @@ export default function ScreenPage() {
             />
 
             <div 
-              onClick={() => {
-                const fileInput = document.getElementById('cvFile') as HTMLInputElement;
-                if (fileInput) fileInput.click();
-              }}
+              onClick={() => fileInputRef.current?.click()}
               className="border-2 border-dashed border-[#2f6fb0]/40 rounded-2xl p-6 text-center bg-blue-50/30 hover:bg-blue-50/70 hover:border-[#2f6fb0] transition-all cursor-pointer group"
             >
               <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📄</span>
@@ -264,7 +277,6 @@ export default function ScreenPage() {
           <div className="flex items-start gap-3 bg-slate-50/50 p-3.5 rounded-2xl border border-slate-200/60">
             <input 
               type="checkbox" 
-              required 
               checked={agreedTerms}
               onChange={(e) => setAgreedTerms(e.target.checked)}
               className="mt-1 w-4 h-4 accent-[#2f6fb0] rounded cursor-pointer" 
@@ -274,16 +286,6 @@ export default function ScreenPage() {
             </p>
           </div>
 
-          {statusMessage && (
-            <div className={`p-3 rounded-2xl text-xs font-semibold text-center ${
-              statusMessage.type === 'success' 
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
-                : 'bg-rose-50 text-rose-700 border border-rose-200'
-            }`}>
-              {statusMessage.text}
-            </div>
-          )}
-
           <button 
             type="submit" 
             disabled={isSubmitting}
@@ -292,6 +294,28 @@ export default function ScreenPage() {
           >
             {isSubmitting ? "Submitting..." : "Submit Application"}
           </button>
+
+          {/* رسالة الحالة (خلفية بيضاء مع نص أخضر) */}
+          {statusMessage && (
+            <div className={`p-4 rounded-2xl text-sm font-semibold text-center transition-all shadow-md ${
+              statusMessage.type === 'success' 
+                ? 'bg-white text-emerald-600 border border-emerald-300' 
+                : 'bg-rose-50 text-rose-700 border border-rose-200'
+            }`}>
+              {statusMessage.type === 'success' ? (
+                <div className="space-y-1">
+                  <p className="text-base text-emerald-600 font-bold">
+                    تم تقديم الطلب بنجاح! 🎉
+                  </p>
+                  <p className="text-xs text-emerald-700 font-medium" dir="ltr">
+                    (Submitted Successfully)
+                  </p>
+                </div>
+              ) : (
+                statusMessage.text
+              )}
+            </div>
+          )}
 
         </form>
 
@@ -304,4 +328,4 @@ export default function ScreenPage() {
       </div>
     </main>
   );
-}
+} 
