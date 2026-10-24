@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef } from "react";
+// استدعاء الـ Server Action مباشرة
+import { submitApplicationAction } from "@/app/actions";
 
 export default function ScreenPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -55,19 +57,15 @@ export default function ScreenPage() {
       formData.append('phone', phone);
       formData.append('file', selectedFile);
 
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        body: formData,
-      });
+      // استدعاء Server Action بدلاً من fetch لـ api/submit
+      const result = await submitApplicationAction(formData);
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
+      if (!result.success) {
         throw new Error(result.message || "Failed to submit request.");
       }
 
       setIsSubmitting(false);
-      // إظهار نص النجاح
+      // إظهار رسالة النجاح بخلفية بيضاء ونصوص خضراء تحت الزر
       setStatusMessage({ 
         type: 'success', 
         text: 'تم تقديم الطلب بنجاح! 🎉 (Submitted Successfully)' 
@@ -328,4 +326,4 @@ export default function ScreenPage() {
       </div>
     </main>
   );
-} 
+}
