@@ -639,7 +639,7 @@ export default function Home() {
             <span>•</span>
             <p>
               {t.developedBy}{" "}
-              <span className="font-semibold text-blue-700">Reham Khedr</span>
+              <span className="font-semibold text-blue-700">Reham Hamdy Elsayed Khedr</span>
             </p>
           </div>
         </div>
