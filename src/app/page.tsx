@@ -408,6 +408,7 @@ export default function Home() {
             <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 hidden sm:inline-block">
               v1.0 Portal
             </span>
+
           </div>
         </div>
 
@@ -480,13 +481,13 @@ export default function Home() {
         {/* Action Buttons Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
-            href="https://pro-hr-ai.vercel.app/signin"
+            href="/signin"
             className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 text-center"
           >
             {t.signInBtn}
           </Link>
           <Link
-            href="https://pro-hr-ai.vercel.app/dashboard"
+            href="/dashboard"
             className="flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-blue-900 border border-blue-200 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm text-center"
           >
             {t.dashboardBtn}
@@ -619,11 +620,11 @@ export default function Home() {
           </form>
         </div>
 
-        {/* AI Task Router Navigation Link */}
+        {/* AI Task Router Navigation Link (تم تعديل المسار هنا ليعمل بسلاسة دون أخطاء) */}
         <div className="mt-5 text-center">
           <Link
-            href="https://pro-hr-ai.vercel.app/ai-screening"
-            className="inline-block text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors py-1"
+            href="/screen"
+            className="inline-block text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors py-1 cursor-pointer"
           >
             {t.aiScreeningBtn}
           </Link>
