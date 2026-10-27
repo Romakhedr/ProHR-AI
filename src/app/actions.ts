@@ -5,15 +5,22 @@ export async function submitApplicationAction(formData: FormData) {
   try {
     const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
 
-    // التحقق من وجود الملف لتفادي الأخطاء المفاجئة
-    const cvFile = formData.get("cv");
-    if (!cvFile) {
+    // التحقق من وجود أي ملف أو بيانات مرسلة بغض النظر عن اسم الحقل
+    let hasFile = false;
+    for (const [key, value] of formData.entries()) {
+      if (value instanceof File && value.size > 0) {
+        hasFile = true;
+        break;
+      }
+    }
+
+    if (!hasFile) {
       return { success: false, message: "الرجاء رفع السيرة الذاتية" };
     }
 
     const response = await fetch(webhookUrl, {
       method: "POST",
-      body: formData, // إرسال الملف والبيانات بكل مرونة لأي اسم أو امتداد
+      body: formData,
     });
 
     if (!response.ok) {
