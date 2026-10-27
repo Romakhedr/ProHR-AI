@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { submitApplicationAction } from "./actions"; // استيراد دالة السيرفر بشكل صحيح
 
 const translations: Record<string, {
   dir: "rtl" | "ltr";
@@ -54,7 +55,7 @@ const translations: Record<string, {
     phoneLabel: "رقم الهاتف*",
     privacyAgreeText: "بالضغط على إرسال، أوافق على أنني قرأت ",
     privacyPolicyText: "سياسة الخصوصية",
-    successMsg: "تم تقديم الطلب بنجاح! 🎉 (Application Submitted Successfully)"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   en: {
     dir: "ltr",
@@ -106,7 +107,7 @@ const translations: Record<string, {
     phoneLabel: "电话号码*",
     privacyAgreeText: "提交此申请即表示我同意已阅读",
     privacyPolicyText: "隐私政策",
-    successMsg: "申请提交成功！ 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   hi: {
     dir: "ltr",
@@ -132,7 +133,7 @@ const translations: Record<string, {
     phoneLabel: "फोन नंबर*",
     privacyAgreeText: "इस आवेदन को जमा करके, मैं सहमत हूँ कि मैंने पढ़ लिया है ",
     privacyPolicyText: "गोपनीयता नीति",
-    successMsg: "आवेदन सफलतापूर्वक जमा किया गया! 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   tl: {
     dir: "ltr",
@@ -158,7 +159,7 @@ const translations: Record<string, {
     phoneLabel: "Telepono*",
     privacyAgreeText: "Sa pag-submit ng aplikasyong ito, sumasang-ayon ako na nabasa ko ang ",
     privacyPolicyText: "Patakaran sa Privacy",
-    successMsg: "Matagumpay na Naipasa ang Aplikasyon! 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   tr: {
     dir: "ltr",
@@ -184,7 +185,7 @@ const translations: Record<string, {
     phoneLabel: "Telefon*",
     privacyAgreeText: "Bu başvuruyu göndererek, okuduğumu kabul ediyorum ",
     privacyPolicyText: "Gizlilik Politikası",
-    successMsg: "Başvuru Başarıyla Gönderildi! 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   ne: {
     dir: "ltr",
@@ -210,7 +211,7 @@ const translations: Record<string, {
     phoneLabel: "फोन नम्बर*",
     privacyAgreeText: "यो आवेदन पेश गरेर, म सहमत हूँ कि मैले पढेको छु ",
     privacyPolicyText: "गोपनीयता नीति",
-    successMsg: "आवेदन सफलतापूर्वक पेश गरियो! 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   },
   ur: {
     dir: "rtl",
@@ -236,7 +237,7 @@ const translations: Record<string, {
     phoneLabel: "فون نمبر*",
     privacyAgreeText: "یہ درخواست جمع کروا کر, میں اس بات سے اتفاق کرتا ہوں کہ میں نے پڑھ لیا ہے ",
     privacyPolicyText: "پرائیویسی پالیسی",
-    successMsg: "درخواست کامیابی کے ساتھ جمع ہو گئی! 🎉"
+    successMsg: "Application Submitted Successfully! 🎉"
   }
 };
 
@@ -297,28 +298,29 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
+      // تجهيز البيانات لإرسالها عبر Server Action
       const formData = new FormData();
       formData.append('email', email);
       formData.append('phone', phone);
-      formData.append('file', selectedFile);
+      formData.append('cv', selectedFile);
 
-      const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
-
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("فشل إرسال الطلب إلى الخادم");
-      }
+      // استدعاء دالة السيرفر المعالجة بدلاً من الاتصال المباشر بالـ Webhook
+      const result = await submitApplicationAction(formData);
 
       setIsSubmitting(false);
+
+      if (!result.success) {
+        setStatusMessage({ type: 'error', text: result.message });
+        return;
+      }
+
+      // إظهار الرسالة الخضراء بنجاح
       setStatusMessage({
         type: 'success',
-        text: t.successMsg
+        text: result.message || t.successMsg
       });
 
+      // إعادة ضبط المدخلات بعد النجاح
       setEmail("");
       setPhone("");
       setSelectedFile(null);
@@ -340,13 +342,13 @@ export default function Home() {
         fontFamily: "'Inter', 'Tajawal', sans-serif"
       }}
     >
-      {/* Top Bar Accent - Royal Blue Gradient */}
+      {/* Top Bar Accent */}
       <div 
         className="fixed top-0 right-0 left-0 h-2 z-50"
         style={{ background: 'linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)' }}
       />
 
-      {/* Main Container Card - Clean White & Royal Blue Theme */}
+      {/* Main Container Card */}
       <div 
         className="w-full max-w-2xl overflow-hidden p-5 sm:p-8 transition-all relative z-10 shadow-xl text-slate-900 border border-blue-100"
         style={{
@@ -408,11 +410,10 @@ export default function Home() {
             <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 hidden sm:inline-block">
               v1.0 Portal
             </span>
-
           </div>
         </div>
 
-        {/* Promo Feature Card - Clean White & Royal Blue Accent Card */}
+        {/* Promo Feature Card */}
         <div 
           dir="ltr"
           className="relative overflow-hidden rounded-2xl p-5 sm:p-7 mb-6 text-slate-900 shadow-md border border-blue-200 text-left bg-gradient-to-br from-blue-50/60 to-white"
@@ -478,7 +479,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Action Buttons Row - مسار تسجيل الدخول المحدث ليطابق مجلد /login تماماً */}
+        {/* Action Buttons Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
             href="/login"
@@ -493,17 +494,6 @@ export default function Home() {
             {t.dashboardBtn}
           </Link>
         </div>
-
-        {/* Status Alert */}
-        {statusMessage && (
-          <div className={`p-3.5 mb-5 rounded-xl text-xs font-bold text-center border ${
-            statusMessage.type === 'success' 
-              ? 'bg-emerald-50 text-emerald-800 border-emerald-300' 
-              : 'bg-rose-50 text-rose-800 border-rose-300'
-          }`}>
-            {statusMessage.text}
-          </div>
-        )}
 
         {/* Candidate Quick Screening Submission Form */}
         <div className="bg-slate-50/80 rounded-2xl p-5 border border-blue-200 shadow-sm">
@@ -617,6 +607,17 @@ export default function Home() {
                 <span>{t.submitBtn}</span>
               )}
             </button>
+
+            {/* Status Alert Displayed Directly Under the Submit Button */}
+            {statusMessage && (
+              <div className={`p-3.5 mt-3 rounded-xl text-xs font-bold text-center transition-all duration-300 border ${
+                statusMessage.type === 'success' 
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm' 
+                  : 'bg-rose-50 text-rose-800 border-rose-300'
+              }`}>
+                {statusMessage.text}
+              </div>
+            )}
           </form>
         </div>
 
