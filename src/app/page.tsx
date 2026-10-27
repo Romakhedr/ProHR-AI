@@ -478,7 +478,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Action Buttons Row - تم تعديل رابط تسجيل الدخول ليطابق مجلد /login تماماً */}
+        {/* Action Buttons Row - مسار تسجيل الدخول المحدث ليطابق مجلد /login تماماً */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
             href="/login"
