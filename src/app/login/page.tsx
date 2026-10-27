@@ -17,6 +17,8 @@ const translations: Record<string, {
   footerRights: string;
   supportCenter: string;
   developedBy: string;
+  successMsg: string;
+  emptyError: string;
 }> = {
   ar: {
     dir: "rtl",
@@ -30,7 +32,9 @@ const translations: Record<string, {
     signUpBtn: "إنشاء حساب",
     footerRights: "ProHR AI © 2026. جميع الحقوق محفوظة.",
     supportCenter: "مركز الدعم",
-    developedBy: "تم التطوير بواسطة"
+    developedBy: "تم التطوير بواسطة",
+    successMsg: "تم التسجيل بنجاح! 🎉",
+    emptyError: "يرجى إدخال البريد الإلكتروني وكلمة المرور"
   },
   en: {
     dir: "ltr",
@@ -44,7 +48,9 @@ const translations: Record<string, {
     signUpBtn: "Register",
     footerRights: "ProHR AI © 2026. All rights reserved.",
     supportCenter: "Support Center",
-    developedBy: "developed by"
+    developedBy: "developed by",
+    successMsg: "Registration successful",
+    emptyError: "Please enter email and password"
   }
 };
 
@@ -72,12 +78,14 @@ export default function LoginPage() {
     }
   };
 
+  const t = translations[currentLang] || translations.ar;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatusMessage(null);
 
     if (!email || !password) {
-      setStatusMessage({ type: 'error', text: currentLang === 'ar' ? 'يرجى إدخال البريد الإلكتروني وكلمة المرور' : 'Please enter email and password' });
+      setStatusMessage({ type: 'error', text: t.emptyError });
       return;
     }
 
@@ -88,7 +96,7 @@ export default function LoginPage() {
       setIsLoading(false);
       setStatusMessage({
         type: 'success',
-        text: 'Registration successful' // ستظهر باللون الأخضر الزمردي المميز
+        text: t.successMsg // تظهر تلقائياً بالعربية أو الإنجليزية حسب اللغة المختارة
       });
 
       // تفريغ الحقول بعد النجاح
@@ -96,8 +104,6 @@ export default function LoginPage() {
       setPassword("");
     }, 800);
   };
-
-  const t = translations[currentLang] || translations.ar;
 
   return (
     <main
@@ -255,4 +261,4 @@ export default function LoginPage() {
       </div>
     </main>
   );
-}
+}    
