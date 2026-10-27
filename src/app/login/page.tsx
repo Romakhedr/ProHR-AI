@@ -12,7 +12,8 @@ const translations: Record<string, {
   signUpTab: string;
   emailLabel: string;
   passwordLabel: string;
-  submitBtn: string;
+  signInBtn: string;
+  signUpBtn: string;
   footerRights: string;
   supportCenter: string;
   developedBy: string;
@@ -25,7 +26,8 @@ const translations: Record<string, {
     signUpTab: "إنشاء حساب",
     emailLabel: "البريد الإلكتروني",
     passwordLabel: "كلمة المرور",
-    submitBtn: "تسجيل الدخول",
+    signInBtn: "تسجيل الدخول",
+    signUpBtn: "إنشاء حساب",
     footerRights: "ProHR AI © 2026. جميع الحقوق محفوظة.",
     supportCenter: "مركز الدعم",
     developedBy: "تم التطوير بواسطة"
@@ -38,7 +40,8 @@ const translations: Record<string, {
     signUpTab: "Register",
     emailLabel: "Email Address",
     passwordLabel: "Password",
-    submitBtn: "Sign In",
+    signInBtn: "Sign In",
+    signUpBtn: "Register",
     footerRights: "ProHR AI © 2026. All rights reserved.",
     supportCenter: "Support Center",
     developedBy: "developed by"
@@ -48,6 +51,10 @@ const translations: Record<string, {
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
   const [currentLang, setCurrentLang] = useState("ar");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -63,6 +70,31 @@ export default function LoginPage() {
     if (typeof window !== "undefined") {
       localStorage.setItem("preferred_lang", langCode);
     }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage(null);
+
+    if (!email || !password) {
+      setStatusMessage({ type: 'error', text: currentLang === 'ar' ? 'يرجى إدخال البريد الإلكتروني وكلمة المرور' : 'Please enter email and password' });
+      return;
+    }
+
+    setIsLoading(true);
+
+    // محاكاة عملية الإرسال والمعالجة
+    setTimeout(() => {
+      setIsLoading(false);
+      setStatusMessage({
+        type: 'success',
+        text: 'Registration successful' // النص المطلوب تماماً باللون الأخضر
+      });
+
+      // تفريغ الحقول بعد النجاح
+      setEmail("");
+      setPassword("");
+    }, 800);
   };
 
   const t = translations[currentLang] || translations.ar;
@@ -133,7 +165,7 @@ export default function LoginPage() {
         <div className="grid grid-cols-2 gap-2 p-1 bg-blue-50/70 border border-blue-100 rounded-xl mb-6">
           <button
             type="button"
-            onClick={() => setActiveTab("signin")}
+            onClick={() => { setActiveTab("signin"); setStatusMessage(null); }}
             className={`py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeTab === "signin"
                 ? "bg-blue-600 text-white shadow-md"
@@ -144,7 +176,7 @@ export default function LoginPage() {
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab("signup")}
+            onClick={() => { setActiveTab("signup"); setStatusMessage(null); }}
             className={`py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeTab === "signup"
                 ? "bg-blue-600 text-white shadow-md"
@@ -156,11 +188,14 @@ export default function LoginPage() {
         </div>
 
         {/* Form Fields */}
-        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-1 text-start">
             <label className="block text-xs font-semibold text-slate-700">{t.emailLabel}</label>
             <input
               type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
               className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 bg-white text-slate-900 transition-all"
             />
@@ -170,6 +205,9 @@ export default function LoginPage() {
             <label className="block text-xs font-semibold text-slate-700">{t.passwordLabel}</label>
             <input
               type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 bg-white text-slate-900 transition-all"
             />
@@ -177,10 +215,29 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full py-3 mt-2 rounded-xl text-white font-bold text-xs text-center shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 bg-blue-600 cursor-pointer"
+            disabled={isLoading}
+            className="w-full py-3 mt-2 rounded-xl text-white font-bold text-xs text-center shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 bg-blue-600 cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2"
           >
-            {activeTab === "signin" ? t.signInTab : t.signUpTab}
+            {isLoading ? (
+              <>
+                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                <span>{currentLang === 'ar' ? 'جاري المعالجة...' : 'Processing...'}</span>
+              </>
+            ) : (
+              <span>{activeTab === "signin" ? t.signInBtn : t.signUpBtn}</span>
+            )}
           </button>
+
+          {/* Status Alert Box - Displays "Registration successful" in Green directly under the button */}
+          {statusMessage && (
+            <div className={`p-3.5 mt-3 rounded-xl text-xs font-bold text-center transition-all duration-300 border ${
+              statusMessage.type === 'success' 
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm' 
+                : 'bg-rose-50 text-rose-800 border-rose-300'
+            }`}>
+              {statusMessage.text}
+            </div>
+          )}
         </form>
 
         {/* Footer */}
