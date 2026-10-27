@@ -3,7 +3,7 @@
 
 export async function submitApplicationAction(formData: FormData) {
   try {
-    const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
+    const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g"; // ضعي رابط الـ Webhook الخاص بك هنا
 
     const response = await fetch(webhookUrl, {
       method: "POST",
