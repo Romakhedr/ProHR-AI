@@ -83,12 +83,12 @@ export default function LoginPage() {
 
     setIsLoading(true);
 
-    // محاكاة عملية الإرسال والمعالجة
+    // محاكاة عملية المعالجة والإرسال
     setTimeout(() => {
       setIsLoading(false);
       setStatusMessage({
         type: 'success',
-        text: 'Registration successful' // النص المطلوب تماماً باللون الأخضر
+        text: 'Registration successful' // ستظهر باللون الأخضر الزمردي المميز
       });
 
       // تفريغ الحقول بعد النجاح
@@ -113,7 +113,7 @@ export default function LoginPage() {
         style={{ background: "linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)" }}
       />
 
-      {/* Main Container Card - Clean White & Royal Blue Theme */}
+      {/* Main Container Card */}
       <div
         className="w-full max-w-md overflow-hidden p-6 sm:p-8 transition-all bg-white relative z-10 shadow-xl border border-blue-100"
         style={{
@@ -228,11 +228,11 @@ export default function LoginPage() {
             )}
           </button>
 
-          {/* Status Alert Box - Displays "Registration successful" in Green directly under the button */}
+          {/* Status Alert Box - Emerald Green Styling for Success */}
           {statusMessage && (
             <div className={`p-3.5 mt-3 rounded-xl text-xs font-bold text-center transition-all duration-300 border ${
               statusMessage.type === 'success' 
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm' 
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-300 shadow-sm' 
                 : 'bg-rose-50 text-rose-800 border-rose-300'
             }`}>
               {statusMessage.text}
