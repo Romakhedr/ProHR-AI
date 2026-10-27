@@ -231,7 +231,7 @@ const translations: Record<string, {
     supportCenter: "سپورٹ سینٹر",
     developedBy: "تیار کردہ",
     submitBtn: "درخواست جمع کرائیں",
-    submittingBtn: "جمع ہو رہا ہے...",
+    submittingBtn: "جمع ہو رہا ہے۔۔۔",
     emailLabel: "ای میل*",
     phoneLabel: "فون نمبر*",
     privacyAgreeText: "یہ درخواست جمع کروا کر, میں اس بات سے اتفاق کرتا ہوں کہ میں نے پڑھ لیا ہے ",
@@ -478,17 +478,17 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Action Buttons Row */}
+        {/* Action Buttons Row - تم تعديل رابط تسجيل الدخول ليطابق مجلد /login تماماً */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
-            href="/signin"
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 text-center"
+            href="/login"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 text-center cursor-pointer"
           >
             {t.signInBtn}
           </Link>
           <Link
             href="/dashboard"
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-blue-900 border border-blue-200 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm text-center"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-blue-900 border border-blue-200 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm text-center cursor-pointer"
           >
             {t.dashboardBtn}
           </Link>
@@ -620,7 +620,7 @@ export default function Home() {
           </form>
         </div>
 
-        {/* AI Task Router Navigation Link (تم تعديل المسار هنا ليعمل بسلاسة دون أخطاء) */}
+        {/* AI Task Router Navigation Link */}
         <div className="mt-5 text-center">
           <Link
             href="/screen"
