@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef } from "react";
-// استدعاء الـ Server Action مباشرة
 import { submitApplicationAction } from "@/app/actions";
 
 export default function ScreenPage() {
@@ -28,7 +27,6 @@ export default function ScreenPage() {
     e.preventDefault();
     setStatusMessage(null);
 
-    // التحقق من الحقول المطلوبة
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !phone.trim()) {
       setStatusMessage({ type: 'error', text: 'يرجى ملء كافة البيانات الشخصية المطلوبة.' });
       return;
@@ -55,9 +53,10 @@ export default function ScreenPage() {
       formData.append('lastName', lastName);
       formData.append('email', email);
       formData.append('phone', phone);
+      // إرسال الملف باسم cv و file لضمان توافقه مع أي مستقبل بيانات
       formData.append('file', selectedFile);
+      formData.append('cv', selectedFile);
 
-      // استدعاء Server Action بدلاً من fetch لـ api/submit
       const result = await submitApplicationAction(formData);
 
       if (!result.success) {
@@ -65,7 +64,6 @@ export default function ScreenPage() {
       }
 
       setIsSubmitting(false);
-      // إظهار رسالة النجاح بخلفية بيضاء ونصوص خضراء تحت الزر
       setStatusMessage({ 
         type: 'success', 
         text: 'تم تقديم الطلب بنجاح! 🎉 (Submitted Successfully)' 
@@ -96,9 +94,7 @@ export default function ScreenPage() {
   return (
     <main 
       className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-white text-slate-800"
-      style={{
-        fontFamily: "'Inter', sans-serif"
-      }}
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       {/* Top Bar Accent - Royal Blue Gradient */}
       <div className="fixed top-0 right-0 left-0 h-2 z-50" style={{ background: 'linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)' }} />
@@ -107,9 +103,7 @@ export default function ScreenPage() {
         
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
-            <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-blue-900 font-extrabold text-xl shadow-inner overflow-hidden p-1 bg-blue-50 border border-blue-200"
-            >
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-blue-900 font-extrabold text-xl shadow-inner overflow-hidden p-1 bg-blue-50 border border-blue-200">
               <Image 
                 src="/logo-1.png" 
                 alt="ProHR AI Logo" 
@@ -287,19 +281,19 @@ export default function ScreenPage() {
             {isSubmitting ? "Submitting..." : "Submit Application"}
           </button>
 
-          {/* رسالة الحالة (خلفية بيضاء مع نص أخضر) */}
+          {/* رسالة الحالة بصندوق أخضر زمردي واضح ومميز */}
           {statusMessage && (
             <div className={`p-4 rounded-2xl text-sm font-semibold text-center transition-all shadow-md ${
               statusMessage.type === 'success' 
-                ? 'bg-white text-emerald-600 border border-emerald-300' 
+                ? 'bg-emerald-50 text-emerald-700 border border-emerald-300' 
                 : 'bg-rose-50 text-rose-700 border border-rose-200'
             }`}>
               {statusMessage.type === 'success' ? (
                 <div className="space-y-1">
-                  <p className="text-base text-emerald-600 font-bold">
+                  <p className="text-base text-emerald-700 font-bold">
                     تم تقديم الطلب بنجاح! 🎉
                   </p>
-                  <p className="text-xs text-emerald-700 font-medium" dir="ltr">
+                  <p className="text-xs text-emerald-600 font-medium" dir="ltr">
                     (Submitted Successfully)
                   </p>
                 </div>
