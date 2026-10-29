@@ -42,7 +42,7 @@ export async function submitApplicationAction(formData: FormData) {
     const publicUrl = urlData.publicUrl;
 
     // 3. إرسال البيانات والرابط إلى Make.com Webhook
-    const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
+    const webhookUrl = https://hook.eu1.make.com/dastk20isymo359u83wlxp5u2wakusr9
 
     const payload = {
       email: email,
