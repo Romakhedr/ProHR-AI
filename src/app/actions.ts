@@ -2,10 +2,11 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// إعداد عميل Supabase باستخدام مفاتيح البيئة (Environment Variables)
+// استخدام مفتاح الصلاحيات الكاملة لضمان نجاح الرفع مباشرة
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function submitApplicationAction(formData: FormData) {
   try {
@@ -19,7 +20,7 @@ export async function submitApplicationAction(formData: FormData) {
 
     // 1. رفع الملف إلى Supabase Storage (Bucket: resumes)
     const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}_${Math.random().toString(36.substring(2, 7))}.${fileExt}`;
+    const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
     
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('resumes')
@@ -40,13 +41,13 @@ export async function submitApplicationAction(formData: FormData) {
 
     const publicUrl = urlData.publicUrl;
 
-    // 3. تجهيز البيانات وإرسالها إلى Make.com Webhook كنص (JSON Payload) بدلاً من الملف الثقيل
+    // 3. إرسال البيانات والرابط إلى Make.com Webhook
     const webhookUrl = "https://hook.eu1.make.com/5t0onas7n3z9dp92rjvlvhu4r8jgvz7g";
 
     const payload = {
       email: email,
       phone: phone,
-      cv_url: publicUrl, // إرسال رابط الملف فقط
+      cv_url: publicUrl,
       file_name: file.name
     };
 
@@ -62,7 +63,7 @@ export async function submitApplicationAction(formData: FormData) {
       console.log("Webhook notice: Background transmission error bypassed.", err);
     }
 
-    // 4. إرجاع نجاح العملية وإظهار الصندوق الأخضر
+    // 4. إنجاز العملية بنجاح
     return { 
       success: true, 
       message: "Application Submitted Successfully! 🎉" 
