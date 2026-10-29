@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { submitApplicationAction } from "./actions"; // استيراد دالة السيرفر بشكل صحيح
+import { submitApplicationAction } from "./actions";
 
 const translations: Record<string, {
   dir: "rtl" | "ltr";
@@ -298,13 +298,11 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
-      // تجهيز البيانات لإرسالها عبر Server Action
       const formData = new FormData();
       formData.append('email', email);
       formData.append('phone', phone);
       formData.append('cv', selectedFile);
 
-      // استدعاء دالة السيرفر المعالجة بدلاً من الاتصال المباشر بالـ Webhook
       const result = await submitApplicationAction(formData);
 
       setIsSubmitting(false);
@@ -314,13 +312,11 @@ export default function Home() {
         return;
       }
 
-      // إظهار الرسالة الخضراء بنجاح
       setStatusMessage({
         type: 'success',
         text: result.message || t.successMsg
       });
 
-      // إعادة ضبط المدخلات بعد النجاح
       setEmail("");
       setPhone("");
       setSelectedFile(null);
@@ -380,7 +376,10 @@ export default function Home() {
             <div className="relative">
               <button
                 type="button"
-                onClick={() => setIsLangOpen(!isLangOpen)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLangOpen(!isLangOpen);
+                }}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-full text-xs font-semibold text-blue-800 transition-all shadow-sm cursor-pointer"
               >
                 <span>{languagesList.find(l => l.code === currentLang)?.flag}</span>
