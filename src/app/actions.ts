@@ -2,11 +2,11 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// استخدام مفتاح الصلاحيات الكاملة لضمان نجاح الرفع مباشرة
+// استخدام مفاتيح البيئة للاتصال بـ Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function submitApplicationAction(formData: FormData) {
   try {
@@ -63,7 +63,6 @@ export async function submitApplicationAction(formData: FormData) {
       console.log("Webhook notice: Background transmission error bypassed.", err);
     }
 
-    // 4. إنجاز العملية بنجاح
     return { 
       success: true, 
       message: "Application Submitted Successfully! 🎉" 
