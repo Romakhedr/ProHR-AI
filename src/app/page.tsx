@@ -407,7 +407,7 @@ export default function Home() {
             </div>
 
             <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 hidden sm:inline-block">
-              v1.0 Portal
+              
             </span>
           </div>
         </div>
