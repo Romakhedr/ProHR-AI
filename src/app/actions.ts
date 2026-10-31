@@ -41,8 +41,13 @@ export async function submitApplicationAction(formData: FormData) {
 
     const publicUrl = urlData.publicUrl;
 
-    // 3. إرسال البيانات والرابط إلى Make.com Webhook
-    const webhookUrl = "https://hook.eu1.make.com/dastk20isymo359u83wlxp5u2wakusr9";
+    // 3. التحقق من وجود رابط الـ Webhook في متغيرات البيئة للأمان التام
+    const webhookUrl = process.env.MAKEWEBHOOK;
+
+    if (!webhookUrl) {
+      console.error("MAKEWEBHOOK environment variable is not defined");
+      return { success: false, message: "خطأ في إعدادات الخادم (Webhook URL missing)." };
+    }
 
     const payload = {
       email: email,
