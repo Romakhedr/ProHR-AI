@@ -43,7 +43,7 @@ const translations: Record<string, {
     browseText: "تصفح للرفع",
     supportText: "يدعم صيغ PDF و DOCX حتى 10 ميجابايت",
     selectedText: "تم اختيار الملف:",
-    signInBtn: "🔐 تسجيل الدخول / إنشاء حساب",
+    signInBtn: "🔐 تسجيل الدخول بـ Pi Network",
     dashboardBtn: "📊 لوحة تحكم الموارد البشرية",
     aiScreeningBtn: "✨ فحص السير الذاتية بالذكاء الاصطناعي وتوجيه المهام ←",
     footerRights: "ProHR AI © 2026. جميع الحقوق محفوظة.",
@@ -69,7 +69,7 @@ const translations: Record<string, {
     browseText: "browse to upload",
     supportText: "Supports PDF, DOCX up to 10MB",
     selectedText: "Selected:",
-    signInBtn: "🔐 Sign In / Register",
+    signInBtn: "🔐 Sign in with Pi Network",
     dashboardBtn: "📊 HR Dashboard",
     aiScreeningBtn: "✨ AI Resume Screening & Task Router →",
     footerRights: "ProHR AI © 2026. All rights reserved.",
@@ -95,7 +95,7 @@ const translations: Record<string, {
     browseText: "浏览上传",
     supportText: "支持高达 10MB 的 PDF, DOCX",
     selectedText: "已选择:",
-    signInBtn: "🔐 登录 / 注册",
+    signInBtn: "🔐 使用 Pi Network 登录",
     dashboardBtn: "📊 人力资源仪表板",
     aiScreeningBtn: "✨ AI 简历筛选与任务路由 →",
     footerRights: "ProHR AI © 2026. 保留所有权利。",
@@ -121,7 +121,7 @@ const translations: Record<string, {
     browseText: "अपलोड करने के लिए ब्राउज़ करें",
     supportText: "10MB तक PDF, DOCX का समर्थन करता है",
     selectedText: "चयनित:",
-    signInBtn: "🔐 साइन इन करें / पंजीकरण करें",
+    signInBtn: "🔐 Pi Network के साथ साइन इन करें",
     dashboardBtn: "📊 एचआर डैशबोर्ड",
     aiScreeningBtn: "✨ एआई रेज़्यूमे स्क्रिनिंग और टास्क राउटर →",
     footerRights: "ProHR AI © 2026. सभी अधिकार सुरक्षित।",
@@ -147,7 +147,7 @@ const translations: Record<string, {
     browseText: "mag-browse para mag-upload",
     supportText: "Sumusuporta sa PDF, DOCX hanggang 10MB",
     selectedText: "Naipasa:",
-    signInBtn: "🔐 Mag-sign In / Magrehistro",
+    signInBtn: "🔐 Mag-sign in gamit ang Pi Network",
     dashboardBtn: "📊 HR Dashboard",
     aiScreeningBtn: "✨ AI Resume Screening at Task Router →",
     footerRights: "ProHR AI © 2026. Lahat ng karapatan ay nakalaan.",
@@ -173,7 +173,7 @@ const translations: Record<string, {
     browseText: "yüklemek için göz atın",
     supportText: "10MB'a kadar PDF, DOCX destekler",
     selectedText: "Seçilen:",
-    signInBtn: "🔐 Giriş Yap / Kaydol",
+    signInBtn: "🔐 Pi Network ile Giriş Yap",
     dashboardBtn: "📊 İK Paneli",
     aiScreeningBtn: "✨ Yapay Zeka CV Taraması ve Görev Yönlendirici →",
     footerRights: "ProHR AI © 2026. Tüm hakları saklıdır.",
@@ -199,7 +199,7 @@ const translations: Record<string, {
     browseText: "अपलोड गर्न ब्राउज गर्नुहोस्",
     supportText: "10MB सम्म PDF, DOCX समर्थन गर्दछ",
     selectedText: "चयन गरिएको:",
-    signInBtn: "🔐 साइन इन गर्नुहोस् / दर्ता गर्नुहोस्",
+    signInBtn: "🔐 Pi Network मार्फत साइन ఇన్ गर्नुहोस्",
     dashboardBtn: "📊 HR ड्यासबोर्ड",
     aiScreeningBtn: "✨ AI बायोडाटा स्क्रिनिङ र कार्य राउटर →",
     footerRights: "ProHR AI © 2026. सबै अधिकार सुरक्षित।",
@@ -225,7 +225,7 @@ const translations: Record<string, {
     browseText: "اپ لوڈ کرنے کے لیے براؤز کریں",
     supportText: "10MB تک PDF، DOCX کو سپورٹ کرتا ہے",
     selectedText: "منتخب کردہ:",
-    signInBtn: "🔐 سائن ان کریں / رجسٹریشن کریں",
+    signInBtn: "🔐 Pi Network کے ساتھ سائن ان کریں",
     dashboardBtn: "📊 ایچ آر ڈیش بورڈ",
     aiScreeningBtn: "✨ اے آئی سی وی اسکریننگ اور ٹاسک راؤٹر ←",
     footerRights: "ProHR AI © 2026. جملہ حقوق محفوظ ہیں۔",
@@ -262,6 +262,7 @@ export default function Home() {
   const [currentLang, setCurrentLang] = useState('ar');
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSigningInPi, setIsSigningInPi] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const t = translations[currentLang] || translations.ar;
@@ -272,6 +273,52 @@ export default function Home() {
       localStorage.setItem("preferred_lang", langCode);
     }
     setIsLangOpen(false);
+  };
+
+  // دالة تسجيل الدخول عبر Pi Network SDK
+  const handlePiSignIn = async () => {
+    setStatusMessage(null);
+    try {
+      if (typeof window === 'undefined' || !(window as any).Pi) {
+        setStatusMessage({ type: 'error', text: 'يرجى فتح التطبيق من داخل Pi Browser لتسجيل الدخول.' });
+        return;
+      }
+
+      setIsSigningInPi(true);
+      const scopes = ['username', 'payments'];
+      
+      const authResult = await (window as any).Pi.authenticate(scopes, (payment: any) => {
+        console.log("Incomplete payment found:", payment);
+      });
+
+      // إرسال البيانات للباك إند لحفظها في Supabase
+      const response = await fetch('/api/auth/pi-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          accessToken: authResult.accessToken,
+          user: authResult.user
+        })
+      });
+
+      const data = await response.json();
+      setIsSigningInPi(false);
+
+      if (!response.ok || !data.success) {
+        setStatusMessage({ type: 'error', text: data.error || 'فشل تسجيل الدخول عبر Pi.' });
+        return;
+      }
+
+      setStatusMessage({
+        type: 'success',
+        text: `أهلاً بك ${authResult.user.username} في منصة ProHR AI! 🎉`
+      });
+
+    } catch (error) {
+      console.error("Pi Sign-In Error:", error);
+      setIsSigningInPi(false);
+      setStatusMessage({ type: 'error', text: 'حدث خطأ أثناء المصادقة عبر Pi Network.' });
+    }
   };
 
   const handleSubmitApplication = async (e: React.FormEvent) => {
@@ -474,7 +521,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Action Buttons Row */}
+        {/* Action Buttons Row (Dashboard & Pi Sign-In) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
             href="/login"
@@ -482,6 +529,22 @@ export default function Home() {
           >
             {t.dashboardBtn}
           </Link>
+
+          <button
+            type="button"
+            onClick={handlePiSignIn}
+            disabled={isSigningInPi}
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm shadow-purple-500/20 cursor-pointer disabled:opacity-70"
+          >
+            {isSigningInPi ? (
+              <>
+                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                <span>جاري تسجيل الدخول...</span>
+              </>
+            ) : (
+              <span>{t.signInBtn}</span>
+            )}
+          </button>
         </div>
 
         {/* Candidate Quick Screening Submission Form */}
