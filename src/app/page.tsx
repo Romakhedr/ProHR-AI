@@ -405,10 +405,6 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 hidden sm:inline-block">
-              
-            </span>
           </div>
         </div>
 
@@ -482,12 +478,6 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
           <Link
             href="/login"
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 text-center cursor-pointer"
-          >
-            {t.signInBtn}
-          </Link>
-          <Link
-            href="/dashboard"
             className="flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-blue-900 border border-blue-200 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm text-center cursor-pointer"
           >
             {t.dashboardBtn}
