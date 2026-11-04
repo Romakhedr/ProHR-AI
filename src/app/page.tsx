@@ -534,10 +534,10 @@ export default function Home() {
             type="button"
             onClick={handlePiSignIn}
             disabled={isSigningInPi}
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm shadow-purple-500/20 cursor-pointer disabled:opacity-70"
-          >
-            {isSigningInPi ? (
-              <>
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-70"
+>
+  {isSigningInPi ? (
+    <>
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                 <span>جاري تسجيل الدخول...</span>
               </>
