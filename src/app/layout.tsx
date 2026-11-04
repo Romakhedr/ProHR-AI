@@ -30,7 +30,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        {/* إضافة سكريبت مكتبة Pi SDK الرسمية لضمان عمل زر تسجيل الدخول داخل Pi Browser */}
+        {/* تحميل وتهيئة مكتبة Pi SDK الرسمية */}
         <Script
           src="https://sdk.minepi.com/pi-sdk.js"
           strategy="beforeInteractive"
@@ -38,11 +38,17 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.addEventListener('DOMContentLoaded', (event) => {
-                if (window.Pi) {
-                  window.Pi.init({ version: "2.0", sandbox: true });
+              (function() {
+                try {
+                  if (window.Pi) {
+                    window.Pi.init({ version: "2.0", sandbox: true });
+                    window.isPiSdkReady = true;
+                    console.log("Pi SDK Initialized Successfully!");
+                  }
+                } catch (e) {
+                  console.error("Pi SDK Init Error:", e);
                 }
-              });
+              })();
             `,
           }}
         />
