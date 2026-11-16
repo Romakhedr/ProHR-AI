@@ -103,7 +103,8 @@ export default function LoginPage() {
       // تفريغ الحقول بعد النجاح
       setEmail("");
       setPassword("");
-router.push("/vacancies");}, 800);
+router.push("/vacancies");
+    }, 800);
   };
 
   return (
