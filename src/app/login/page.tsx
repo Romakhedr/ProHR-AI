@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const translations: Record<string, {
   dir: "rtl" | "ltr";
@@ -55,6 +56,7 @@ const translations: Record<string, {
 };
 
 export default function LoginPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
   const [currentLang, setCurrentLang] = useState("ar");
   const [email, setEmail] = useState("");
@@ -102,7 +104,7 @@ export default function LoginPage() {
       // تفريغ الحقول بعد النجاح
       setEmail("");
       setPassword("");
-    }, 800);
+router.push("/vacancies");}, 800);
   };
 
   return (
