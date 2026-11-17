@@ -10,7 +10,7 @@ export default function AvailableVacanciesPage() {
   const [lang, setLang] = useState<Language>("en");
   const [isLangOpen, setIsLangOpen] = useState(false);
 
-  // قاموس الترجمات للنصوص والعناوين
+  // قاموس الترجمات للنصوص والعناوين (تمت إضافة Sales Executive بجميع اللغات)
   const content = {
     en: {
       home: "Home",
@@ -22,6 +22,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "Civil Engineer", type: "Full-time", location: "On-site" },
         { id: "accounting", title: "Accounting", type: "Full-time", location: "On-site" },
         { id: "foreman-civil-engineer", title: "Foreman Civil Engineer", type: "Full-time", location: "On-site" },
+        { id: "sales-executive", title: "Sales Executive", type: "Full-time", location: "On-site" },
       ],
       applyBtn: "Apply Now",
       footerRights: "ProHR AI © 2026. All rights reserved.",
@@ -38,6 +39,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "مهندس مدني", type: "دوام كامل", location: "حضوري" },
         { id: "accounting", title: "محاسب", type: "دوام كامل", location: "حضوري" },
         { id: "foreman-civil-engineer", title: "مراقب أعمال مدنية (فورمان)", type: "دوام كامل", location: "حضوري" },
+        { id: "sales-executive", title: "مسؤول مبيعات (Sales Executive)", type: "دوام كامل", location: "حضوري" },
       ],
       applyBtn: "قدم الآن",
       footerRights: "ProHR AI © 2026. جميع الحقوق محفوظة.",
@@ -54,6 +56,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "土木工程师", type: "全职", location: "现场" },
         { id: "accounting", title: "会计", type: "全职", location: "现场" },
         { id: "foreman-civil-engineer", title: "土木工头", type: "全职", location: "现场" },
+        { id: "sales-executive", title: "销售主管", type: "全职", location: "现场" },
       ],
       applyBtn: "立即申请",
       footerRights: "ProHR AI © 2026. 保留所有权利。",
@@ -70,6 +73,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "सिविल इंजीनियर", type: "पूर्णकालिक", location: "ऑन-साइट" },
         { id: "accounting", title: "एकाउंटिंग", type: "पूर्णकालिक", location: "ऑन-साइट" },
         { id: "foreman-civil-engineer", title: "फोरमैन सिविल इंजीनियर", type: "पूर्णकालिक", location: "ऑन-साइट" },
+        { id: "sales-executive", title: "सेल्स एग्जीक्यूटिव", type: "पूर्णकालिक", location: "ऑन-साइट" },
       ],
       applyBtn: "अभी आवेदन करें",
       footerRights: "ProHR AI © 2026. सर्वाधिकार सुरक्षित।",
@@ -86,6 +90,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "सिभिल इन्जिनियर", type: "पूर्ण-समय", location: "अन-साइट" },
         { id: "accounting", title: "लेखा (Accounting)", type: "पूर्ण-समय", location: "अन-साइट" },
         { id: "foreman-civil-engineer", title: "फोरम्यान सिभिल इन्जिनियर", type: "पूर्ण-समय", location: "अन-साइट" },
+        { id: "sales-executive", title: "सेल्स एक्ेक्युटिभ", type: "पूर्ण-समय", location: "अन-साइट" },
       ],
       applyBtn: "अहिले आवेदन दिनुहोस्",
       footerRights: "ProHR AI © 2026. सर्वाधिकार सुरक्षित।",
@@ -102,6 +107,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "Civil Engineer", type: "Full-time", location: "On-site" },
         { id: "accounting", title: "Accounting", type: "Full-time", location: "On-site" },
         { id: "foreman-civil-engineer", title: "Foreman Civil Engineer", type: "Full-time", location: "On-site" },
+        { id: "sales-executive", title: "Sales Executive", type: "Full-time", location: "On-site" },
       ],
       applyBtn: "Mag-apply Na",
       footerRights: "ProHR AI © 2026. All rights reserved.",
@@ -118,6 +124,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "İnşaat Mühendisi", type: "Tam Zamanlı", location: "Ofiste" },
         { id: "accounting", title: "Muhasebe", type: "Tam Zamanlı", location: "Ofiste" },
         { id: "foreman-civil-engineer", title: "İnşaat Formeni", type: "Tam Zamanlı", location: "Ofiste" },
+        { id: "sales-executive", title: "Satış Yöneticisi (Sales Executive)", type: "Tam Zamanlı", location: "Ofiste" },
       ],
       applyBtn: "Hemen Başvur",
       footerRights: "ProHR AI © 2026. Tüm hakları saklıdır.",
@@ -134,6 +141,7 @@ export default function AvailableVacanciesPage() {
         { id: "civil-engineer", title: "سویل انجینئر", type: "فل ٹائم", location: "آن سائٹ" },
         { id: "accounting", title: "اکاؤنٹنگ", type: "فل ٹائم", location: "آن سائٹ" },
         { id: "foreman-civil-engineer", title: "فورمین سول انجینئر", type: "فل ٹائم", location: "آن سائٹ" },
+        { id: "sales-executive", title: "سیلز ایگزیکٹو", type: "فل ٹائم", location: "آن سائٹ" },
       ],
       applyBtn: "ابھی درخواست دیں",
       footerRights: "ProHR AI © 2026. جملہ حقوق محفوظ ہیں۔",
@@ -170,7 +178,6 @@ export default function AvailableVacanciesPage() {
 
         {/* الهيدر العلوي */}
         <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-slate-100">
-          {/* شعار التطبيق فقط بدون اسم الشركة */}
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner">
               <ShieldCheck className="w-6 h-6" />
@@ -182,7 +189,6 @@ export default function AvailableVacanciesPage() {
             </div>
           </div>
 
-          {/* أزرار التنقل واللغة */}
           <div className="flex items-center gap-2">
             <div className="relative">
               <button
