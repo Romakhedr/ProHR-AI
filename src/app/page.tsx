@@ -192,14 +192,14 @@ const translations: Record<string, {
     subtitleHeader: "विकेंद्रीकृत HR र AI भर्ना प्लेटफर्म",
     badge: "🚀 नयाँ पुस्ताको करियर र प्रतिभा हब",
     heroTitle: "तपाईंको भर्ना र HR सञ्चालनहरू सरल बनाउनुहोस्",
-    heroDesc: "एकै ड्यासबोर्डमा AI-संचालित बायोडाटा स्क्रिनिङ, ब्लकचेन-समर्थित प्रमाणपत्रहरू र सहज अनबोर्डिङको अनुभव लिनुहोस्।",
+    heroDesc: "एकै ड्यासबोर्डमा AI-संचालित बायोडाटा स्क्रिनिङ, ब्लकचेन-समर्थित प्रमाणपत्रहरू र सहज अनबोर्डिङको अनुभव लिनुहोस्۔",
     screeningHeader: "उम्मेदवार द्रुत स्क्रिनिङ",
     uploadLabel: "CV अपलोड गर्नुहोस्* (PDF / DOCX)",
     dropText: "तपाईंको फाइल यहाँ छोड्नुहोस् वा",
     browseText: "अपलोड गर्न ब्राउज गर्नुहोस्",
     supportText: "10MB सम्म PDF, DOCX समर्थन गर्दछ",
     selectedText: "चयन गरिएको:",
-    signInBtn: "🔐 Pi Network मार्फत साइन ఇన్ गर्नुहोस्",
+    signInBtn: "🔐 Pi Network मार्फत साइन इन गर्नुहोस्",
     dashboardBtn: "📊 HR ड्यासबोर्ड",
     aiScreeningBtn: "✨ AI बायोडाटा स्क्रिनिङ र कार्य राउटर →",
     footerRights: "ProHR AI © 2026. सबै अधिकार सुरक्षित।",
@@ -217,7 +217,7 @@ const translations: Record<string, {
     dir: "rtl",
     subtitleHeader: "غیر مرکزی ایچ آر اور اے آئی بھرتی کا پلیٹ فارم",
     badge: "🚀 اگلی نسل کا کیریئر اور ٹیلنٹ هب",
-    heroTitle: "اپنے بھرتی اور ایچ آر کے امور کو آسان بنائیں",
+    heroTitle: "अपने بھرتی اور ایچ آر کے امور کو آسان بنائیں",
     heroDesc: "ایک ہی ڈیش بورڈ میں AI سے چلنے والی سی وی کی جانچ، بلاک چین کی تصدیق اور ہموار آن بورڈنگ کا تجربہ کریں۔",
     screeningHeader: "امیدوار کی تیز رفتار جانچ",
     uploadLabel: "سی وی اپ لوڈ کریں* (PDF / DOCX)",
@@ -275,7 +275,6 @@ export default function Home() {
     setIsLangOpen(false);
   };
 
-  // دالة تسجيل الدخول عبر Pi Network SDK
   const handlePiSignIn = async () => {
     setStatusMessage(null);
     try {
@@ -291,7 +290,6 @@ export default function Home() {
         console.log("Incomplete payment found:", payment);
       });
 
-      // إرسال البيانات للباك إند لحفظها في Supabase
       const response = await fetch('/api/auth/pi-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -380,7 +378,7 @@ export default function Home() {
   return (
     <main 
       dir={t.dir}
-      className="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-hidden transition-all duration-300 bg-white text-slate-800"
+      className="min-h-screen bg-[#f1f5f9] text-slate-800 flex flex-col items-center justify-between p-6 sm:p-10 font-sans select-none relative overflow-x-hidden"
       style={{
         fontFamily: "'Inter', 'Tajawal', sans-serif"
       }}
@@ -391,18 +389,13 @@ export default function Home() {
         style={{ background: 'linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)' }}
       />
 
-      {/* Main Container Card */}
-      <div 
-        className="w-full max-w-2xl overflow-hidden p-5 sm:p-8 transition-all relative z-10 shadow-xl text-slate-900 border border-blue-100"
-        style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '28px',
-        }}
-      >
+      {/* Main Wide Desktop Container */}
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden flex flex-col relative my-auto">
+        
         {/* Header & Logo with Dynamic Language Dropdown */}
-        <div className="flex items-center justify-between mb-6 pb-5 border-b border-slate-100 gap-2">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-blue-50 shadow-inner overflow-hidden p-2 shrink-0 border border-blue-200">
+        <div className="flex items-center justify-between px-8 py-6 border-b border-slate-100 bg-white">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner overflow-hidden p-1">
               <Image 
                 src="/logo-1.png" 
                 alt="ProHR AI Logo" 
@@ -413,12 +406,13 @@ export default function Home() {
               />
             </div>
             <div>
-              <h1 className="text-lg sm:text-xl font-bold text-blue-900 tracking-wide">ProHR AI</h1>
-              <p className="text-[11px] sm:text-xs text-blue-600 font-medium">{t.subtitleHeader}</p>
+              <p className="text-xs text-blue-600 font-semibold tracking-wide">
+                {t.subtitleHeader}
+              </p>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 relative">
+          <div className="flex items-center gap-3">
             {/* Language Selector Dropdown */}
             <div className="relative">
               <button
@@ -427,71 +421,85 @@ export default function Home() {
                   e.stopPropagation();
                   setIsLangOpen(!isLangOpen);
                 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-full text-xs font-semibold text-blue-800 transition-all shadow-sm cursor-pointer"
+                className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-slate-100 transition shadow-sm cursor-pointer"
               >
+                <GlobeIcon className="w-4 h-4 text-blue-600" />
                 <span>{languagesList.find(l => l.code === currentLang)?.flag}</span>
                 <span>{languagesList.find(l => l.code === currentLang)?.name}</span>
                 <span className="text-[10px] opacity-80">▼</span>
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full mt-2 right-0 w-36 bg-white border border-blue-200 rounded-xl shadow-2xl py-1 z-50 max-h-56 overflow-y-auto">
+                <div className="absolute top-12 right-0 w-48 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 z-50 max-h-56 overflow-y-auto">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
                       type="button"
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs text-right hover:bg-blue-50 transition-colors cursor-pointer ${
-                        currentLang === lang.code ? 'font-bold text-blue-700 bg-blue-50/80' : 'text-slate-700'
+                      className={`w-full flex items-center justify-between px-4 py-2.5 text-xs transition hover:bg-blue-50/80 ${
+                        currentLang === lang.code ? 'font-bold text-blue-700 bg-blue-50/60' : 'text-slate-700 font-medium'
                       }`}
                     >
-                      <span>{lang.flag}</span>
-                      <span>{lang.name}</span>
+                      <span className="flex items-center gap-2">
+                        <span>{lang.flag}</span>
+                        <span>{lang.name}</span>
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-bold uppercase">{lang.code}</span>
                     </button>
                   ))}
                 </div>
               )}
             </div>
+
+            {/* Dashboard / Nav Link */}
+            <Link
+              href="/login"
+              className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-slate-100 transition active:scale-95 shadow-sm"
+            >
+              <span>{t.dashboardBtn}</span>
+            </Link>
           </div>
         </div>
 
         {/* Promo Feature Card */}
         <div 
           dir="ltr"
-          className="relative overflow-hidden rounded-2xl p-5 sm:p-7 mb-6 text-slate-900 shadow-md border border-blue-200 text-left bg-gradient-to-br from-blue-50/60 to-white"
+          className="mx-8 mt-8 bg-gradient-to-br from-[#0f172a] via-blue-700 to-blue-600 rounded-3xl p-8 text-white shadow-lg shadow-blue-600/20 relative overflow-hidden text-left"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-300 text-blue-800 text-xs font-bold mb-3 shadow-sm">
+          <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+          
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white text-xs font-bold mb-4 shadow-sm">
             <span>⚡ AI-Powered</span>
-            <span className="text-blue-500">•</span>
+            <span>•</span>
             <span>Pi Network Native</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-            <div className="md:col-span-8 space-y-2.5">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-950 leading-tight">
-                Hiring, <span className="text-blue-600 underline decoration-blue-400/50">Reinvented</span><br />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div className="md:col-span-8 space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+                Hiring, <span className="text-blue-300 underline decoration-blue-400/50">Reinvented</span><br />
                 for the UAE 🇦🇪
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-blue-100 leading-relaxed font-normal max-w-xl">
                 Decentralized smart HR — AI resume screening, real agent reasoning, and Pi-native identity. Try it free.
               </p>
 
               <div className="flex flex-wrap gap-2 pt-1">
-                <span className="px-2.5 py-1 rounded-lg bg-blue-100/60 border border-blue-200 text-[11px] font-medium text-blue-900">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/20 text-xs font-medium text-white backdrop-blur-sm">
                   🤖 AI Agents
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-blue-100/60 border border-blue-200 text-[11px] font-medium text-blue-900">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/20 text-xs font-medium text-white backdrop-blur-sm">
                   🔐 Pi Sign-In
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-blue-100/60 border border-blue-200 text-[11px] font-medium text-blue-900">
+                <span className="px-3 py-1 rounded-xl bg-white/10 border border-white/20 text-xs font-medium text-white backdrop-blur-sm">
                   🇦🇪 UAE-Ready
                 </span>
               </div>
             </div>
 
-            <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-3 md:pt-0 border-t md:border-t-0 md:border-l border-blue-100">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-2.5 bg-white backdrop-blur-md flex items-center justify-center border border-blue-200 shadow-md">
+            <div className="md:col-span-4 flex flex-col items-center justify-center text-center pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/15">
+              <div className="w-24 h-24 rounded-full p-2.5 bg-white backdrop-blur-md flex items-center justify-center border border-white/20 shadow-md">
                 <Image 
                   src="/logo-1.png" 
                   alt="ProHR AI Logo" 
@@ -502,42 +510,42 @@ export default function Home() {
                 />
               </div>
 
-              <h3 className="text-sm font-bold text-blue-900 mt-2.5 tracking-wide">ProHR AI</h3>
-              <p className="text-[10px] text-blue-600 font-mono">pro-hr-ai.vercel.app</p>
+              <h3 className="text-sm font-bold text-white mt-3 tracking-wide">ProHR AI</h3>
+              <p className="text-[10px] text-blue-200 font-mono">pro-hr-ai.vercel.app</p>
             </div>
           </div>
         </div>
 
         {/* Hero / Intro Section */}
-        <div className="text-center py-1 mb-6">
-          <span className="inline-block text-xs font-bold px-3.5 py-1 rounded-full mb-2.5 bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+        <div className="text-center py-6 px-8">
+          <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-blue-50 text-blue-800 border border-blue-200 shadow-sm">
             {t.badge}
           </span>
-          <h2 className="text-xl sm:text-2xl font-black text-blue-950 tracking-tight mb-2">
+          <h2 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-2.5">
             {t.heroTitle}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
             {t.heroDesc}
           </p>
         </div>
 
         {/* Action Buttons Row (Dashboard & Pi Sign-In) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
+        <div className="px-8 pb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link
-            href="/login"
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-blue-900 border border-blue-200 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm text-center cursor-pointer"
+            href="/vacancies"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-50 hover:bg-slate-100 text-blue-900 border border-slate-200 rounded-2xl text-sm font-bold transition-all shadow-sm text-center cursor-pointer"
           >
-            {t.dashboardBtn}
+            📋 استعراض الوظائف المتاحة (Available Vacancies)
           </Link>
 
           <button
             type="button"
             onClick={handlePiSignIn}
             disabled={isSigningInPi}
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-70"
->
-  {isSigningInPi ? (
-    <>
+            className="flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-sm font-bold transition-all shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-70"
+          >
+            {isSigningInPi ? (
+              <>
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                 <span>جاري تسجيل الدخول...</span>
               </>
@@ -548,51 +556,53 @@ export default function Home() {
         </div>
 
         {/* Candidate Quick Screening Submission Form */}
-        <div className="bg-slate-50/80 rounded-2xl p-5 border border-blue-200 shadow-sm">
-          <h3 className="text-xs sm:text-sm font-black text-blue-900 mb-4 tracking-wide uppercase flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+        <div className="mx-8 mb-8 bg-[#f8fafc] rounded-3xl p-8 border border-slate-200/70 shadow-sm">
+          <h3 className="text-sm sm:text-base font-black text-blue-950 mb-6 tracking-wide uppercase flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
             {t.screeningHeader}
           </h3>
 
-          <form onSubmit={handleSubmitApplication} className="space-y-4">
-            {/* Email Input */}
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                {t.emailLabel}
-              </label>
-              <input 
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
-                dir="ltr"
-                className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all"
-              />
-            </div>
+          <form onSubmit={handleSubmitApplication} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Email Input */}
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">
+                  {t.emailLabel}
+                </label>
+                <input 
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  dir="ltr"
+                  className="w-full p-4 bg-white border border-slate-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
+                />
+              </div>
 
-            {/* Phone Input */}
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                {t.phoneLabel}
-              </label>
-              <input 
-                type="tel"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="+971 5X XXX XXXX"
-                dir="ltr"
-                className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all"
-              />
+              {/* Phone Input */}
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">
+                  {t.phoneLabel}
+                </label>
+                <input 
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+971 5X XXX XXXX"
+                  dir="ltr"
+                  className="w-full p-4 bg-white border border-slate-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
+                />
+              </div>
             </div>
 
             {/* File Upload Box */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-bold text-blue-950 mb-2">
                 {t.uploadLabel}
               </label>
-              <div className="relative border-2 border-dashed border-blue-300 hover:border-blue-600 bg-white rounded-xl p-4 text-center transition-all group cursor-pointer">
+              <div className="relative border-2 border-dashed border-blue-300 hover:border-blue-600 bg-white rounded-2xl p-8 text-center transition-all group cursor-pointer">
                 <input 
                   type="file" 
                   accept=".pdf,.docx"
@@ -605,40 +615,40 @@ export default function Home() {
                   }}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
-                <div className="flex flex-col items-center justify-center space-y-1">
-                  <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
+                <div className="flex flex-col items-center justify-center space-y-2">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform text-xl">
                     📄
                   </div>
-                  <p className="text-xs font-medium text-slate-700">
+                  <p className="text-sm font-semibold text-slate-700">
                     {selectedFileName ? (
-                      <span className="text-blue-700 font-bold truncate max-w-[240px] inline-block">
+                      <span className="text-blue-700 font-bold">
                         {t.selectedText} {selectedFileName}
                       </span>
                     ) : (
                       <>
                         {t.dropText}{" "}
-                        <span className="text-blue-600 font-semibold underline">{t.browseText}</span>
+                        <span className="text-blue-600 font-bold underline">{t.browseText}</span>
                       </>
                     )}
                   </p>
-                  <p className="text-[10px] text-slate-400">{t.supportText}</p>
+                  <p className="text-xs text-slate-400">{t.supportText}</p>
                 </div>
               </div>
             </div>
 
             {/* Privacy Checkbox */}
-            <div className="flex items-start gap-2 pt-1">
+            <div className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-200/70">
               <input 
                 type="checkbox"
                 id="privacy"
                 required
                 checked={agreedPrivacy}
                 onChange={(e) => setAgreedPrivacy(e.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
               />
-              <label htmlFor="privacy" className="text-[11px] text-slate-600 cursor-pointer select-none leading-relaxed">
+              <label htmlFor="privacy" className="text-xs text-slate-600 cursor-pointer select-none leading-relaxed">
                 {t.privacyAgreeText}
-                <Link href="/privacy" className="text-blue-600 font-semibold underline hover:text-blue-800">
+                <Link href="/privacy" className="text-blue-600 font-bold underline hover:text-blue-800">
                   {t.privacyPolicyText}
                 </Link>
               </label>
@@ -648,7 +658,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+              className="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
             >
               {isSubmitting ? (
                 <>
@@ -660,9 +670,9 @@ export default function Home() {
               )}
             </button>
 
-            {/* Status Alert Displayed Directly Under the Submit Button */}
+            {/* Status Alert */}
             {statusMessage && (
-              <div className={`p-3.5 mt-3 rounded-xl text-xs font-bold text-center transition-all duration-300 border ${
+              <div className={`p-4 rounded-2xl text-sm font-bold text-center transition-all duration-300 border ${
                 statusMessage.type === 'success' 
                   ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm' 
                   : 'bg-rose-50 text-rose-800 border-rose-300'
@@ -674,7 +684,7 @@ export default function Home() {
         </div>
 
         {/* AI Task Router Navigation Link */}
-        <div className="mt-5 text-center">
+        <div className="pb-6 text-center">
           <Link
             href="/screen"
             className="inline-block text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors py-1 cursor-pointer"
@@ -684,20 +694,30 @@ export default function Home() {
         </div>
 
         {/* Footer info */}
-        <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
-          <p>{t.footerRights}</p>
-          <div className="flex items-center gap-3">
-            <Link href="/support" className="hover:text-blue-600 transition-colors">
+        <div className="bg-[#f8fafc] border-t border-slate-200/70 py-4 px-8 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="text-xs text-slate-500 flex items-center gap-2 flex-wrap">
+            <span>{t.footerRights}</span>
+            <span>•</span>
+            <Link href="/support" className="hover:underline cursor-pointer font-medium">
               {t.supportCenter}
             </Link>
-            <span>•</span>
-            <p>
-              {t.developedBy}{" "}
-              <span className="font-semibold text-blue-700">Reham Hamdy Elsayed Khedr</span>
-            </p>
+          </div>
+          <div className="text-xs font-semibold text-blue-600 tracking-wide">
+            {t.developedBy}{" "}
+            <span className="font-bold text-blue-700">Reham Hamdy Elsayed Khedr</span>
           </div>
         </div>
+
       </div>
     </main>
+  );
+}
+
+function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...props} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 000 18m1-18a17 17 0 010 18" />
+    </svg>
   );
 }
