@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { submitApplicationAction } from "@/app/actions";
 
 export default function ScreenPage() {
+  const searchParams = useSearchParams();
+  const roleFromUrl = searchParams.get("role") || "";
+
+  const [selectedRole, setSelectedRole] = useState(roleFromUrl);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileName, setSelectedFileName] = useState("");
   
@@ -22,6 +27,13 @@ export default function ScreenPage() {
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // تحديث المسمى الوظيفي في حال تغير الرابط
+  useEffect(() => {
+    if (roleFromUrl) {
+      setSelectedRole(roleFromUrl);
+    }
+  }, [roleFromUrl]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +58,7 @@ export default function ScreenPage() {
 
     try {
       const formData = new FormData();
+      formData.append('role', selectedRole);
       formData.append('immediateJoining', immediateJoining);
       formData.append('currentSalary', currentSalary);
       formData.append('expectedSalary', expectedSalary);
@@ -118,13 +131,24 @@ export default function ScreenPage() {
               <p className="text-xs text-blue-600 font-medium">ProHR Smart Candidate Portal</p>
             </div>
           </div>
-          <Link href="/" className="text-xs font-semibold px-4 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all">
-            ← Home
+          <Link href="/vacancies" className="text-xs font-semibold px-4 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all">
+            ← Vacancies
           </Link>
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit} noValidate>
           
+          {/* عرض الوظيفة المتقدم لها إن وجدت */}
+          {selectedRole && (
+            <div className="bg-blue-600 text-white p-4 rounded-2xl flex items-center justify-between shadow-md shadow-blue-500/20">
+              <div>
+                <span className="text-[11px] uppercase tracking-wider text-blue-200 block font-medium">Applying For Position</span>
+                <span className="text-base font-bold">{selectedRole}</span>
+              </div>
+              <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold backdrop-blur-sm">Selected Role</span>
+            </div>
+          )}
+
           <div className="bg-blue-50/50 p-5 rounded-2xl border border-blue-200">
             <label className="block text-xs font-bold text-blue-950 mb-3">Are you available for immediate joining?*</label>
             <div className="flex gap-8">
