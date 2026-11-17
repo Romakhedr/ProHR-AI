@@ -103,17 +103,20 @@ function ScreenContent() {
 
   return (
     <main 
-      className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-white text-slate-800"
+      dir="ltr"
+      className="min-h-screen bg-[#f1f5f9] text-slate-800 flex flex-col items-center justify-between p-6 sm:p-10 font-sans select-none relative overflow-x-hidden"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
       {/* Top Bar Accent - Royal Blue Gradient */}
       <div className="fixed top-0 right-0 left-0 h-2 z-50" style={{ background: 'linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)' }} />
 
-      <div className="w-full max-w-2xl overflow-hidden p-6 sm:p-10 bg-white relative z-10 shadow-xl rounded-3xl border border-blue-100 my-8">
+      {/* الحاوية العريضة والواسعة الخاصة باللابتوب */}
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden flex flex-col relative my-auto">
         
-        <div className="flex items-center justify-between mb-8 pb-5 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-blue-900 font-extrabold text-xl shadow-inner overflow-hidden p-1 bg-blue-50 border border-blue-200">
+        {/* الهيدر العلوي */}
+        <div className="flex items-center justify-between px-8 py-6 border-b border-slate-100 bg-white">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner overflow-hidden p-1">
               <Image 
                 src="/logo-1.png" 
                 alt="ProHR AI Logo" 
@@ -124,211 +127,221 @@ function ScreenContent() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-blue-950">AI Resume Screening</h1>
+              <h1 className="text-xl font-extrabold text-blue-950 tracking-tight">AI Resume Screening</h1>
               <p className="text-xs text-blue-600 font-medium">ProHR Smart Candidate Portal</p>
             </div>
           </div>
-          <Link href="/vacancies" className="text-xs font-semibold px-4 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all">
-            ← Vacancies
+          <Link 
+            href="/vacancies" 
+            className="flex items-center gap-2 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-slate-100 transition active:scale-95 shadow-sm"
+          >
+            <span>← Vacancies</span>
           </Link>
         </div>
 
-        <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-          
-          {selectedRole && (
-            <div className="bg-blue-600 text-white p-4 rounded-2xl flex items-center justify-between shadow-md shadow-blue-500/20">
-              <div>
-                <span className="text-[11px] uppercase tracking-wider text-blue-200 block font-medium">Applying For Position</span>
-                <span className="text-base font-bold">{selectedRole}</span>
-              </div>
-              <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold backdrop-blur-sm">Selected Role</span>
-            </div>
-          )}
-
-          <div className="bg-blue-50/50 p-5 rounded-2xl border border-blue-200">
-            <label className="block text-xs font-bold text-blue-950 mb-3">Are you available for immediate joining?*</label>
-            <div className="flex gap-8">
-              <label className="flex items-center gap-2.5 text-sm font-semibold text-blue-900 cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="joining" 
-                  value="yes" 
-                  checked={immediateJoining === "yes"} 
-                  onChange={(e) => setImmediateJoining(e.target.value)}
-                  className="w-4 h-4 accent-blue-600 cursor-pointer" 
-                /> Yes
-              </label>
-              <label className="flex items-center gap-2.5 text-sm font-semibold text-blue-900 cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="joining" 
-                  value="no" 
-                  checked={immediateJoining === "no"} 
-                  onChange={(e) => setImmediateJoining(e.target.value)}
-                  className="w-4 h-4 accent-blue-600 cursor-pointer" 
-                /> No
-              </label>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">Current Salary Package (Fixed + Benefits):</label>
-              <input 
-                type="text" 
-                placeholder="e.g. 10000 AED" 
-                value={currentSalary}
-                onChange={(e) => setCurrentSalary(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">Expected Salary:</label>
-              <input 
-                type="text" 
-                placeholder="e.g. 15000 AED" 
-                value={expectedSalary}
-                onChange={(e) => setExpectedSalary(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-              />
-            </div>
-          </div>
-
-          <div className="relative flex py-3 items-center">
-            <div className="flex-grow border-t border-slate-200"></div>
-            <span className="flex-shrink mx-4 text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Personal Information</span>
-            <div className="flex-grow border-t border-slate-200"></div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">First name*</label>
-              <input 
-                type="text" 
-                placeholder="Enter first name" 
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">Last name*</label>
-              <input 
-                type="text" 
-                placeholder="Enter last name" 
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">Email*</label>
-              <input 
-                type="email" 
-                placeholder="name@example.com" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-                dir="ltr" 
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-blue-950 mb-1.5">Phone*</label>
-              <input 
-                type="tel" 
-                placeholder="+971" 
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
-                dir="ltr" 
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-blue-950 mb-1.5">Upload CV* (PDF / DOCX)</label>
-            <input 
-              type="file" 
-              ref={fileInputRef}
-              id="cvFile" 
-              accept=".pdf,.docx,.doc" 
-              className="hidden" 
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  setSelectedFile(file);
-                  setSelectedFileName(file.name);
-                }
-              }}
-            />
-
-            <div 
-              onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-blue-300 rounded-2xl p-6 text-center bg-blue-50/40 hover:bg-blue-50/80 hover:border-blue-600 transition-all cursor-pointer group"
-            >
-              <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📄</span>
-              <span className="text-xs font-semibold text-slate-700">
-                {selectedFileName ? (
-                  <span className="text-blue-700 font-bold">Selected: {selectedFileName}</span>
-                ) : (
-                  <>Drop your file here or <span className="text-blue-600 font-bold underline">browse to upload</span></>
-                )}
-              </span>
-              <p className="text-[10px] text-slate-400 mt-1">Supports PDF, DOCX up to 10MB</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 bg-blue-50/40 p-3.5 rounded-2xl border border-blue-100">
-            <input 
-              type="checkbox" 
-              checked={agreedTerms}
-              onChange={(e) => setAgreedTerms(e.target.checked)}
-              className="mt-1 w-4 h-4 accent-blue-600 rounded cursor-pointer" 
-            />
-            <p className="text-xs text-slate-600 leading-relaxed">
-              By submitting this application, I agree that I have read the <a href="#" className="text-blue-600 font-bold underline">Privacy Policy</a> and confirm that ProHR AI stores my personal details to process my job application.*
-            </p>
-          </div>
-
-          <button 
-            type="submit" 
-            disabled={isSubmitting}
-            className="w-full py-4 rounded-2xl text-white font-bold text-sm shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99] disabled:opacity-50 cursor-pointer bg-blue-600"
-          >
-            {isSubmitting ? "Submitting..." : "Submit Application"}
-          </button>
-
-          {statusMessage && (
-            <div className={`p-4 rounded-2xl text-sm font-semibold text-center transition-all shadow-md ${
-              statusMessage.type === 'success' 
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-300' 
-                : 'bg-rose-50 text-rose-700 border border-rose-200'
-            }`}>
-              {statusMessage.type === 'success' ? (
-                <div className="space-y-1">
-                  <p className="text-base text-emerald-700 font-bold">
-                    تم تقديم الطلب بنجاح! 🎉
-                  </p>
-                  <p className="text-xs text-emerald-600 font-medium" dir="ltr">
-                    (Submitted Successfully)
-                  </p>
+        {/* محتوى النموذج بشكل عريض ومريح للابتوب */}
+        <div className="p-8 sm:p-12">
+          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+            
+            {selectedRole && (
+              <div className="bg-gradient-to-r from-[#0f172a] via-blue-700 to-blue-600 text-white p-5 rounded-2xl flex items-center justify-between shadow-md shadow-blue-500/20">
+                <div>
+                  <span className="text-xs uppercase tracking-wider text-blue-200 block font-medium">Applying For Position</span>
+                  <span className="text-lg font-bold">{selectedRole}</span>
                 </div>
-              ) : (
-                statusMessage.text
-              )}
+                <span className="text-xs bg-white/20 px-4 py-1.5 rounded-full font-semibold backdrop-blur-sm">Selected Role</span>
+              </div>
+            )}
+
+            <div className="bg-[#f8fafc] p-6 rounded-2xl border border-slate-200/70">
+              <label className="block text-xs font-bold text-blue-950 mb-3">Are you available for immediate joining?*</label>
+              <div className="flex gap-8">
+                <label className="flex items-center gap-2.5 text-sm font-semibold text-slate-700 cursor-pointer">
+                  <input 
+                    type="radio" 
+                    name="joining" 
+                    value="yes" 
+                    checked={immediateJoining === "yes"} 
+                    onChange={(e) => setImmediateJoining(e.target.value)}
+                    className="w-4 h-4 accent-blue-600 cursor-pointer" 
+                  /> Yes
+                </label>
+                <label className="flex items-center gap-2.5 text-sm font-semibold text-slate-700 cursor-pointer">
+                  <input 
+                    type="radio" 
+                    name="joining" 
+                    value="no" 
+                    checked={immediateJoining === "no"} 
+                    onChange={(e) => setImmediateJoining(e.target.value)}
+                    className="w-4 h-4 accent-blue-600 cursor-pointer" 
+                  /> No
+                </label>
+              </div>
             </div>
-          )}
 
-        </form>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">Current Salary Package (Fixed + Benefits):</label>
+                <input 
+                  type="text" 
+                  placeholder="e.g. 10000 AED" 
+                  value={currentSalary}
+                  onChange={(e) => setCurrentSalary(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">Expected Salary:</label>
+                <input 
+                  type="text" 
+                  placeholder="e.g. 15000 AED" 
+                  value={expectedSalary}
+                  onChange={(e) => setExpectedSalary(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                />
+              </div>
+            </div>
 
-        <footer className="w-full text-center pt-6 mt-6 border-t border-slate-100 text-slate-500 text-xs">
-          <p className="text-slate-700 font-medium tracking-wide">
+            <div className="relative flex py-4 items-center">
+              <div className="flex-grow border-t border-slate-200"></div>
+              <span className="flex-shrink mx-4 text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-4 py-1.5 rounded-full border border-blue-200">Personal Information</span>
+              <div className="flex-grow border-t border-slate-200"></div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">First name*</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter first name" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">Last name*</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter last name" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">Email*</label>
+                <input 
+                  type="email" 
+                  placeholder="name@example.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                  dir="ltr" 
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-blue-950 mb-2">Phone*</label>
+                <input 
+                  type="tel" 
+                  placeholder="+971" 
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
+                  dir="ltr" 
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-blue-950 mb-2">Upload CV* (PDF / DOCX)</label>
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                id="cvFile" 
+                accept=".pdf,.docx,.doc" 
+                className="hidden" 
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    setSelectedFile(file);
+                    setSelectedFileName(file.name);
+                  }
+                }}
+              />
+
+              <div 
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-blue-300 rounded-2xl p-8 text-center bg-[#f8fafc] hover:bg-blue-50/50 hover:border-blue-600 transition-all cursor-pointer group"
+              >
+                <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📄</span>
+                <span className="text-sm font-semibold text-slate-700">
+                  {selectedFileName ? (
+                    <span className="text-blue-700 font-bold">Selected: {selectedFileName}</span>
+                  ) : (
+                    <>Drop your file here or <span className="text-blue-600 font-bold underline">browse to upload</span></>
+                  )}
+                </span>
+                <p className="text-xs text-slate-400 mt-1">Supports PDF, DOCX up to 10MB</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 bg-[#f8fafc] p-4 rounded-2xl border border-slate-200/70">
+              <input 
+                type="checkbox" 
+                checked={agreedTerms}
+                onChange={(e) => setAgreedTerms(e.target.checked)}
+                className="mt-1 w-4 h-4 accent-blue-600 rounded cursor-pointer" 
+              />
+              <p className="text-xs text-slate-600 leading-relaxed">
+                By submitting this application, I agree that I have read the <a href="#" className="text-blue-600 font-bold underline">Privacy Policy</a> and confirm that ProHR AI stores my personal details to process my job application.*
+              </p>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full py-4 rounded-2xl text-white font-bold text-sm shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99] disabled:opacity-50 cursor-pointer bg-blue-600"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Application"}
+            </button>
+
+            {statusMessage && (
+              <div className={`p-4 rounded-2xl text-sm font-semibold text-center transition-all shadow-md ${
+                statusMessage.type === 'success' 
+                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-300' 
+                  : 'bg-rose-50 text-rose-700 border border-rose-200'
+              }`}>
+                {statusMessage.type === 'success' ? (
+                  <div className="space-y-1">
+                    <p className="text-base text-emerald-700 font-bold">
+                      تم تقديم الطلب بنجاح! 🎉
+                    </p>
+                    <p className="text-xs text-emerald-600 font-medium" dir="ltr">
+                      (Submitted Successfully)
+                    </p>
+                  </div>
+                ) : (
+                  statusMessage.text
+                )}
+              </div>
+            )}
+
+          </form>
+        </div>
+
+        {/* الفوتر */}
+        <div className="bg-[#f8fafc] border-t border-slate-200/70 py-4 px-8 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="text-xs text-slate-500">
+            ProHR AI © 2026. All rights reserved.
+          </div>
+          <div className="text-xs font-semibold text-blue-600 tracking-wide">
             developed by <strong className="text-blue-700 font-semibold">Reham Hamdy Elsayed Khedr</strong>
-          </p>
-        </footer>
+          </div>
+        </div>
 
       </div>
     </main>
