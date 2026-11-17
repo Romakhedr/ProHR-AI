@@ -285,9 +285,9 @@ export default function AvailableVacanciesPage() {
                 </span>
               </div>
 
-              {/* زر التقديم (Apply Now) ينقل لصفحة التقديم */}
+              {/* زر التقديم (Apply Now) موجه إلى /screen الصحيح */}
               <Link
-                href={`/apply?role=${encodeURIComponent(job.title)}`}
+                href={`/screen?role=${encodeURIComponent(job.title)}`}
                 className="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.98] transition text-white font-semibold py-3 rounded-2xl text-sm shadow-md shadow-blue-600/20 flex items-center justify-center"
               >
                 {t.applyBtn}
