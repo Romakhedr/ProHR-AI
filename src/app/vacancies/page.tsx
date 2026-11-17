@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Globe, ChevronDown, Briefcase, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { Globe, ChevronDown, Briefcase } from "lucide-react";
 
 type Language = "en" | "ar" | "zh" | "hi" | "ne" | "fil" | "tr" | "ur";
 
@@ -10,7 +11,7 @@ export default function AvailableVacanciesPage() {
   const [lang, setLang] = useState<Language>("en");
   const [isLangOpen, setIsLangOpen] = useState(false);
 
-  // قاموس الترجمات للنصوص والعناوين (تمت إضافة Sales Executive بجميع اللغات)
+  // قاموس الترجمات للنصوص والعناوين
   const content = {
     en: {
       home: "Home",
@@ -169,18 +170,26 @@ export default function AvailableVacanciesPage() {
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
-      className="min-h-screen bg-[#f1f5f9] text-slate-800 flex flex-col items-center py-6 px-4 font-sans select-none"
+      className="min-h-screen bg-[#f1f5f9] text-slate-800 flex flex-col items-center justify-between p-6 sm:p-10 font-sans select-none relative overflow-x-hidden"
     >
-      <div className="w-full max-w-md bg-white rounded-[32px] shadow-xl border border-slate-200/80 overflow-hidden flex flex-col relative">
-        
-        {/* شريط علوي بلون الهوية البصرية */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-[#0f172a] via-blue-600 to-indigo-600"></div>
+      {/* شريط علوي بلون الهوية */}
+      <div className="fixed top-0 right-0 left-0 h-2 z-50" style={{ background: 'linear-gradient(90deg, #1d4ed8, #2563eb 60%, #60a5fa)' }} />
 
-        {/* الهيدر العلوي */}
-        <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner">
-              <ShieldCheck className="w-6 h-6" />
+      {/* الحاوية الكبيرة والواسعة الخاصة باللابتوب */}
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden flex flex-col relative my-auto">
+        
+        {/* الهيدر العلوي مع الشعار في الجنب */}
+        <div className="flex items-center justify-between px-8 py-6 border-b border-slate-100 bg-white">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner overflow-hidden p-1">
+              <Image 
+                src="/logo-1.png" 
+                alt="ProHR AI Logo" 
+                width={40} 
+                height={40} 
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div>
               <p className="text-xs text-blue-600 font-semibold tracking-wide">
@@ -189,20 +198,21 @@ export default function AvailableVacanciesPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* زر اختيار اللغة */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 transition"
+                className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-slate-100 transition shadow-sm"
               >
-                <Globe className="w-3.5 h-3.5 text-blue-600" />
+                <Globe className="w-4 h-4 text-blue-600" />
                 <span>{currentLangObj.short}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
               </button>
 
               {isLangOpen && (
-                <div className={`absolute top-11 ${isRtl ? "left-0" : "right-0"} w-44 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50`}>
+                <div className={`absolute top-12 ${isRtl ? "left-0" : "right-0"} w-48 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50`}>
                   {languagesList.map((item) => (
                     <button
                       key={item.code}
@@ -211,7 +221,7 @@ export default function AvailableVacanciesPage() {
                         setLang(item.code);
                         setIsLangOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-4 py-2 text-xs transition hover:bg-blue-50/80 ${
+                      className={`w-full flex items-center justify-between px-4 py-2.5 text-xs transition hover:bg-blue-50/80 ${
                         lang === item.code ? "bg-blue-50/60 text-blue-600 font-bold" : "text-slate-700 font-medium"
                       }`}
                     >
@@ -223,9 +233,10 @@ export default function AvailableVacanciesPage() {
               )}
             </div>
 
+            {/* زر الرئيسية */}
             <Link
               href="/"
-              className="flex items-center gap-1 bg-slate-50 border border-slate-200 text-slate-700 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 transition active:scale-95"
+              className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-slate-100 transition active:scale-95 shadow-sm"
             >
               <span className={isRtl ? "rotate-180 inline-block" : ""}>←</span>
               <span>{t.home}</span>
@@ -234,51 +245,54 @@ export default function AvailableVacanciesPage() {
         </div>
 
         {/* البانر الأزرق الرئيسي */}
-        <div className="mx-6 mt-6 bg-gradient-to-br from-[#0f172a] via-blue-700 to-blue-600 rounded-3xl p-6 text-white shadow-lg shadow-blue-600/20 mb-6 relative overflow-hidden">
-          <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-          <div className="flex items-center gap-2.5 mb-2">
-            <div className="p-2 bg-white/15 backdrop-blur-sm rounded-xl">
-              <Briefcase className="w-5 h-5 text-white" />
+        <div className="mx-8 mt-8 bg-gradient-to-br from-[#0f172a] via-blue-700 to-blue-600 rounded-3xl p-8 text-white shadow-lg shadow-blue-600/20 relative overflow-hidden">
+          <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2.5 bg-white/15 backdrop-blur-sm rounded-2xl">
+              <Briefcase className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-lg font-bold tracking-wide">{t.bannerTitle}</h2>
+            <h2 className="text-xl font-bold tracking-wide">{t.bannerTitle}</h2>
           </div>
-          <p className="text-xs text-blue-100 leading-relaxed font-normal">
+          <p className="text-sm text-blue-100 leading-relaxed font-normal max-w-2xl">
             {t.bannerDesc}
           </p>
         </div>
 
-        {/* قائمة بطاقات الوظائف */}
-        <div className="px-6 space-y-4 pb-8">
+        {/* قائمة بطاقات الوظائف بتنسيق شبكي متناسق على اللابتوب */}
+        <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {t.jobs.map((job) => (
             <div
               key={job.id}
-              className="bg-[#f8fafc] rounded-3xl p-5 border border-slate-200/70 shadow-sm hover:shadow-md hover:border-blue-200 transition duration-200"
+              className="bg-[#f8fafc] rounded-3xl p-6 border border-slate-200/70 shadow-sm hover:shadow-md hover:border-blue-200 transition duration-200 flex flex-col justify-between"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-white border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
-                    <Briefcase className="w-5 h-5" />
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-2xl bg-white border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                      <Briefcase className="w-5 h-5" />
+                    </div>
+                    {/* عناوين الوظائف باللون الأزرق المتناسق */}
+                    <h3 className="font-bold text-blue-700 text-base">{job.title}</h3>
                   </div>
-                  {/* عناوين الوظائف باللون الأزرق المتناسق */}
-                  <h3 className="font-bold text-blue-700 text-base">{job.title}</h3>
+                  <span className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3.5 py-1 rounded-full border border-emerald-200/70">
+                    {t.status}
+                  </span>
                 </div>
-                <span className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-200/70">
-                  {t.status}
-                </span>
+
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="bg-white border border-slate-200/80 text-slate-600 text-xs font-medium px-3 py-1 rounded-full">
+                    {job.type}
+                  </span>
+                  <span className="bg-white border border-slate-200/80 text-slate-600 text-xs font-medium px-3 py-1 rounded-full">
+                    {job.location}
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 mb-5">
-                <span className="bg-white border border-slate-200/80 text-slate-600 text-xs font-medium px-3 py-1 rounded-full">
-                  {job.type}
-                </span>
-                <span className="bg-white border border-slate-200/80 text-slate-600 text-xs font-medium px-3 py-1 rounded-full">
-                  {job.location}
-                </span>
-              </div>
-
+              {/* زر التقديم */}
               <Link
                 href={`/screen?role=${encodeURIComponent(job.title)}`}
-                className="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.98] transition text-white font-semibold py-3 rounded-2xl text-sm shadow-md shadow-blue-600/20 flex items-center justify-center"
+                className="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.98] transition text-white font-semibold py-3.5 rounded-2xl text-sm shadow-md shadow-blue-600/20 flex items-center justify-center"
               >
                 {t.applyBtn}
               </Link>
@@ -287,13 +301,13 @@ export default function AvailableVacanciesPage() {
         </div>
 
         {/* الفوتر */}
-        <div className="mt-auto bg-[#f8fafc] border-t border-slate-200/70 py-4 px-6 text-center space-y-1">
-          <div className="text-[11px] text-slate-500 flex items-center justify-center gap-2 flex-wrap">
+        <div className="bg-[#f8fafc] border-t border-slate-200/70 py-4 px-8 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="text-xs text-slate-500 flex items-center gap-2 flex-wrap">
             <span>{t.footerRights}</span>
             <span>•</span>
             <span className="hover:underline cursor-pointer font-medium">{t.support}</span>
           </div>
-          <div className="text-[11px] font-semibold text-blue-600 tracking-wide">
+          <div className="text-xs font-semibold text-blue-600 tracking-wide">
             {t.developer}
           </div>
         </div>
