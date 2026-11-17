@@ -100,13 +100,12 @@ export default function LoginPage() {
         text: t.successMsg // تظهر تلقائياً بالعربية أو الإنجليزية حسب اللغة المختارة
       });
 
-      // تفريغ الحقول بعد النجاح
+// تفريغ الحقول بعد النجاح
       setEmail("");
       setPassword("");
-router.push("/vacancies");
-    }, 800);
+      router.push("/vacancies");
+    }, 800); 
   };
-
   return (
     <main
       dir={t.dir}
