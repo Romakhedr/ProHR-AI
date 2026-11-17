@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { submitApplicationAction } from "@/app/actions";
 
-export default function ScreenPage() {
+function ScreenContent() {
   const searchParams = useSearchParams();
   const roleFromUrl = searchParams.get("role") || "";
 
@@ -28,7 +28,6 @@ export default function ScreenPage() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // تحديث المسمى الوظيفي في حال تغير الرابط
   useEffect(() => {
     if (roleFromUrl) {
       setSelectedRole(roleFromUrl);
@@ -66,7 +65,6 @@ export default function ScreenPage() {
       formData.append('lastName', lastName);
       formData.append('email', email);
       formData.append('phone', phone);
-      // إرسال الملف باسم cv و file لضمان توافقه مع أي مستقبل بيانات
       formData.append('file', selectedFile);
       formData.append('cv', selectedFile);
 
@@ -82,7 +80,6 @@ export default function ScreenPage() {
         text: 'تم تقديم الطلب بنجاح! 🎉 (Submitted Successfully)' 
       });
 
-      // تفريغ المدخلات بعد النجاح
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -138,7 +135,6 @@ export default function ScreenPage() {
 
         <form className="space-y-6" onSubmit={handleSubmit} noValidate>
           
-          {/* عرض الوظيفة المتقدم لها إن وجدت */}
           {selectedRole && (
             <div className="bg-blue-600 text-white p-4 rounded-2xl flex items-center justify-between shadow-md shadow-blue-500/20">
               <div>
@@ -305,7 +301,6 @@ export default function ScreenPage() {
             {isSubmitting ? "Submitting..." : "Submit Application"}
           </button>
 
-          {/* رسالة الحالة بصندوق أخضر زمردي واضح ومميز */}
           {statusMessage && (
             <div className={`p-4 rounded-2xl text-sm font-semibold text-center transition-all shadow-md ${
               statusMessage.type === 'success' 
@@ -337,5 +332,13 @@ export default function ScreenPage() {
 
       </div>
     </main>
+  );
+}
+
+export default function ScreenPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white text-blue-600 font-semibold">Loading...</div>}>
+      <ScreenContent />
+    </Suspense>
   );
 }
