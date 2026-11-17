@@ -176,7 +176,7 @@ function ScreenContent() {
               <label className="block text-xs font-bold text-blue-950 mb-1.5">Current Salary Package (Fixed + Benefits):</label>
               <input 
                 type="text" 
-                placeholder="e.g. 10,000 AED" 
+                placeholder="e.g. 10000 AED" 
                 value={currentSalary}
                 onChange={(e) => setCurrentSalary(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
@@ -186,7 +186,7 @@ function ScreenContent() {
               <label className="block text-xs font-bold text-blue-950 mb-1.5">Expected Salary:</label>
               <input 
                 type="text" 
-                placeholder="e.g. 15,000 AED" 
+                placeholder="e.g. 15000 AED" 
                 value={expectedSalary}
                 onChange={(e) => setExpectedSalary(e.target.value)}
                 className="w-full p-3.5 rounded-2xl bg-white border border-slate-300 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm" 
